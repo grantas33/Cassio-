@@ -3,12 +3,14 @@ package com.example.grantas.cassio;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.BaseTransientBottomBar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import butterknife.BindView;
@@ -20,7 +22,7 @@ import butterknife.OnClick;
  * Activities that contain this fragment must implement the
  * {@link CreateFood.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CreateFood#newInstance} factory method to
+ * Use the link CreateFoodnewInstance} factory method to
  * create an instance of this fragment.
  */
 public class CreateFood extends Fragment {
@@ -37,6 +39,13 @@ public class CreateFood extends Fragment {
     Button Scan;
     @BindView(R.id.unit_toggle)
     ToggleButton UnitsToggle;
+    @BindView(R.id.carbohydrates)
+    EditText Carbohydrates;
+    @BindView(R.id.protein)
+    EditText Protein;
+    @BindView(R.id.fat)
+    EditText Fat;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -53,14 +62,26 @@ public class CreateFood extends Fragment {
     @OnClick(R.id.submit)
     public void Submit()
     {
+        String name = Name.getText().toString();;
+        int calories = Integer.parseInt(Calories.getText().toString());
+        int grams = Integer.parseInt(Grams.getText().toString());
+        double carbohydrates = Double.parseDouble(Carbohydrates.getText().toString());
+        double protein = Double.parseDouble(Protein.getText().toString());
+        double fat = Double.parseDouble(Fat.getText().toString());
 
+        name = Name.getText().toString();
+
+        Food food = new Food(name, calories, grams, carbohydrates, protein, fat);
+        Toast.makeText(getContext(), name + " pridėta!", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_food, container, false);
+        View view = inflater.inflate(R.layout.fragment_create_food, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override

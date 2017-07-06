@@ -35,28 +35,26 @@
 
         <EditText
             android:id="@+id/name"
-            android:layout_width="350dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Pavadinimas"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/label" />
+            app:layout_constraintTop_toBottomOf="@+id/label"
+            tools:layout_editor_absoluteX="132dp"
+            tools:layout_editor_absoluteY="107dp" />
 
         <EditText
             android:id="@+id/calories"
-            android:layout_width="245dp"
+            android:layout_width="149dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="-1dp"
+            android:layout_marginLeft="118dp"
             android:ems="10"
             android:inputType="numberDecimal"
-            android:text="Kalorijos"
             app:layout_constraintBottom_toBottomOf="@+id/unit_toggle"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="16dp"
             app:layout_constraintLeft_toLeftOf="parent" />
 
         <ToggleButton
@@ -74,18 +72,59 @@
 
         <EditText
             android:id="@+id/grams"
-            android:layout_width="350dp"
+            android:layout_width="196dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="9dp"
             android:ems="10"
             android:inputType="numberDecimal"
-            android:text="Gramai (Nebūtina)"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.686"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calories" />
+
+        <EditText
+            android:id="@+id/carbohydrates"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintHorizontal_bias="0.922"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/grams" />
+
+        <EditText
+            android:id="@+id/protein"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintHorizontal_bias="0.922"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carbohydrates" />
+
+        <EditText
+            android:id="@+id/fat"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="14dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintHorizontal_bias="0.922"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/protein" />
 
         <Button
             android:id="@+id/submit"
@@ -95,7 +134,79 @@
             android:layout_marginRight="21dp"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/grams" />
+            app:layout_constraintTop_toBottomOf="@+id/fat" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pavadinimas"
+            android:textAppearance="@android:style/TextAppearance.Material.Title"
+            app:layout_constraintRight_toLeftOf="@+id/name"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="21dp"
+            app:layout_constraintTop_toBottomOf="@+id/label"
+            app:layout_constraintHorizontal_bias="0.433" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kalorijos"
+            android:textAppearance="@android:style/TextAppearance.Material.Title"
+            app:layout_constraintRight_toLeftOf="@+id/calories"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gramai"
+            android:textAppearance="@android:style/TextAppearance.Material.Title"
+            app:layout_constraintRight_toLeftOf="@+id/grams"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_bias="0.173"
+            tools:layout_editor_absoluteY="230dp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Angliavandeniai"
+            android:textAppearance="@android:style/TextAppearance.Material.Title"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="22dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Baltymai"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            android:layout_marginLeft="40dp"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="38dp"
+            android:text="Riebalai"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     </android.support.constraint.ConstraintLayout>
 
