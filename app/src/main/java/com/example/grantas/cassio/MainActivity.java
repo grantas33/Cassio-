@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity
 
                 break;
             case R.id.create_food:
-                fragment = new ChooseFood();
+                fragment = new CreateFood();
                 title = "Naujas maistas";
                 break;
             case  R.id.main_screen:
