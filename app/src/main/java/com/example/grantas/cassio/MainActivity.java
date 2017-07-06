@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
+        displayView(R.id.main_screen); //set main screen
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -83,11 +84,11 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        displayView(id);
 
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -99,12 +100,16 @@ public class MainActivity extends AppCompatActivity
         switch (viewId) {
             case R.id.choose_food:
                 fragment = new ChooseFood();
-                title  = "News";
+                title  = "Pasirinkti maistą";
 
                 break;
             case R.id.create_food:
                 fragment = new ChooseFood();
-                title = "Events";
+                title = "Naujas maistas";
+                break;
+            case  R.id.main_screen:
+                fragment = new MainScreen();
+                title = "Namai";
                 break;
 
         }
