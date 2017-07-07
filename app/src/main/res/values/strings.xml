@@ -15,4 +15,5 @@
     <string name="my_foods">Mano produktai</string>
     <string name="first">Pirmas</string>
     <string name="last">Paskutinis</string>
+    <string name="daily_view">Dienų peržiūra</string>
 </resources>

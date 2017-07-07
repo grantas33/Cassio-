@@ -115,6 +115,10 @@ public class MainActivity extends AppCompatActivity
                 fragment = new MainScreen();
                 title = getString(R.string.home_screen);
                 break;
+            case R.id.daily_view:
+                fragment = new DailyView();
+                title = getString(R.string.daily_view);
+                break;
 
         }
 
