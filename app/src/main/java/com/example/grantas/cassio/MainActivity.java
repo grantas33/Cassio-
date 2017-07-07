@@ -1,9 +1,12 @@
 package com.example.grantas.cassio;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -99,17 +102,16 @@ public class MainActivity extends AppCompatActivity
 
         switch (viewId) {
             case R.id.choose_food:
-                fragment = new ChooseFood();
-                title  = "Pasirinkti maistą";
-
+                Intent intent = new Intent(MainActivity.this, ChooseFoodTabs.class);
+                startActivity(intent);
                 break;
             case R.id.create_food:
                 fragment = new CreateFood();
-                title = "Naujas maistas";
+                title = getString(R.string.new_food);
                 break;
             case  R.id.main_screen:
                 fragment = new MainScreen();
-                title = "Namai";
+                title = getString(R.string.home_screen);
                 break;
 
         }
