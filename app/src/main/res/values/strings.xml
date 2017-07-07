@@ -8,6 +8,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="adeed"> pridėta!</string>
     <string name="choose_food">Pasirinkti maistą</string>
     <string name="new_food">Naujas maistas</string>
     <string name="home_screen">Namai</string>

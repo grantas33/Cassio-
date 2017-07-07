@@ -1,0 +1,36 @@
+# --table-start--
+dataClass=com.example.grantas.cassio.Food
+tableName=food_details
+# --table-fields-start--
+# --field-start--
+fieldName=foodId
+columnName=food_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=Name
+columnName=name_id
+# --field-end--
+# --field-start--
+fieldName=Calories
+columnName=calories_id
+# --field-end--
+# --field-start--
+fieldName=Grams
+columnName=grams_id
+# --field-end--
+# --field-start--
+fieldName=Carbohydrates
+columnName=carbohydrates_id
+# --field-end--
+# --field-start--
+fieldName=Protein
+columnName=protein_id
+# --field-end--
+# --field-start--
+fieldName=Fat
+columnName=fat_id
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

@@ -3,29 +3,55 @@ package com.example.grantas.cassio;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.BaseTransientBottomBar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
+import com.example.grantas.cassio.FragmentLogic.CreateFoodLogic;
+import com.example.grantas.cassio.Tools.InvalidValueException;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link CreateFood.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CreateFood#newInstance} factory method to
+ * Use the link CreateFoodnewInstance} factory method to
  * create an instance of this fragment.
  */
 public class CreateFood extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    @BindView(R.id.name)
+    EditText Name;
+    @BindView(R.id.calories)
+    EditText Calories;
+    @BindView(R.id.grams)
+    EditText Grams;
+    @BindView(R.id.submit)
+    Button Add;
+    @BindView(R.id.scan)
+    Button Scan;
+    @BindView(R.id.carbohydrates)
+    EditText Carbohydrates;
+    @BindView(R.id.protein)
+    EditText Protein;
+    @BindView(R.id.fat)
+    EditText Fat;
+
+    CreateFoodLogic Logic; //loginis fragmento sluoksnis
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -33,45 +59,47 @@ public class CreateFood extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateFood.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CreateFood newInstance(String param1, String param2) {
-        CreateFood fragment = new CreateFood();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    }
+
+    @OnClick(R.id.submit)
+    public void Submit()
+    {
+        String calories;
+        String grams;
+        String carbohydrates;
+        String protein;
+        String fat;
+        String name = Name.getText().toString();
+        calories = Calories.getText().toString();
+        grams = Grams.getText().toString();
+        carbohydrates = Carbohydrates.getText().toString();
+        protein = Protein.getText().toString();
+        fat = Fat.getText().toString();
+
+        try {
+            Logic.Add(name, calories, grams, carbohydrates, protein, fat);
+        } catch (InvalidValueException e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
+
+        Toast.makeText(getContext(), name + " " + getString(R.string.adeed), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_food, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        View view = inflater.inflate(R.layout.fragment_create_food, container, false);
+        ButterKnife.bind(this, view);
+        Logic = new CreateFoodLogic(getContext());
+        return view;
     }
 
     @Override
@@ -83,6 +111,12 @@ public class CreateFood extends Fragment {
 //            throw new RuntimeException(context.toString()
 //                    + " must implement OnFragmentInteractionListener");
 //        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Logic.onDestroy();
     }
 
     @Override
