@@ -1,5 +1,5 @@
 # --table-start--
-dataClass=com.example.grantas.cassio.TeacherDetails
+dataClass=com.example.grantas.cassio.Food
 tableName=food_details
 # --table-fields-start--
 # --field-start--
@@ -8,28 +8,28 @@ columnName=food_id
 generatedId=true
 # --field-end--
 # --field-start--
-fieldName=foodName
-columnName=food_name
+fieldName=Name
+columnName=name_id
 # --field-end--
 # --field-start--
-fieldName=calories
-columnName=calories_col
+fieldName=Calories
+columnName=calories_id
 # --field-end--
 # --field-start--
-fieldName=grams
-columnName=grams_col
+fieldName=Grams
+columnName=grams_id
 # --field-end--
 # --field-start--
-fieldName=carboydrates
-columnName=carbohydrates_col
+fieldName=Carbohydrates
+columnName=carbohydrates_id
 # --field-end--
 # --field-start--
-fieldName=protein
-columnName=protein_col
+fieldName=Protein
+columnName=protein_id
 # --field-end--
 # --field-start--
-fieldName=fat
-columnName=fat_col
+fieldName=Fat
+columnName=fat_id
 # --field-end--
 # --table-fields-end--
 # --table-end--

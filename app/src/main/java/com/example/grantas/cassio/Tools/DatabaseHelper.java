@@ -51,8 +51,9 @@ import java.sql.SQLException;
             }
         }
 
-        public Dao<Food, Integer> getFoodData() throws SQLException {
-            if (foodDao != null) {
+        //add or get food list using dao
+        public Dao<Food, Integer> getFoodDao() throws SQLException {
+            if (foodDao == null) {
                 foodDao = getDao(Food.class);
             }
             return foodDao;

@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.example.grantas.cassio.FragmentLogic.CreateFoodLogic;
+import com.example.grantas.cassio.Tools.InvalidValueException;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,14 +43,14 @@ public class CreateFood extends Fragment {
     Button Add;
     @BindView(R.id.scan)
     Button Scan;
-    @BindView(R.id.unit_toggle)
-    ToggleButton UnitsToggle;
     @BindView(R.id.carbohydrates)
     EditText Carbohydrates;
     @BindView(R.id.protein)
     EditText Protein;
     @BindView(R.id.fat)
     EditText Fat;
+
+    CreateFoodLogic Logic; //loginis fragmento sluoksnis
 
 
     private OnFragmentInteractionListener mListener;
@@ -62,17 +68,28 @@ public class CreateFood extends Fragment {
     @OnClick(R.id.submit)
     public void Submit()
     {
-        String name = Name.getText().toString();;
-        int calories = Integer.parseInt(Calories.getText().toString());
-        int grams = Integer.parseInt(Grams.getText().toString());
-        double carbohydrates = Double.parseDouble(Carbohydrates.getText().toString());
-        double protein = Double.parseDouble(Protein.getText().toString());
-        double fat = Double.parseDouble(Fat.getText().toString());
+        String calories;
+        String grams;
+        String carbohydrates;
+        String protein;
+        String fat;
+        String name = Name.getText().toString();
+        calories = Calories.getText().toString();
+        grams = Grams.getText().toString();
+        carbohydrates = Carbohydrates.getText().toString();
+        protein = Protein.getText().toString();
+        fat = Fat.getText().toString();
 
-        name = Name.getText().toString();
+        try {
+            Logic.Add(name, calories, grams, carbohydrates, protein, fat);
+        } catch (InvalidValueException e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
 
-        Food food = new Food(name, calories, grams, carbohydrates, protein, fat);
-        Toast.makeText(getContext(), name + " pridėta!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), name + getString(R.string.adeed), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -81,6 +98,7 @@ public class CreateFood extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_food, container, false);
         ButterKnife.bind(this, view);
+        Logic = new CreateFoodLogic(getContext());
         return view;
     }
 
@@ -93,6 +111,12 @@ public class CreateFood extends Fragment {
 //            throw new RuntimeException(context.toString()
 //                    + " must implement OnFragmentInteractionListener");
 //        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Logic.onDestroy();
     }
 
     @Override

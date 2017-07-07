@@ -15,7 +15,7 @@ public class Food implements Serializable{
     @DatabaseField(generatedId = true, columnName = "food_id")
     public int foodId;
 
-    @DatabaseField(columnName = "food_name")
+    @DatabaseField(columnName = "name_id")
     public String Name;
     @DatabaseField(columnName = "calories_id")
     public int Calories;
