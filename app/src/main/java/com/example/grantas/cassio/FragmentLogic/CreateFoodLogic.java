@@ -60,17 +60,20 @@ public class CreateFoodLogic {
         if (!isValidDouble(carbohydrates)) {
             throw new InvalidValueException("Neteisingi angliavandeniai!");
         } else {
+            if (!carbohydrates.isEmpty())
             Carbohydrates = Double.parseDouble(carbohydrates);
         }
         if (!isValidDouble(protein)) {
             throw new InvalidValueException("Neteisingi baltymai!");
         } else {
+            if (!protein.isEmpty())
             Protein = Double.parseDouble(protein);
         }
 
         if (!isValidDouble(fat)) {
             throw new InvalidValueException("Neteisingi riebalai!");
         } else {
+            if (!fat.isEmpty())
             Fat = Double.parseDouble(fat);
         }
 

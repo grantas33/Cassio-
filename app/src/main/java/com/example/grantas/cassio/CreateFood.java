@@ -89,7 +89,7 @@ public class CreateFood extends Fragment {
             e.printStackTrace();
         }
 
-        Toast.makeText(getContext(), name + getString(R.string.adeed), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), name + " " + getString(R.string.adeed), Toast.LENGTH_LONG).show();
     }
 
     @Override
