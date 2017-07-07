@@ -25,6 +25,7 @@ import butterknife.BindView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private boolean viewIsAtHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (!viewIsAtHome) {
+            displayView(R.id.main_screen);
         } else {
             super.onBackPressed();
         }
@@ -90,12 +93,10 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         displayView(id);
-
-
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 
     public void displayView(int viewId) {
 
@@ -106,18 +107,22 @@ public class MainActivity extends AppCompatActivity
             case R.id.choose_food:
                 Intent intent = new Intent(MainActivity.this, ChooseFoodTabs.class);
                 startActivity(intent);
+                viewIsAtHome = false;
                 break;
             case R.id.create_food:
                 fragment = new CreateFood();
                 title = getString(R.string.new_food);
+                viewIsAtHome = false;
                 break;
             case  R.id.main_screen:
                 fragment = new MainScreen();
                 title = getString(R.string.home_screen);
+                viewIsAtHome = true;
                 break;
             case R.id.daily_view:
                 fragment = new DailyView();
                 title = getString(R.string.daily_view);
+                viewIsAtHome = false;
                 break;
 
         }
