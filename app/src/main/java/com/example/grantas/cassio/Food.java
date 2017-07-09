@@ -21,6 +21,7 @@ public class Food implements Serializable{
     public int Calories;
     @DatabaseField(columnName = "grams_id")
     public int Grams;
+
     @DatabaseField(columnName = "carbohydrates_id")
     public double Carbohydrates;
     @DatabaseField(columnName = "protein_id")

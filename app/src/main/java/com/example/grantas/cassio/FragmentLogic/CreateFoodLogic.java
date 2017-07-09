@@ -12,6 +12,7 @@ import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.IllegalFormatException;
+import java.util.List;
 
 import static java.security.AccessController.getContext;
 
@@ -89,6 +90,7 @@ public class CreateFoodLogic {
 
             //idedam i duombaze
             foodDao.create(food);
+            List<Food> foods = foodDao.queryForAll();
 
         } catch (SQLException e) {
             e.printStackTrace();

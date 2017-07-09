@@ -20,10 +20,11 @@ import java.sql.SQLException;
 
     public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-    private static final String DATABASE_NAME = "fooddir.db";
-    private static final int DATABASE_VERSION = 1;
+        private static final String DATABASE_NAME = "fooddir.db";
+        private static final int DATABASE_VERSION = 1;
 
-    private Dao<Food, Integer> foodDao;
+        private Dao<Food, Integer> foodDao;
+        private Dao<LogItem, Integer> logDao;
 
 
     public DatabaseHelper(Context context) {
@@ -35,6 +36,7 @@ import java.sql.SQLException;
             try {
                 //Create tables
                 TableUtils.createTable(connectionSource, Food.class);
+                TableUtils.createTable(connectionSource, LogItem.class);
             } catch (SQLException e) {
                 Log.e(DatabaseHelper.class.getName(), "Unable to create databases", e);
             }
@@ -44,6 +46,7 @@ import java.sql.SQLException;
         public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int oldVer, int newVer) {
             try{
                 TableUtils.dropTable(connectionSource, Food.class, true);
+                TableUtils.dropTable(connectionSource, LogItem.class, true);
                 onCreate(sqLiteDatabase, connectionSource);
             } catch (SQLException e) {
                 Log.e(DatabaseHelper.class.getName(), "Unable to upgrade database from version " + oldVer + " to new "
@@ -57,5 +60,12 @@ import java.sql.SQLException;
                 foodDao = getDao(Food.class);
             }
             return foodDao;
+        }
+
+        public Dao<LogItem, Integer> getLogDao() throws SQLException {
+            if (logDao == null) {
+                logDao = getDao(LogItem.class);
+            }
+            return logDao;
         }
     }

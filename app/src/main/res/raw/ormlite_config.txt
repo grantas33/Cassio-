@@ -34,3 +34,24 @@ columnName=fat_id
 # --table-fields-end--
 # --table-end--
 #################################
+
+#################################
+# --table-start--
+dataClass=com.example.grantas.cassio.LogItem
+tableName=log_details
+# --table-fields-start--
+# --field-start--
+fieldName=Name
+columnName=name_id
+# --field-end--
+# --field-start--
+fieldName=Grams
+columnName=grams_id
+# --field-end--
+# --field-start--
+fieldName=Time
+columnName=time_id
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

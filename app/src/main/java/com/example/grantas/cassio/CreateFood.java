@@ -82,6 +82,7 @@ public class CreateFood extends Fragment {
 
         try {
             Logic.Add(name, calories, grams, carbohydrates, protein, fat);
+            Toast.makeText(getContext(), name + " " + getString(R.string.adeed), Toast.LENGTH_LONG).show();
         } catch (InvalidValueException e) {
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
@@ -89,7 +90,6 @@ public class CreateFood extends Fragment {
             e.printStackTrace();
         }
 
-        Toast.makeText(getContext(), name + " " + getString(R.string.adeed), Toast.LENGTH_LONG).show();
     }
 
     @Override

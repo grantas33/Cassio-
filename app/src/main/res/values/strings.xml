@@ -16,4 +16,6 @@
     <string name="first">Pirmas</string>
     <string name="last">Paskutinis</string>
     <string name="daily_view">Dienų peržiūra</string>
+    <string name="nutrition_file_key">nutrition_file_key</string>
+    <string name="calories_main_key">com.example.grantas.PREFERENCE_FILE_KEY</string>
 </resources>
