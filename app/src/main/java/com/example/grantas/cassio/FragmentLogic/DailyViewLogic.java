@@ -51,6 +51,22 @@ public class DailyViewLogic {
         return foodsString;
     }
 
+    public List<Food> getFoods() {
+        List<Food> foods = null;
+
+        try
+        {
+            foods = getHelper().
+                    getFoodDao().
+                    queryForAll();
+        }
+        catch (SQLException e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
+        }
+
+        return foods;
+    }
+
     public void onDestroy() {
 		/*
 		 * You'll need this in your class to release the helper when done.

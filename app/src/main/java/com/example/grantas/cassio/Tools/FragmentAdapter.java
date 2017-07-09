@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.grantas.cassio.ChooseFoodGrid;
+import com.example.grantas.cassio.ChooseFoodList;
 
 
 /**
@@ -28,13 +29,13 @@ public class FragmentAdapter extends FragmentPagerAdapter
             case 0:
                 return new ChooseFoodGrid();
             default:
-                return null;
+                return new ChooseFoodList();
         }
     }
 
     @Override
     public int getCount() {
-        return 1;
+        return 2;
     }
 
     @Override
@@ -44,10 +45,10 @@ public class FragmentAdapter extends FragmentPagerAdapter
         {
             case 0:
                 return "Vaisiai ir daržovės";
+            case 1:
+               return "Mano produktai";
             default:
                 return null;
-//            case 1:
-//                return "Mano produktai";
         }
     }
 }

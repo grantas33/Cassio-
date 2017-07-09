@@ -20,7 +20,7 @@ public class Food implements Serializable{
     @DatabaseField(columnName = "calories_id")
     public int Calories;
     @DatabaseField(columnName = "grams_id")
-    public int Grams;
+    public int Grams;  // Default grams
 
     @DatabaseField(columnName = "carbohydrates_id")
     public double Carbohydrates;

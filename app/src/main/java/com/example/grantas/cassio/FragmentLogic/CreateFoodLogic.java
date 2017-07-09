@@ -84,7 +84,7 @@ public class CreateFoodLogic {
 
     public void AddFood(Food food){
         try {
-            //paimam objekta duombazes operacijom
+           //paimam objekta duombazes operacijom
             DatabaseHelper helper = getHelper();
             final Dao<Food, Integer> foodDao = helper.getFoodDao();
 
