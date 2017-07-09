@@ -42,7 +42,6 @@ public class DailyViewLogic {
             foodsString.add(food.toString());
             }
         } catch (SQLException e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
         }
 //        strings = new String[foodsString.size()];
 //        for (int i = 0; i < foodsString.size();  i++) {

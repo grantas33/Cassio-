@@ -90,7 +90,6 @@ public class CreateFoodLogic {
 
             //idedam i duombaze
             foodDao.create(food);
-            List<Food> foods = foodDao.queryForAll();
 
         } catch (SQLException e) {
             e.printStackTrace();

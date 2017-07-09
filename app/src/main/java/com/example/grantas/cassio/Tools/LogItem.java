@@ -3,11 +3,11 @@ package com.example.grantas.cassio.Tools;
 import android.util.Log;
 
 import com.example.grantas.cassio.Food;
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Lukas on 7/9/2017.
@@ -20,16 +20,36 @@ public class LogItem implements Serializable{
     @DatabaseField(generatedId = true, columnName = "log_id")
     public int logId;
 
-    @DatabaseField(columnName = "food_id")
-    Food Name; //maisto pavadinimas
+    @DatabaseField(dataType = DataType.SERIALIZABLE, foreign = true, foreignAutoCreate = true, columnName = "name_id")
+    public Food Name; //maisto pavadinimas
     @DatabaseField(columnName = "grams_id")
-    int Grams; //kiek valge
+    public int Grams; //kiek valge
     @DatabaseField(columnName = "time_id")
-    Date Time; //kada valge
+    public Date Time; //kada valge
+
+    public LogItem() {
+
+    }
 
     public LogItem(Food name, int grams, Date time) {
         Name = name;
         Grams = grams;
         Time = time;
+    }
+
+    public int getCalories() {
+        return Math.round((Grams * Name.Calories) / Name.Grams);
+    }
+
+    public double getCarbohydrates() {
+        return (Grams * Name.Carbohydrates) / Name.Grams;
+    }
+
+    public double getProtein() {
+        return (Grams * Name.Protein) / Name.Grams;
+    }
+
+    public double getFat() {
+        return (Grams * Name.Fat) / Name.Grams;
     }
 }

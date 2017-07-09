@@ -1,6 +1,9 @@
+#
+# generated on 2017/07/09 10:41:18
+#
 # --table-start--
 dataClass=com.example.grantas.cassio.Food
-tableName=food_details
+tableName=food
 # --table-fields-start--
 # --field-start--
 fieldName=foodId
@@ -34,11 +37,9 @@ columnName=fat_id
 # --table-fields-end--
 # --table-end--
 #################################
-
-#################################
 # --table-start--
 dataClass=com.example.grantas.cassio.Tools.LogItem
-tableName=log_details
+tableName=logitem
 # --table-fields-start--
 # --field-start--
 fieldName=logId
@@ -48,6 +49,9 @@ generatedId=true
 # --field-start--
 fieldName=Name
 columnName=name_id
+dataPersister=SERIALIZABLE
+foreign=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=Grams

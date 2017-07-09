@@ -35,8 +35,8 @@ import java.sql.SQLException;
         public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
             try {
                 //Create tables
-                TableUtils.createTable(connectionSource, Food.class);
                 TableUtils.createTable(connectionSource, LogItem.class);
+                TableUtils.createTable(connectionSource, Food.class);
             } catch (SQLException e) {
                 Log.e(DatabaseHelper.class.getName(), "Unable to create databases", e);
             }
@@ -45,12 +45,20 @@ import java.sql.SQLException;
         @Override
         public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int oldVer, int newVer) {
             try{
-                TableUtils.dropTable(connectionSource, Food.class, true);
                 TableUtils.dropTable(connectionSource, LogItem.class, true);
+                TableUtils.dropTable(connectionSource, Food.class, true);
                 onCreate(sqLiteDatabase, connectionSource);
             } catch (SQLException e) {
                 Log.e(DatabaseHelper.class.getName(), "Unable to upgrade database from version " + oldVer + " to new "
                         + newVer, e);
+            }
+        }
+
+        public void ClearLogTable() {
+            try {
+                TableUtils.clearTable(getConnectionSource(), LogItem.class);
+            } catch (SQLException e) {
+                Log.e(DatabaseHelper.class.getName(), "Unable to create databases", e);
             }
         }
 
