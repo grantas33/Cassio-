@@ -37,9 +37,14 @@ columnName=fat_id
 
 #################################
 # --table-start--
-dataClass=com.example.grantas.cassio.LogItem
+dataClass=com.example.grantas.cassio.Tools.LogItem
 tableName=log_details
 # --table-fields-start--
+# --field-start--
+fieldName=logId
+columnName=log_id
+generatedId=true
+# --field-end--
 # --field-start--
 fieldName=Name
 columnName=name_id
