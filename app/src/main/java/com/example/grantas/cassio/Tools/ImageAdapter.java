@@ -1,4 +1,4 @@
-package com.example.grantas.cassio;
+package com.example.grantas.cassio.Tools;
 
 import android.content.Context;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.example.grantas.cassio.R;
 
 /**
  * Created by Grantas on 2017-07-07.
@@ -34,7 +36,7 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return thumbIds.length;
     }
 
     @Override

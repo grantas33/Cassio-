@@ -1,35 +1,54 @@
 package com.example.grantas.cassio;
 
 import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.SupportActivity;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.app.ActionBar;
-import android.os.Bundle;
-import android.app.Activity;
+import android.view.MenuItem;
 
-public class ChooseFoodTabs extends FragmentActivity {
+import com.example.grantas.cassio.Tools.FragmentAdapter;
 
+public class ChooseFoodTabs extends AppCompatActivity {
+
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager mPager;
 
     @Override
-    public void onCreate(Bundle bundle)
+    protected void onCreate(Bundle bundle)
     {
         super.onCreate(bundle);
         setContentView(R.layout.fragment_choose_food);
 
         FragmentAdapter mAdapter = new FragmentAdapter(getSupportFragmentManager());
 
-        ViewPager mPager = (ViewPager)findViewById(R.id.pager);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.choose_food));
+
+        mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mPager);
+
+
+    }
+    //Kad veiktu mygtukas virsuj desinej "<-"
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
