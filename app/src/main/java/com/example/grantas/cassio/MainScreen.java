@@ -66,7 +66,12 @@ public class MainScreen extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        Calories.setText(Logic.getTotalCalories());
+        int calories = Logic.getTotalCalories();
+        try {
+            Calories.setText(Integer.toString(calories));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

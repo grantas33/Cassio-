@@ -20,7 +20,7 @@ public class LogItem implements Serializable{
     @DatabaseField(generatedId = true, columnName = "log_id")
     public int logId;
 
-    @DatabaseField(dataType = DataType.SERIALIZABLE, foreign = true, foreignAutoCreate = true, columnName = "name_id")
+    @DatabaseField(dataType = DataType.SERIALIZABLE, foreign = true, foreignAutoCreate = true, foreignAutoRefresh=true, columnName = "name_id")
     public Food Name; //maisto pavadinimas
     @DatabaseField(columnName = "grams_id")
     public int Grams; //kiek valge

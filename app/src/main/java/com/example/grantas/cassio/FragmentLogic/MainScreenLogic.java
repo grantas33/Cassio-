@@ -39,10 +39,10 @@ public class MainScreenLogic {
         int total = 0;
         try {
             final Dao<LogItem, Integer> logDao = getHelper().getLogDao();
-            Food food = new Food("test", 50, 50, 50, 50, 50);
-            LogItem log = new LogItem(food, 50, new Date());
-            databaseHelper.ClearLogTable();
-            logDao.create(log);
+//            Food food = new Food("test", 100, 50, 50, 50, 50);
+//            LogItem log = new LogItem(food, 50, new Date());
+//            databaseHelper.ClearLogTable();
+//            logDao.create(log);
             List<LogItem> items = logDao.queryForAll();
             for (LogItem item: items
                  ) {
