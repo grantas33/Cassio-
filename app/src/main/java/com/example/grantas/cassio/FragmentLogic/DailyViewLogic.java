@@ -7,6 +7,7 @@ import com.example.grantas.cassio.Food;
 import com.example.grantas.cassio.Tools.DatabaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 
+import java.io.Console;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,21 +52,6 @@ public class DailyViewLogic {
         return foodsString;
     }
 
-    public List<Food> getFoods() {
-        List<Food> foods = null;
-
-        try
-        {
-            foods = getHelper().
-                    getFoodDao().
-                    queryForAll();
-        }
-        catch (SQLException e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
-        }
-
-        return foods;
-    }
 
     public void onDestroy() {
 		/*

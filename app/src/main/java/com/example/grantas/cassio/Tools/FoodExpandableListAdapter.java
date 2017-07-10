@@ -12,6 +12,7 @@ import com.example.grantas.cassio.Food;
 import com.example.grantas.cassio.R;
 
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -21,7 +22,8 @@ import butterknife.OnClick;
  * Klase, isdestanti maistus lentele "Mano produktai"
  */
 
-public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
+public class FoodExpandableListAdapter extends BaseExpandableListAdapter
+{
 
     Activity Context;
 
@@ -34,7 +36,8 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
     }
     @Override
     public int getGroupCount() {
-        return FoodList.size();
+        if(FoodList != null) return FoodList.size();
+        else return 0;
     }
 
     @Override
@@ -68,7 +71,7 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+    public View getGroupView(final int groupPosition, final boolean isExpanded, View convertView, final ViewGroup parent) {
 
         Food item = FoodList.get(groupPosition);
         View view = convertView;
@@ -86,14 +89,27 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
         int imageResourceId = isExpanded ? R.drawable.green_arrow_up : R.drawable.green_arrow_down;
         listHeaderArrow.setImageResource(imageResourceId);
 
+        listHeaderArrow.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                if(isExpanded) ((ExpandableListView) parent).collapseGroup(groupPosition);
+                else ((ExpandableListView) parent).expandGroup(groupPosition, true);
+
+            }
+        });
+
+
         ((TextView)view.findViewById(R.id.foodinfoname)).setText(item.Name);
-        ((TextView)view.findViewById(R.id.foodinfocalories)).setText(String.format("{0} kal.", item.Calories));
-        ((TextView)view.findViewById(R.id.foodinfograms)).setText(String.format("{0} g.", item.Grams));
+        ((TextView)view.findViewById(R.id.foodinfocalories)).setText(item.Calories + " kal.");
+        ((TextView)view.findViewById(R.id.foodinfograms)).setText(item.Grams + " g.");
 
 
 
         return view;
     }
+
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
@@ -104,9 +120,9 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
             row = Context.getLayoutInflater().inflate(R.layout.food_info_child, null);
         }
 
-        ((TextView)row.findViewById(R.id.foodinfocarbs)).setText(String.format("Carbohydrates: {0} g", item.Carbohydrates/100 * item.Grams));
-        ((TextView)row.findViewById(R.id.foodinfoprotein)).setText(String.format("Protein: {0} g", item.Protein/100 * item.Grams));
-        ((TextView)row.findViewById(R.id.foodinfofat)).setText(String.format("Fat: {0} g", item.Fat/100 * item.Grams));
+        ((TextView)row.findViewById(R.id.foodinfocarbs)).setText(String.format(Locale.getDefault(), "%s: %.2f g.", Context.getString(R.string.carbohydrates), item.Carbohydrates/100 * item.Grams));
+        ((TextView)row.findViewById(R.id.foodinfoprotein)).setText(String.format(Locale.getDefault(), "%s: %.2f g", Context.getString(R.string.protein), item.Protein/100 * item.Grams));
+        ((TextView)row.findViewById(R.id.foodinfofat)).setText(String.format(Locale.getDefault(), "%s: %.2f g", Context.getString(R.string.fat), item.Fat/100 * item.Grams));
 
         return row;
     }

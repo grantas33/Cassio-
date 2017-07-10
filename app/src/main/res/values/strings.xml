@@ -18,4 +18,7 @@
     <string name="daily_view">Dienų peržiūra</string>
     <string name="nutrition_file_key">nutrition_file_key</string>
     <string name="calories_main_key">com.example.grantas.PREFERENCE_FILE_KEY</string>
+    <string name="fat">Riebalai</string>
+    <string name="carbohydrates">Angliavandeniai</string>
+    <string name="protein">Baltymai</string>
 </resources>

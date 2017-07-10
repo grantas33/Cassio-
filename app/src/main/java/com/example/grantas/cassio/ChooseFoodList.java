@@ -12,10 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.grantas.cassio.FragmentLogic.ChooseFoodLogic;
 import com.example.grantas.cassio.FragmentLogic.DailyViewLogic;
 import com.example.grantas.cassio.Tools.FoodExpandableListAdapter;
 
 import java.util.List;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by Grantas on 2017-07-09.
@@ -27,7 +30,6 @@ public class ChooseFoodList extends Fragment {
     private int counter = 1;
     ExpandableListView mExpanded;
     SearchView mSearchView;
-    DailyViewLogic Logic = new DailyViewLogic(getContext());
 
     public ChooseFoodList() {
     }
@@ -36,16 +38,26 @@ public class ChooseFoodList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.choose_food_expandablelist, container, false);
+        ChooseFoodLogic Logic = new ChooseFoodLogic(getContext());
 
         mExpanded = (ExpandableListView) view.findViewById(R.id.expandableviewmyfoods);
         mSearchView = (SearchView) view.findViewById(R.id.searchviewmyfoods);
         TextView mEmptyView = (TextView) view.findViewById(R.id.emptymyfoodsview);
-        //  MainActivity.saveddb.datalist = MainActivity.saveddb.datalist.OrderBy(foo => foo.Name).ToList();
-        List<Food> templist = Logic.getFoods();
+        List<Food> templist = Logic.getSortedFoods();
         ExpandableListAdapter adapter = new FoodExpandableListAdapter(getActivity(), templist);
         mExpanded.setAdapter(adapter);
         mExpanded.setEmptyView(mEmptyView);
         mExpanded.setGroupIndicator(null);
+
+        //Kad neexpandintusi paspaudus betkur
+        mExpanded.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+                                              public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition,
+                                                                          long id) {
+
+                                                  return true;
+                                              }
+                                          });
+
 
 //        mExpanded.GroupClick += (object sender, ExpandableListView.GroupClickEventArgs e) =>
 //        {

@@ -1,5 +1,8 @@
 package com.example.grantas.cassio;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.StringDef;
+
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
@@ -8,7 +11,7 @@ import java.io.Serializable;
  * Created by Grantas on 2017-07-06.
  */
 
-public class Food implements Serializable{
+public class Food implements Serializable, Comparable<Food>{
 
     private static final long serialVersionUID = -222864131214757024L;
 
@@ -55,5 +58,10 @@ public class Food implements Serializable{
     public String toString()
     {
         return this.Name + ", " + this.Calories + " cal., " + this.Grams + "g.";
+    }
+
+    @Override
+    public int compareTo(@NonNull Food o) {
+        return this.Name.compareTo(o.Name);
     }
 }
