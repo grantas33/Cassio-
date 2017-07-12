@@ -51,4 +51,8 @@ public class ChooseFoodTabs extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        NavUtils.navigateUpFromSameTask(this);
+    }
 }

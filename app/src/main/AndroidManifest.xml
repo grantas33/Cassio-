@@ -25,6 +25,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.grantas.cassio.MainActivity" />
         </activity>
+
     </application>
 
 </manifest>

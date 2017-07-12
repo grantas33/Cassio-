@@ -5,12 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.grantas.cassio.Food;
 import com.example.grantas.cassio.R;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,10 +32,12 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
 
     protected List<Food> FoodList ;
 
+
     public FoodExpandableListAdapter(Activity context, List<Food> newList)
     {
         Context = context;
         FoodList = newList;
+
     }
     @Override
     public int getGroupCount() {
@@ -133,4 +138,14 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
+
+    public void UpdateAdapter(List<Food> list)
+    {
+        this.FoodList = list;
+        notifyDataSetChanged();
+    }
+
+
 }
+
+

@@ -21,4 +21,6 @@
     <string name="fat">Riebalai</string>
     <string name="carbohydrates">Angliavandeniai</string>
     <string name="protein">Baltymai</string>
+    <string name="search_food">Ieškoti produkto</string>
+    <string name="products_not_found">Produktų nerasta!</string>
 </resources>

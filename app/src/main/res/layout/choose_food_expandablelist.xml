@@ -5,12 +5,20 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-    <SearchView
-        android:minWidth="25px"
-        android:minHeight="25px"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchviewmyfoods" />
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.SearchView
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="@string/search_food"
+            android:clickable="true"
+            android:id="@+id/searchviewmyfoods" />
+    </android.support.design.widget.AppBarLayout>
+
     <ExpandableListView
         android:minWidth="25px"
         android:minHeight="25px"
@@ -20,7 +28,7 @@
         android:id="@+id/expandableviewmyfoods" />
     <TextView
         android:id="@+id/emptymyfoodsview"
-        android:text="You haven't added any foods!"
+        android:text="@string/products_not_found"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center" />
