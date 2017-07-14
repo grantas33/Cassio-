@@ -42,11 +42,12 @@ public class MainActivity extends AppCompatActivity
 
     private boolean viewIsAtHome;
     MainActivityLogic Logic;
-
+    int currentViewId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -54,16 +55,23 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
-        displayView(R.id.main_screen); //set main screen
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         ButterKnife.bind(this);
         Logic = new MainActivityLogic(this);
+        if (savedInstanceState == null) {
+            displayView(R.id.main_screen); //set main screen
+        } else {
+            displayView(savedInstanceState.getInt("viewId"));
+        }
 
-//        String test = "Little brown fox jumped";
-//        int number = test.indexOf("brown");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt("menu_item", currentViewId);
     }
 
     @OnClick(R.id.fab)
@@ -98,6 +106,7 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        currentViewId = id;
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
