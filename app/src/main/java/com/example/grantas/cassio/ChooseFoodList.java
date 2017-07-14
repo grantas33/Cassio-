@@ -109,48 +109,6 @@ public class ChooseFoodList extends Fragment{
             }
         });
 
-//        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//
-//                return false;
-//            }
-//        });
-
-
-//        mExpanded.GroupClick += (object sender, ExpandableListView.GroupClickEventArgs e) =>
-//        {
-//            ImageView plussign = e.ClickedView.FindViewById<ImageView>(Resource.Id.greenplus);                               //animacija
-//            Android.Views.Animations.AlphaAnimation plusClick = new Android.Views.Animations.AlphaAnimation(1F, 0.8F);
-//            plusClick.Duration = 150;
-//            plussign.StartAnimation(plusClick);
-//
-//            Food food = new Food(templist[e.GroupPosition]);
-//            MainActivity.foodsdb.AddData(food);
-//            MainActivity.NutritionEdit.PutString("cal", (int.Parse(MainActivity.localNutritionData.GetString("cal", "0")) + food.Calories).ToString());
-//            MainActivity.NutritionEdit.Apply();
-//
-//            if (toastMsg == string.Format("Added {0} {1}", counter, MainActivity.foodsdb.GetLast().Name))
-//            {
-//                counter++;
-//            }
-//            else
-//            {
-//                counter = 1;
-//            }
-//
-//
-//            toastMsg = string.Format("Added {0} {1}", counter, MainActivity.foodsdb.GetLast().Name);
-//            if (mToast != null) mToast.Cancel();
-//            mToast = Toast.MakeText(view.Context, toastMsg, ToastLength.Short);
-//            mToast.Show();
-//
-//        };
 
         return view;
     }
