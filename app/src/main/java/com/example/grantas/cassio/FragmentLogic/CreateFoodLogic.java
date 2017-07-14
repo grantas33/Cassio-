@@ -1,12 +1,20 @@
 package com.example.grantas.cassio.FragmentLogic;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.example.grantas.cassio.CreateFood;
 import com.example.grantas.cassio.Food;
 import com.example.grantas.cassio.R;
 import com.example.grantas.cassio.Tools.DatabaseHelper;
 import com.example.grantas.cassio.Tools.InvalidValueException;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
@@ -148,5 +156,25 @@ public class CreateFoodLogic {
             }
         }
         return true;
+    }
+
+    public void scan(FragmentActivity activity, Fragment fragment) {
+        IntentIntegrator integrator = new IntentIntegrator(activity);
+        try {
+//            integrator.forFragment(fragment).initiateScan();
+            IntentIntegrator.forSupportFragment(fragment).initiateScan();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (scanResult != null) {
+            String re = scanResult.getContents();
+            Log.d("code: ", re);
+        }
+        // else continue with any other code you need in the method
+
     }
 }

@@ -44,6 +44,10 @@ public class Food implements Serializable, Comparable<Food>{
 
     }
 
+    public Food(String name, int grams) {
+        Name = name;
+        Grams = grams;
+    }
 
     public Food(String name, int calories, int grams, double carbohydrates, double protein, double fat)
     {

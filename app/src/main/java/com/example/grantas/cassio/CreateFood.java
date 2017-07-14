@@ -1,6 +1,8 @@
 package com.example.grantas.cassio;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BaseTransientBottomBar;
@@ -16,6 +18,8 @@ import android.widget.ToggleButton;
 
 import com.example.grantas.cassio.FragmentLogic.CreateFoodLogic;
 import com.example.grantas.cassio.Tools.InvalidValueException;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
@@ -51,7 +55,7 @@ public class CreateFood extends Fragment {
     EditText Fat;
 
     CreateFoodLogic Logic; //loginis fragmento sluoksnis
-
+    private String toast;
 
     private OnFragmentInteractionListener mListener;
 
@@ -63,6 +67,17 @@ public class CreateFood extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @OnClick(R.id.scan)
+    public void scan(View view) {
+        MainActivity activity = (MainActivity) getActivity();
+        activity.scanBarcode(view);
+    }
+
+    public void myClickHandler(View target) {
+        // Do stuff
+        IntentIntegrator.forSupportFragment(this).initiateScan();
     }
 
     @OnClick(R.id.submit)
