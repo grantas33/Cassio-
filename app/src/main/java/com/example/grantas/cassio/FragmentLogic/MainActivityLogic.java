@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grantas.cassio.Food;
+import com.example.grantas.cassio.MainActivity;
 import com.example.grantas.cassio.R;
 
 import java.io.BufferedReader;
@@ -38,29 +39,38 @@ public class MainActivityLogic implements AsyncTaskCompleteListener<Food>{
     public void processBarcode(String barcode) {
         GetFoodHtmlTask task = new GetFoodHtmlTask(context, this);
         task.execute(barcode);
+//        task.execute("4770299046");
     }
 
     @Override
     public void onTaskComplete(Food result) {
-        Activity activity = (Activity) context;
-        EditText name = (EditText) activity.findViewById(R.id.name);
-        EditText calories = (EditText) activity.findViewById(R.id.calories);
-        EditText grams = (EditText) activity.findViewById(R.id.grams);
-        EditText carbohydrates = (EditText) activity.findViewById(R.id.carbohydrates);
-        EditText protein = (EditText) activity.findViewById(R.id.protein);
-        EditText fat = (EditText) activity.findViewById(R.id.fat);
 
-        name.setText(result.Name);
-        name.setEnabled(false);
-        calories.setText(String.valueOf(result.Calories));
-        calories.setEnabled(false);
-        grams.setText(String.valueOf(result.Grams));
-        carbohydrates.setText(String.valueOf(result.Carbohydrates));
-        carbohydrates.setEnabled(false);
-        protein.setText(String.valueOf(result.Protein));
-        protein.setEnabled(false);
-        fat.setText(String.valueOf(result.Fat));
-        fat.setEnabled(false);
+        if(result.Name != "notset")
+        {
+            MainActivity activity = (MainActivity) context;
+            EditText name = (EditText) activity.findViewById(R.id.name);
+            EditText calories = (EditText) activity.findViewById(R.id.calories);
+            EditText grams = (EditText) activity.findViewById(R.id.grams);
+            EditText carbohydrates = (EditText) activity.findViewById(R.id.carbohydrates);
+            EditText protein = (EditText) activity.findViewById(R.id.protein);
+            EditText fat = (EditText) activity.findViewById(R.id.fat);
+
+            name.setText(result.Name);
+            name.setEnabled(false);
+            calories.setText(String.valueOf(result.Calories));
+            calories.setEnabled(false);
+            grams.setText(String.valueOf(result.Grams));
+            carbohydrates.setText(String.valueOf(result.Carbohydrates));
+            carbohydrates.setEnabled(false);
+            protein.setText(String.valueOf(result.Protein));
+            protein.setEnabled(false);
+            fat.setText(String.valueOf(result.Fat));
+            fat.setEnabled(false);
+        }
+        else {
+            Toast.makeText(context, "Nerasta!", Toast.LENGTH_LONG);
+        }
+
     }
 
     //------------------------------------------------------------------------------------
