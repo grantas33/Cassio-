@@ -68,7 +68,7 @@ public class MainActivityLogic implements AsyncTaskCompleteListener<Food>{
             fat.setEnabled(false);
         }
         else {
-            Toast.makeText(context, "Nerasta!", Toast.LENGTH_LONG);
+            Toast.makeText(context, "Nerasta!", Toast.LENGTH_LONG).show();
         }
 
     }

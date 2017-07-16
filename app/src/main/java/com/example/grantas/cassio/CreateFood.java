@@ -1,12 +1,16 @@
 package com.example.grantas.cassio;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BaseTransientBottomBar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +40,8 @@ import butterknife.OnClick;
  * create an instance of this fragment.
  */
 public class CreateFood extends Fragment {
+
+    private static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;       // kameros prieigai
 
     @BindView(R.id.name)
     EditText Name;
@@ -71,9 +77,32 @@ public class CreateFood extends Fragment {
 
     @OnClick(R.id.scan)
     public void scan(View view) {
-        MainActivity activity = (MainActivity) getActivity();
-        activity.scanBarcode(view);
+
+
+        String[] permissions = new String[] {Manifest.permission.CAMERA};
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+        {
+            this.requestPermissions(permissions, MY_PERMISSIONS_REQUEST_CAMERA);
+        }
+        else
+        {
+            MainActivity activity = (MainActivity) getActivity();
+            activity.scanBarcode(view);
+        }
+
     }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {                      //jei pasirenkam "ALLOW"
+                        scan(this.getView());
+                    } else {                                                                        //jei pasirenkam "DENY"
+                        Toast.makeText(this.getContext(), R.string.camera_permission_denied, Toast.LENGTH_LONG).show();
+                    }
+                }
 
     public void myClickHandler(View target) {
         // Do stuff

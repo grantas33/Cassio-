@@ -23,4 +23,5 @@
     <string name="protein">Baltymai</string>
     <string name="search_food">Ieškoti produkto</string>
     <string name="products_not_found">Produktų nerasta!</string>
+    <string name="camera_permission_denied">Negauta prieigos prie kameros</string>
 </resources>

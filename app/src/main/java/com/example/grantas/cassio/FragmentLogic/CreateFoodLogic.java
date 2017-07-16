@@ -1,10 +1,14 @@
 package com.example.grantas.cassio.FragmentLogic;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -159,6 +163,7 @@ public class CreateFoodLogic {
     }
 
     public void scan(FragmentActivity activity, Fragment fragment) {
+
         IntentIntegrator integrator = new IntentIntegrator(activity);
         try {
 //            integrator.forFragment(fragment).initiateScan();
