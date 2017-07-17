@@ -3,15 +3,12 @@ package com.example.grantas.cassio.FragmentLogic;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.grantas.cassio.Food;
 import com.example.grantas.cassio.Tools.DatabaseHelper;
-import com.example.grantas.cassio.Tools.LogItem;
+import com.example.grantas.cassio.LogItem;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 /**

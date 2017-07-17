@@ -152,6 +152,11 @@ public class MainActivity extends AppCompatActivity
                 title = getString(R.string.daily_view);
                 viewIsAtHome = false;
                 break;
+            case R.id.food_log:
+                fragment = new FoodLog();
+                title = getString(R.string.food_log);
+                viewIsAtHome = false;
+                break;
 
         }
 

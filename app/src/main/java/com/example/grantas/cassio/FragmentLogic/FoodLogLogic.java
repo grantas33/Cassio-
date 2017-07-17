@@ -3,7 +3,6 @@ package com.example.grantas.cassio.FragmentLogic;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.grantas.cassio.Food;
 import com.example.grantas.cassio.LogItem;
 import com.example.grantas.cassio.Tools.DatabaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -11,19 +10,18 @@ import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Grantas on 2017-07-10.
+ * Created by Grantas on 2017-07-16.
  */
 
-public class ChooseFoodLogic {
+public class FoodLogLogic {
     DatabaseHelper databaseHelper = null;
     Context context;
 
-    public  ChooseFoodLogic(Context context) {
+    public  FoodLogLogic(Context context) {
         this.context = context;
     }
 
@@ -35,33 +33,28 @@ public class ChooseFoodLogic {
         return databaseHelper;
     }
 
-    public List<Food> getSortedFoods() {
-        List<Food> foods = new ArrayList<Food>();
+    public List<LogItem> getLogItems() {
+        List<LogItem> items = new ArrayList<LogItem>();
         try
         {
-            foods = getHelper().
-                    getFoodDao().
+            items = getHelper().
+                    getLogDao().
                     queryForAll();
-                            ;
+            ;
         }
         catch (SQLException e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
         }
-        Collections.sort(foods);
-        return foods;
+      //  Collections.sort(items);
+        return items;
     }
 
-    public void AddLogItem(LogItem item){
-        try {
-
-            DatabaseHelper helper = getHelper();
-            final Dao<LogItem, Integer> logDao = helper.getLogDao();
-
-            //idedam i duombaze
-            logDao.create(item);
-
-
-        } catch (SQLException e) {
+    public void deleteLogItem(int id){
+        try
+        {
+            final Dao<LogItem, Integer> LogItemDao = getHelper().getLogDao();
+            LogItemDao.deleteById(id);
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }

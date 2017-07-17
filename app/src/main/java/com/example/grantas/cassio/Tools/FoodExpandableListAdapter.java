@@ -9,11 +9,17 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.grantas.cassio.Food;
+import com.example.grantas.cassio.FragmentLogic.ChooseFoodLogic;
+import com.example.grantas.cassio.FragmentLogic.CreateFoodLogic;
+import com.example.grantas.cassio.LogItem;
 import com.example.grantas.cassio.R;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,13 +35,16 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
 {
 
     Activity Context;
-
+    Toast mToast;
+    ChooseFoodLogic Logic;
     protected List<Food> FoodList ;
 
 
     public FoodExpandableListAdapter(Activity context, List<Food> newList)
     {
         Context = context;
+
+        Logic = new ChooseFoodLogic(context);
         FoodList = newList;
 
     }
@@ -78,7 +87,7 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
     @Override
     public View getGroupView(final int groupPosition, final boolean isExpanded, View convertView, final ViewGroup parent) {
 
-        Food item = FoodList.get(groupPosition);
+        final Food item = FoodList.get(groupPosition);
         View view = convertView;
         if (view == null)
         {
@@ -89,6 +98,17 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
 
         ImageView listHeaderPlusSign = (ImageView)view.findViewById(R.id.greenplus);
         listHeaderPlusSign.setImageResource(R.drawable.green_plus);
+
+        listHeaderPlusSign.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                Logic.AddLogItem(new LogItem(item, item.Grams, new Date()));
+                if(mToast != null) mToast.cancel();
+                mToast = Toast.makeText(Context, "Pridėta " + item.Grams + "g " + item.Name, Toast.LENGTH_SHORT);
+                mToast.show();
+            }
+        });
 
         ImageView listHeaderArrow = (ImageView)view.findViewById(R.id.greenarrow);
         int imageResourceId = isExpanded ? R.drawable.green_arrow_up : R.drawable.green_arrow_down;

@@ -1,8 +1,5 @@
-package com.example.grantas.cassio.Tools;
+package com.example.grantas.cassio;
 
-import android.util.Log;
-
-import com.example.grantas.cassio.Food;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 
@@ -20,8 +17,8 @@ public class LogItem implements Serializable{
     @DatabaseField(generatedId = true, columnName = "log_id")
     public int logId;
 
-    @DatabaseField(dataType = DataType.SERIALIZABLE, foreign = true, foreignAutoCreate = true, foreignAutoRefresh=true, columnName = "name_id")
-    public Food Name; //maisto pavadinimas
+    @DatabaseField(dataType = DataType.SERIALIZABLE, foreign = true, foreignAutoCreate = true, foreignAutoRefresh=true, columnName = "fooditem_id")
+    public Food Fooditem; //maistas
     @DatabaseField(columnName = "grams_id")
     public int Grams; //kiek valge
     @DatabaseField(columnName = "time_id")
@@ -31,25 +28,25 @@ public class LogItem implements Serializable{
 
     }
 
-    public LogItem(Food name, int grams, Date time) {
-        Name = name;
+    public LogItem(Food fooditem, int grams, Date time) {
+        Fooditem = fooditem;
         Grams = grams;
         Time = time;
     }
 
     public int getCalories() {
-        return Math.round((Grams * Name.Calories) / Name.Grams);
+        return Math.round((Grams * Fooditem.Calories) / Fooditem.Grams);
     }
 
     public double getCarbohydrates() {
-        return (Grams * Name.Carbohydrates) / Name.Grams;
+        return (Grams * Fooditem.Carbohydrates) / Fooditem.Grams;
     }
 
     public double getProtein() {
-        return (Grams * Name.Protein) / Name.Grams;
+        return (Grams * Fooditem.Protein) / Fooditem.Grams;
     }
 
     public double getFat() {
-        return (Grams * Name.Fat) / Name.Grams;
+        return (Grams * Fooditem.Fat) / Fooditem.Grams;
     }
 }

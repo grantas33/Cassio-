@@ -1,6 +1,6 @@
 <root>
-    <item name='android.content.Context java.lang.String getString(int)'>
-        <annotation name='org.jetbrains.annotations.Contract'>
+    <item fooditem='android.content.Context java.lang.String getString(int)'>
+        <annotation fooditem='org.jetbrains.annotations.Contract'>
             <val val="&quot;null -&gt; _&quot;" />
         </annotation>
     </item>

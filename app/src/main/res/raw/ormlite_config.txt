@@ -38,7 +38,7 @@ columnName=fat_id
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.example.grantas.cassio.Tools.LogItem
+dataClass=com.example.grantas.cassio.LogItem
 tableName=logitem
 # --table-fields-start--
 # --field-start--
@@ -47,8 +47,8 @@ columnName=log_id
 generatedId=true
 # --field-end--
 # --field-start--
-fieldName=Name
-columnName=name_id
+fieldName=Fooditem
+columnName=fooditem_id
 dataPersister=SERIALIZABLE
 foreign=true
 foreignAutoRefresh=true
