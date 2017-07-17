@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +25,8 @@ import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by Lukas on 7/12/2017.
@@ -43,17 +47,17 @@ public class MainActivityLogic implements AsyncTaskCompleteListener<Food>{
     }
 
     @Override
-    public void onTaskComplete(Food result) {
+    public void onTaskComplete(final Food result) {
 
         if(result.Name != "notset")
         {
             MainActivity activity = (MainActivity) context;
-            EditText name = (EditText) activity.findViewById(R.id.name);
-            EditText calories = (EditText) activity.findViewById(R.id.calories);
-            EditText grams = (EditText) activity.findViewById(R.id.grams);
-            EditText carbohydrates = (EditText) activity.findViewById(R.id.carbohydrates);
-            EditText protein = (EditText) activity.findViewById(R.id.protein);
-            EditText fat = (EditText) activity.findViewById(R.id.fat);
+            final EditText name = (EditText) activity.findViewById(R.id.name);
+            final EditText calories = (EditText) activity.findViewById(R.id.calories);
+            final EditText grams = (EditText) activity.findViewById(R.id.grams);
+            final EditText carbohydrates = (EditText) activity.findViewById(R.id.carbohydrates);
+            final EditText protein = (EditText) activity.findViewById(R.id.protein);
+            final EditText fat = (EditText) activity.findViewById(R.id.fat);
 
             name.setText(result.Name);
             name.setEnabled(false);
@@ -66,10 +70,39 @@ public class MainActivityLogic implements AsyncTaskCompleteListener<Food>{
             protein.setEnabled(false);
             fat.setText(String.valueOf(result.Fat));
             fat.setEnabled(false);
+
+            grams.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    int multiplier;
+                    if(!grams.getText().toString().equals(""))
+                    {
+                        multiplier = parseInt(grams.getText().toString());
+                    }
+                    else { multiplier = 100; }
+
+                    calories.setText(String.valueOf(result.Calories * multiplier / 100));
+                    carbohydrates.setText(String.valueOf(result.Carbohydrates * multiplier / 100));
+                    protein.setText(String.valueOf(result.Protein * multiplier / 100));
+                    fat.setText(String.valueOf(result.Fat * multiplier / 100));
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         }
         else {
             Toast.makeText(context, "Nerasta!", Toast.LENGTH_LONG).show();
         }
+
+
 
     }
 
@@ -120,7 +153,7 @@ public class MainActivityLogic implements AsyncTaskCompleteListener<Food>{
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestProperty("User-Agent",
                         "Mozilla/5.0 (Windows NT 6.1;zh-tw; MSIE 6.0)");
-                if (Integer.parseInt(Build.VERSION.SDK) < Build.VERSION_CODES.FROYO) {
+                if (parseInt(Build.VERSION.SDK) < Build.VERSION_CODES.FROYO) {
                     System.setProperty("http.keepAlive", "false");
                 }
                 urlConnection.setReadTimeout(10000);
@@ -228,7 +261,7 @@ public class MainActivityLogic implements AsyncTaskCompleteListener<Food>{
                 if (numbers.indexOf(line.charAt(i)) != -1) {
                     sb.insert(0, line.charAt(i));
                 } else {
-                    return Integer.parseInt(sb.toString());
+                    return parseInt(sb.toString());
                 }
             }
             return 0;
