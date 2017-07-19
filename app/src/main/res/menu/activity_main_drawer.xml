@@ -25,6 +25,7 @@
         <item
             android:id="@+id/save_and_clear"
             android:icon="@android:drawable/ic_menu_save"
+            android:checkable="false"
             android:title="Save and clear"/>
     </group>
 

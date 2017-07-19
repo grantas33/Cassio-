@@ -42,7 +42,6 @@ public class ChooseFoodLogic {
             foods = getHelper().
                     getFoodDao().
                     queryForAll();
-                            ;
         }
         catch (SQLException e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);

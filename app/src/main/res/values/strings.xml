@@ -26,4 +26,9 @@
     <string name="camera_permission_denied">Negauta prieigos prie kameros</string>
     <string name="empty">Tuščia!</string>
     <string name="food_log">Maisto žurnalas</string>
+    <string name="confirm_save_and_clear">Ar norite išsaugoti šią dieną ir pradėti naują?</string>
+    <string name="yes">Taip</string>
+    <string name="no">Ne</string>
+    <string name="no_saved_info">Nėra išsaugotos informacijos!</string>
+    <string name="delete_all">Ištrinti viską</string>
 </resources>

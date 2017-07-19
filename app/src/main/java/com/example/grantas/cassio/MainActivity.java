@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grantas.cassio.FragmentLogic.MainActivityLogic;
+import com.example.grantas.cassio.Tools.SaveAndClearDialog;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity
 
     private boolean viewIsAtHome;
     MainActivityLogic Logic;
-    int currentViewId;
+    public int currentViewId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +108,6 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        currentViewId = id;
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -122,11 +122,15 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
         displayView(id);
         return true;
     }
 
     public void displayView(int viewId) {
+        if (viewId != R.id.save_and_clear){
+            currentViewId = viewId;
+        }
 
         Fragment fragment = null;
         String title = getString(R.string.app_name);
@@ -157,7 +161,10 @@ public class MainActivity extends AppCompatActivity
                 title = getString(R.string.food_log);
                 viewIsAtHome = false;
                 break;
-
+            case R.id.save_and_clear:
+                SaveAndClearDialog dialog = new SaveAndClearDialog(this);
+                dialog.createAlertDialog();
+                break;
         }
 
         if (fragment != null) {
@@ -189,7 +196,6 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "Atšaukta", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-//                Food food = Logic.getFoodFromBarcode(result.getContents());
                 Logic.processBarcode(result.getContents());
             }
         } else {

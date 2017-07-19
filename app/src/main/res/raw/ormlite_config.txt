@@ -1,5 +1,5 @@
 #
-# generated on 2017/07/09 11:20:16
+# generated on 2017/07/19 01:16:32
 #
 # --table-start--
 dataClass=com.example.grantas.cassio.Food
@@ -62,6 +62,38 @@ columnName=grams_id
 # --field-start--
 fieldName=Time
 columnName=time_id
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.example.grantas.cassio.Tools.DayItem
+tableName=dayitem
+# --table-fields-start--
+# --field-start--
+fieldName=dayId
+columnName=day_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=Date
+columnName=date_id
+# --field-end--
+# --field-start--
+fieldName=Calories
+columnName=calories_id
+# --field-end--
+# --field-start--
+fieldName=Carbohydrates
+columnName=carbohydrates_id
+# --field-end--
+# --field-start--
+fieldName=Protein
+columnName=protein_id
+# --field-end--
+# --field-start--
+fieldName=Fat
+columnName=fat_id
 # --field-end--
 # --table-fields-end--
 # --table-end--

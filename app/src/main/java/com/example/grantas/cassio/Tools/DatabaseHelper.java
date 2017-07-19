@@ -25,6 +25,7 @@ import java.sql.SQLException;
 
         private Dao<Food, Integer> foodDao;
         private Dao<LogItem, Integer> logDao;
+        private Dao<DayItem, Integer> dayDao;
 
 
     public DatabaseHelper(Context context) {
@@ -37,6 +38,7 @@ import java.sql.SQLException;
                 //Create tables
                 TableUtils.createTable(connectionSource, LogItem.class);
                 TableUtils.createTable(connectionSource, Food.class);
+                TableUtils.createTable(connectionSource, DayItem.class);
             } catch (SQLException e) {
                 Log.e(DatabaseHelper.class.getName(), "Unable to create databases", e);
             }
@@ -47,6 +49,7 @@ import java.sql.SQLException;
             try{
                 TableUtils.dropTable(connectionSource, LogItem.class, true);
                 TableUtils.dropTable(connectionSource, Food.class, true);
+                TableUtils.dropTable(connectionSource, DayItem.class, true);
                 onCreate(sqLiteDatabase, connectionSource);
             } catch (SQLException e) {
                 Log.e(DatabaseHelper.class.getName(), "Unable to upgrade database from version " + oldVer + " to new "
@@ -54,11 +57,11 @@ import java.sql.SQLException;
             }
         }
 
-        public void ClearLogTable() {
+        public void clearLogTable() {
             try {
                 TableUtils.clearTable(getConnectionSource(), LogItem.class);
             } catch (SQLException e) {
-                Log.e(DatabaseHelper.class.getName(), "Unable to create databases", e);
+                Log.e(DatabaseHelper.class.getName(), "Unable to delete databases", e);
             }
         }
 
@@ -75,5 +78,12 @@ import java.sql.SQLException;
                 logDao = getDao(LogItem.class);
             }
             return logDao;
+        }
+
+        public Dao<DayItem, Integer> getDayDao() throws SQLException {
+            if (dayDao == null) {
+                dayDao = getDao(DayItem.class);
+            }
+            return dayDao;
         }
     }
