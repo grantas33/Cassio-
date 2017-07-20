@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Nustatymai</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -31,4 +31,7 @@
     <string name="no">Ne</string>
     <string name="no_saved_info">Nėra išsaugotos informacijos!</string>
     <string name="delete_all">Ištrinti viską</string>
+    <string name="pref_autosave">Automatiškai išsaugoti maisto žurnalą</string>
+    <string name="pref_autosave_summ">Po kiekvienos dienos automatiškai išsaugoti ir išvalyti dienos maistus</string>
+    <string name="autosave_information_alert">Duomenys išsisaugoja automatiškai! Norėdami išsaugoti rankiniu būdu, eikite į nustatymus</string>
 </resources>

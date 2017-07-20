@@ -3,10 +3,14 @@ package com.example.grantas.cassio.Tools;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.example.grantas.cassio.LogItem;
 import com.example.grantas.cassio.MainActivity;
 import com.example.grantas.cassio.R;
+import com.example.grantas.cassio.SettingsActivity;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
@@ -37,32 +41,40 @@ public class SaveAndClearDialog {
     }
 
     public void createAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(R.string.confirm_save_and_clear);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        boolean autoSavePref = sharedPref.getBoolean(SettingsActivity.KEY_PREF_AUTOSAVE, false);
+        if(autoSavePref)
+        {
+            Toast.makeText(context.getApplicationContext(), R.string.autosave_information_alert, Toast.LENGTH_LONG).show();
+        }
+        else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage(R.string.confirm_save_and_clear);
 
-        builder.setPositiveButton(
-                context.getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        saveLogs();
-                        clearLogs();
-                        dialog.cancel();
-                        context.displayView(context.currentViewId);
+            builder.setPositiveButton(
+                    context.getString(R.string.yes),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            saveLogs();
+                            clearLogs();
+                            dialog.cancel();
+                            context.displayView(context.currentViewId);
+                        }
                     }
-                }
-        );
+            );
 
-        builder.setNegativeButton(
-                R.string.no,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
+            builder.setNegativeButton(
+                    R.string.no,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
                     }
-                }
-        );
+            );
 
-        AlertDialog alertDialog =builder.create();
-        alertDialog.show();
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
     }
 
     private void clearLogs() {
