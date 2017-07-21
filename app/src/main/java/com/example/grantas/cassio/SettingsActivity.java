@@ -29,34 +29,32 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Display the fragment as the main content.
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
-                .commit();
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
        // Log.i("SETTINGS", "oncreate..");
-         getSupportActionBar().setTitle(getString(R.string.action_settings));
+        getSupportActionBar().setTitle(getString(R.string.action_settings));
 
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        alarmMgr = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
         SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
-              //  Log.i("SETTINGS", "onsharepreferencechanged..");
+               // Log.i("SETTINGS", "onsharepreferencechanged..");
                 if (key.equals(KEY_PREF_AUTOSAVE)) {
-                    CheckAlarm(sharedPref);
+                    CheckAlarm(sharedPref, SettingsActivity.this);
                 }
             }
         };
         sharedPref.registerOnSharedPreferenceChangeListener(listener);
     }
 
-    public void CheckAlarm(SharedPreferences sharedPref)
+    public void CheckAlarm(SharedPreferences sharedPref, Context context)
     {
         boolean autoSavePref = sharedPref.getBoolean(SettingsActivity.KEY_PREF_AUTOSAVE, false);
         if(autoSavePref)
         {
+            alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
             // Set the alarm to start at approximately 0:00 p.m.
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
@@ -65,19 +63,19 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND, 0);
-            Intent intent = new Intent(SettingsActivity.this, AlarmReceiver.class);
-            alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+            Intent intent = new Intent(context, AlarmReceiver.class);
+            alarmIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent, 0);
             alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, alarmIntent);
 
-         //   Log.i("SETTINGS", "pasetinta");
+            //Log.i("SETTINGS", "pasetinta");
         }
         else
         {
             if (alarmIntent!= null) {
                 alarmMgr.cancel(alarmIntent);
             }
-         //   Log.i("SETTINGS", "cancelino");
+           // Log.i("SETTINGS", "cancelino");
         }
     }
 
@@ -99,6 +97,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
+
 
 
     public static class SettingsFragment extends PreferenceFragment {

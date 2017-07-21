@@ -58,4 +58,9 @@ public class FoodLogLogic {
             e.printStackTrace();
         }
     }
+
+    public void deleteAll()
+    {
+            getHelper().clearLogTable();
+    }
 }
