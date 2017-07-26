@@ -65,6 +65,14 @@ import java.sql.SQLException;
             }
         }
 
+        public void clearDaysTable() {
+            try {
+                TableUtils.clearTable(getConnectionSource(), DayItem.class);
+            } catch (SQLException e) {
+                Log.e(DatabaseHelper.class.getName(), "Unable to delete databases", e);
+            }
+        }
+
         //add or get food list using dao
         public Dao<Food, Integer> getFoodDao() throws SQLException {
             if (foodDao == null) {

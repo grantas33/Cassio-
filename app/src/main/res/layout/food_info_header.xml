@@ -55,8 +55,8 @@
         android:layout_gravity="right" />
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="100px"
+        android:layout_width="45dp"
         android:layout_height="match_parent"
         android:id="@+id/greenarrow"
-        android:layout_gravity="right" />
+        android:layout_gravity="end" />
 </LinearLayout>

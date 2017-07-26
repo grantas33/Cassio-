@@ -34,4 +34,5 @@
     <string name="pref_autosave">Automatiškai išsaugoti maisto žurnalą</string>
     <string name="pref_autosave_summ">Po kiekvienos dienos automatiškai išsaugoti ir išvalyti dienos maistus</string>
     <string name="autosave_information_alert">Duomenys išsisaugoja automatiškai! Norėdami išsaugoti rankiniu būdu, eikite į nustatymus</string>
+    <string name="cals">kal.</string>
 </resources>

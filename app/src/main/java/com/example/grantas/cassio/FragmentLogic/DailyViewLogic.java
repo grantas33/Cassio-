@@ -4,7 +4,9 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.grantas.cassio.Food;
+import com.example.grantas.cassio.LogItem;
 import com.example.grantas.cassio.Tools.DatabaseHelper;
+import com.example.grantas.cassio.Tools.DayItem;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 import java.io.Console;
@@ -33,25 +35,19 @@ public class DailyViewLogic {
         return databaseHelper;
     }
 
-    public List<String> getFoodStrings() {
-        List<Food> foods = null;
-        List<String> foodsString = new ArrayList<String>();
-//        String[] strings;
+    public List<DayItem> getDays() {
+        List<DayItem> days = new ArrayList<DayItem>();
         try {
-            foods = getHelper().getFoodDao().queryForAll();
-            for (Food food: foods) {
-            foodsString.add(food.toString());
-            }
+            days = getHelper().getDayDao().queryForAll();
         } catch (SQLException e) {
+            e.printStackTrace();
         }
-//        strings = new String[foodsString.size()];
-//        for (int i = 0; i < foodsString.size();  i++) {
-//            strings[i] = foodsString.get(i);
-//        }
-
-        return foodsString;
+        return days;
     }
 
+    public void clearDays() {
+        getHelper().clearDaysTable();
+    }
 
     public void onDestroy() {
 		/*

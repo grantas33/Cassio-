@@ -1,8 +1,10 @@
 package com.example.grantas.cassio.Tools;
 
+import com.example.grantas.cassio.R;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -36,5 +38,33 @@ public class DayItem implements Serializable {
         Carbohydrates = carbohydrates;
         Protein = protein;
         Fat = fat;
+    }
+
+    public int getYear() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(Date); // don't forget this if date is arbitrary e.g. 01-01-2014
+
+        return cal.get(Calendar.YEAR);
+//        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 6
+//        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH); // 17
+//        int dayOfYear = cal.get(Calendar.DAY_OF_YEAR); //169
+//
+//        int month = cal.get(Calendar.MONTH); // 5
+//        int year = cal.get(Calendar.YEAR); // 2016
+    }
+
+    public int getMonth() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(Date); // don't forget this if date is arbitrary e.g. 01-01-2014
+
+        return cal.get(Calendar.MONTH) + 1;
+    }
+
+    public String getYearMonth() {
+        return getYear() + " - " + String.valueOf(getMonth() + 1);
+    }
+
+    public String getCalories() {
+        return String.valueOf(Calories);
     }
 }

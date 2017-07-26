@@ -1,15 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.grantas.cassio.DailyView">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <ExpandableListView
+        android:minWidth="25dp"
+        android:minHeight="25dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/linear_layout"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/list_days" />
+    <TextView
+        android:id="@+id/empty_day_view"
+        android:text="@string/no_saved_info"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:id="@+id/clear_final_button"
+        android:text="@string/delete_all" />
+</LinearLayout>
