@@ -39,9 +39,9 @@ public class ChooseFoodLogic {
         List<Food> foods = new ArrayList<Food>();
         try
         {
-            foods = getHelper().
-                    getFoodDao().
-                    queryForAll();
+            DatabaseHelper helper = getHelper();
+            final Dao<Food, Integer> foodDao = helper.getFoodDao();
+                    foods = foodDao.queryForAll();
         }
         catch (SQLException e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);

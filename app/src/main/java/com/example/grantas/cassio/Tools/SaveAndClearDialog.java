@@ -26,7 +26,6 @@ import java.util.List;
 
 public class SaveAndClearDialog {
     MainActivity context;
-    //DatabaseHelper databaseHelper = null;
     SaveAndClearLogic Logic;
 
     public SaveAndClearDialog(MainActivity context) {
@@ -34,13 +33,6 @@ public class SaveAndClearDialog {
         Logic = new SaveAndClearLogic(context);
     }
 
-//    private DatabaseHelper getHelper() {
-//        if(databaseHelper == null)
-//        {
-//            databaseHelper = OpenHelperManager.getHelper(context, DatabaseHelper.class);
-//        }
-//        return databaseHelper;
-//    }
 
     public void createAlertDialog() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
@@ -79,40 +71,4 @@ public class SaveAndClearDialog {
         }
     }
 
-//    private void clearLogs() {
-//        getHelper().clearLogTable();
-//    }
-//
-//    private void saveLogs() {
-//        List<LogItem> logs;
-//        int calories = 0;
-//        double carbohydrates = 0;
-//        double protein = 0;
-//        double fat = 0;
-//        Date date = new Date();
-//        try {
-//            logs = getHelper().getLogDao().queryForAll();
-//            for (LogItem log:
-//                 logs) {
-//                calories += log.getCalories();
-//                carbohydrates += log.getCarbohydrates();
-//                protein += log.getProtein();
-//                fat += log.getFat();
-//            }
-//            DayItem dayitem = new DayItem(date, calories, carbohydrates, protein, fat);
-//            addDayItem(dayitem);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private void addDayItem(DayItem dayItem) {
-//        try {
-//            DatabaseHelper helper = getHelper();
-//            final Dao<DayItem, Integer> dao = helper.getDayDao();
-//            dao.create(dayItem);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
