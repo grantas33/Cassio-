@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import com.example.grantas.cassio.FragmentLogic.SaveAndClearLogic;
 import com.example.grantas.cassio.LogItem;
 import com.example.grantas.cassio.MainActivity;
 import com.example.grantas.cassio.R;
@@ -25,20 +26,21 @@ import java.util.List;
 
 public class SaveAndClearDialog {
     MainActivity context;
-    DatabaseHelper databaseHelper = null;
+    //DatabaseHelper databaseHelper = null;
+    SaveAndClearLogic Logic;
 
     public SaveAndClearDialog(MainActivity context) {
         this.context = context;
-        databaseHelper = new DatabaseHelper(context);
+        Logic = new SaveAndClearLogic(context);
     }
 
-    private DatabaseHelper getHelper() {
-        if(databaseHelper == null)
-        {
-            databaseHelper = OpenHelperManager.getHelper(context, DatabaseHelper.class);
-        }
-        return databaseHelper;
-    }
+//    private DatabaseHelper getHelper() {
+//        if(databaseHelper == null)
+//        {
+//            databaseHelper = OpenHelperManager.getHelper(context, DatabaseHelper.class);
+//        }
+//        return databaseHelper;
+//    }
 
     public void createAlertDialog() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
@@ -55,8 +57,8 @@ public class SaveAndClearDialog {
                     context.getString(R.string.yes),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            saveLogs();
-                            clearLogs();
+                            Logic.saveLogs();
+                            Logic.clearLogs();
                             dialog.cancel();
                             context.displayView(context.currentViewId);
                         }
@@ -77,40 +79,40 @@ public class SaveAndClearDialog {
         }
     }
 
-    private void clearLogs() {
-        getHelper().clearLogTable();
-    }
-
-    private void saveLogs() {
-        List<LogItem> logs;
-        int calories = 0;
-        double carbohydrates = 0;
-        double protein = 0;
-        double fat = 0;
-        Date date = new Date();
-        try {
-            logs = getHelper().getLogDao().queryForAll();
-            for (LogItem log:
-                 logs) {
-                calories += log.getCalories();
-                carbohydrates += log.getCarbohydrates();
-                protein += log.getProtein();
-                fat += log.getFat();
-            }
-            DayItem dayitem = new DayItem(date, calories, carbohydrates, protein, fat);
-            addDayItem(dayitem);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void addDayItem(DayItem dayItem) {
-        try {
-            DatabaseHelper helper = getHelper();
-            final Dao<DayItem, Integer> dao = helper.getDayDao();
-            dao.create(dayItem);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void clearLogs() {
+//        getHelper().clearLogTable();
+//    }
+//
+//    private void saveLogs() {
+//        List<LogItem> logs;
+//        int calories = 0;
+//        double carbohydrates = 0;
+//        double protein = 0;
+//        double fat = 0;
+//        Date date = new Date();
+//        try {
+//            logs = getHelper().getLogDao().queryForAll();
+//            for (LogItem log:
+//                 logs) {
+//                calories += log.getCalories();
+//                carbohydrates += log.getCarbohydrates();
+//                protein += log.getProtein();
+//                fat += log.getFat();
+//            }
+//            DayItem dayitem = new DayItem(date, calories, carbohydrates, protein, fat);
+//            addDayItem(dayitem);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private void addDayItem(DayItem dayItem) {
+//        try {
+//            DatabaseHelper helper = getHelper();
+//            final Dao<DayItem, Integer> dao = helper.getDayDao();
+//            dao.create(dayItem);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

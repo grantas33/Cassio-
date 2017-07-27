@@ -103,7 +103,7 @@ public class DailyView extends Fragment {
     public void clearDays() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage(R.string.confirm_save_and_clear);
+        builder.setMessage(R.string.confirm_clear_all);
 
         builder.setPositiveButton(
                 getString(R.string.yes),

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.grantas.cassio.FragmentLogic.FoodLogLogic;
+import com.example.grantas.cassio.FragmentLogic.SaveAndClearLogic;
 import com.example.grantas.cassio.MainActivity;
 
 
@@ -21,5 +22,8 @@ public class AlarmReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i("ALARM", "received");
+        SaveAndClearLogic Logic = new SaveAndClearLogic(context);
+        Logic.saveLogs();
+        Logic.clearLogs();
     }
 }
