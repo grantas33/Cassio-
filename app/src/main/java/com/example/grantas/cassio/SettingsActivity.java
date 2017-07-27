@@ -26,6 +26,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     public static final String KEY_PREF_AUTOSAVE = "pref_autosave";
     private AlarmManager alarmMgr;
     private PendingIntent alarmIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +69,14 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, alarmIntent);
 
-            //Log.i("SETTINGS", "pasetinta");
+            Log.i("SETTINGS", "pasetinta");
         }
         else
         {
             if (alarmIntent!= null) {
                 alarmMgr.cancel(alarmIntent);
             }
-           // Log.i("SETTINGS", "cancelino");
+            Log.i("SETTINGS", "cancelino");
         }
     }
 
@@ -84,18 +85,19 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
-                .registerOnSharedPreferenceChangeListener(this);
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+//                .registerOnSharedPreferenceChangeListener(this);
+//    }
 
     @Override
     protected void onPause() {
+        finish();
         super.onPause();
-        PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
-                .unregisterOnSharedPreferenceChangeListener(this);
+//        PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+//                .unregisterOnSharedPreferenceChangeListener(this);
     }
 
 
