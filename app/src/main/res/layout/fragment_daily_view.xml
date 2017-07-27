@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <ExpandableListView
+        android:layout_margin="8dp"
         android:minWidth="25dp"
         android:minHeight="25dp"
         android:layout_width="match_parent"

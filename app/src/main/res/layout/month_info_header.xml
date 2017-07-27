@@ -26,9 +26,9 @@
             />
     </LinearLayout>
     <ImageView
-        android:layout_width="48dp"
-        android:layout_height="match_parent"
-        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_expand_more_black_48dp"
         android:id="@+id/expand_month"
-        android:layout_gravity="right"/>
+        android:layout_gravity="end"/>
 </LinearLayout>

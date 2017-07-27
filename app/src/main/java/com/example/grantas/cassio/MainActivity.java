@@ -78,8 +78,9 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick(R.id.fab)
     public void submit(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        displayView(R.id.choose_food);
+//        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
     }
 
     @Override

@@ -4,6 +4,8 @@ import com.example.grantas.cassio.R;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -40,7 +42,7 @@ public class DayItem implements Serializable {
         Fat = fat;
     }
 
-    public int getYear() {
+    private int getYear() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(Date); // don't forget this if date is arbitrary e.g. 01-01-2014
 
@@ -53,7 +55,13 @@ public class DayItem implements Serializable {
 //        int year = cal.get(Calendar.YEAR); // 2016
     }
 
-    public int getMonth() {
+    public String getFullDate() {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        return format.format(Date);
+    }
+
+    private int getMonth() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(Date); // don't forget this if date is arbitrary e.g. 01-01-2014
 

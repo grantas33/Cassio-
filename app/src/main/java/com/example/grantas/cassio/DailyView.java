@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -24,7 +26,10 @@ import com.example.grantas.cassio.FragmentLogic.CreateFoodLogic;
 import com.example.grantas.cassio.FragmentLogic.DailyViewLogic;
 import com.example.grantas.cassio.Tools.DayExpandableListAdapter;
 import com.example.grantas.cassio.Tools.DayItem;
+import com.example.grantas.cassio.Tools.DayItemsDataPump;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -45,7 +50,11 @@ public class DailyView extends Fragment {
     private OnFragmentInteractionListener mListener;
     private DailyViewLogic Logic;
     private View rootView;
-    private LinearLayout linearLayout;
+
+    ExpandableListView listView;
+    ExpandableListAdapter adapter;
+    List<String> groups;
+    HashMap<String, List<DayItem>> groupDetail;
 
     public DailyView() {
         // Required empty public constructor
@@ -73,30 +82,40 @@ public class DailyView extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_daily_view, container, false);
 
 
-        View listView = setListView(rootView);
+        setListView(rootView);
 
-        return listView;
+        return rootView;
     }
 
-    public View setListView(View view) {
-        ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.list_days);
+    public void setListView(final View view) {
+        listView = (ExpandableListView) view.findViewById(R.id.list_days);
         List<DayItem> days = Logic.getDays();
+        groupDetail = DayItemsDataPump.getDataFromList(days);
+        groups = new ArrayList<>(groupDetail.keySet());
 
-        DayExpandableListAdapter adapter = new DayExpandableListAdapter(getActivity(), days);
+        DayExpandableListAdapter adapter = new DayExpandableListAdapter(getActivity(), groups, groupDetail);
         listView.setAdapter(adapter);
         listView.setGroupIndicator(null);
         TextView empty = (TextView) rootView.findViewById(R.id.empty_day_view);
         listView.setEmptyView(empty);
 
-        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition,
-                                        long id) {
+        listView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                ImageView expandMonth = (ImageView) view.findViewById(R.id.expand_month);
+                expandMonth.setImageResource(R.drawable.ic_expand_less_black_48dp);
+            }
+        });
 
-                return true;
+        listView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                ImageView expandMonth = (ImageView) view.findViewById(R.id.expand_month);
+                expandMonth.setImageResource(R.drawable.ic_expand_more_black_48dp);
             }
         });
         ButterKnife.bind(this, rootView);
-        return rootView;
     }
 
     @OnClick(R.id.clear_final_button)
