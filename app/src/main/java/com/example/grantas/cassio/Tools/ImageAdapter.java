@@ -20,7 +20,8 @@ public class ImageAdapter extends BaseAdapter {
 
     int[] thumbIds = {
             R.drawable.orange, R.drawable.slicewatermelon,
-            R.drawable.banana, R.drawable.pear, R.drawable.apple, R.drawable.tomato
+            R.drawable.banana, R.drawable.pear, R.drawable.tangerine,
+            R.drawable.apple, R.drawable.peach, R.drawable.tomato
 
     };
 

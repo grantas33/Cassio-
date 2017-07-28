@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -22,6 +23,16 @@ import java.util.List;
 public class ChooseFoodLogic {
     DatabaseHelper databaseHelper = null;
     Context context;
+
+    public Food orange = new Food("Apelsinas", 87, 184, 21.6, 1.7, 0.2);
+    public Food watermelon = new Food("Arbūzo riekė (1/16 arbūzo)", 86, 286, 21.6, 1.7, 0.4);
+    public Food banana = new Food("Bananas", 105, 118, 27, 1.3, 0.4);
+    public Food pear = new Food("Kriaušė", 103, 178, 27.5, 0.7, 0.2);
+    public Food tangerine = new Food("Mandarinas", 47, 88, 11.7, 0.7, 0.3);
+    public Food apple = new Food("Obuolys", 95, 182, 25.1, 0.5, 0.3);
+    public Food peach = new Food("Persikas", 59, 150, 14.8, 1.4, 0.4);
+    public Food tomato = new Food("Pomidoras", 22, 123, 4.8, 1.1, 0.2);
+
 
     public  ChooseFoodLogic(Context context) {
         this.context = context;
@@ -41,11 +52,27 @@ public class ChooseFoodLogic {
         {
             DatabaseHelper helper = getHelper();
             final Dao<Food, Integer> foodDao = helper.getFoodDao();
-                    foods = foodDao.queryForAll();
+                    foods = new ArrayList<>(foodDao.queryForAll());
         }
         catch (SQLException e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
         }
+
+       for(Iterator<Food> it = foods.iterator(); it.hasNext();)
+       {
+           Food foo = it.next();
+           if(foo.Name.equals(orange.Name) ||
+                   foo.Name.equals(watermelon.Name) ||
+                   foo.Name.equals(banana.Name) ||
+                   foo.Name.equals(pear.Name) ||
+                   foo.Name.equals(tangerine.Name) ||
+                   foo.Name.equals(apple.Name)||
+                   foo.Name.equals(peach.Name) ||
+                   foo.Name.equals(tomato.Name))
+           {
+               it.remove();
+           }
+       }
         Collections.sort(foods);
         return foods;
     }
