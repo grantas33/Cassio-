@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.example.grantas.cassio.FragmentLogic.ChooseFoodLogic;
 import com.example.grantas.cassio.FragmentLogic.CreateFoodLogic;
 import com.example.grantas.cassio.Tools.InvalidValueException;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -142,6 +143,11 @@ public class CreateFood extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_food, container, false);
         ButterKnife.bind(this, view);
+        if(ChooseFoodList.foodNameExtra != null)
+        {
+            Name.setText(ChooseFoodList.foodNameExtra);
+            ChooseFoodList.foodNameExtra = null;
+        }
         Logic = new CreateFoodLogic(getContext());
         return view;
     }

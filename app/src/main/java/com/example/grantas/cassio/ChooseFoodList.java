@@ -2,9 +2,11 @@ package com.example.grantas.cassio;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -14,10 +16,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Filter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +46,7 @@ public class ChooseFoodList extends Fragment{
     ExpandableListView mExpanded;
     SearchView mSearchView;
     public FoodExpandableListAdapter adapter;
+    public static String foodNameExtra = null;
 
     public ChooseFoodList() {
     }
@@ -61,7 +66,7 @@ public class ChooseFoodList extends Fragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.choose_food_expandablelist, container, false);
 
@@ -70,7 +75,8 @@ public class ChooseFoodList extends Fragment{
         mSearchView.setIconified(false);
         mSearchView.setQueryHint("Ieškoti produkto");
        // mSearchView.onActionViewExpanded();
-        TextView mEmptyView = (TextView) view.findViewById(R.id.emptymyfoodsview);
+        LinearLayout mEmptyView = (LinearLayout) view.findViewById(R.id.emptymyfoodsview);
+        Button mEmptyButton = (Button) view.findViewById(R.id.emptymyfoodsbutton);
         ChooseFoodLogic Logic = new ChooseFoodLogic(getContext());
         final List<Food> datalist = Logic.getSortedFoods();
         adapter = new FoodExpandableListAdapter(getActivity(), datalist);
@@ -106,6 +112,14 @@ public class ChooseFoodList extends Fragment{
                 adapter.UpdateAdapter(temp);
 
                 return true;
+            }
+        });
+
+        mEmptyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodNameExtra = mSearchView.getQuery().toString();
+                getActivity().onBackPressed();
             }
         });
 
