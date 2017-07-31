@@ -1,5 +1,5 @@
 #
-# generated on 2017/07/19 01:16:32
+# generated on 2017/07/31 12:10:05
 #
 # --table-start--
 dataClass=com.example.grantas.cassio.Food
@@ -47,21 +47,36 @@ columnName=log_id
 generatedId=true
 # --field-end--
 # --field-start--
-fieldName=Fooditem
-columnName=fooditem_id
-dataPersister=SERIALIZABLE
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
-foreignAutoCreate=true
+fieldName=FoodName
+columnName=logname_id
+# --field-end--
+# --field-start--
+fieldName=Calories
+columnName=logcalories_id
+# --field-end--
+# --field-start--
+fieldName=DefaultGrams
+columnName=logdefaultgrams_id
+# --field-end--
+# --field-start--
+fieldName=Carbohydrates
+columnName=logcarbohydrates_id
+# --field-end--
+# --field-start--
+fieldName=Protein
+columnName=logprotein_id
+# --field-end--
+# --field-start--
+fieldName=Fat
+columnName=logfat_id
 # --field-end--
 # --field-start--
 fieldName=Grams
-columnName=grams_id
+columnName=loggrams_id
 # --field-end--
 # --field-start--
 fieldName=Time
-columnName=time_id
+columnName=logtime_id
 # --field-end--
 # --table-fields-end--
 # --table-end--

@@ -40,7 +40,7 @@ public class Food implements Serializable, Comparable<Food>{
     }
 
     //need this for SQLite
-    public Food(){
+    public Food() {
 
     }
 
@@ -57,6 +57,18 @@ public class Food implements Serializable, Comparable<Food>{
         Carbohydrates = carbohydrates;
         Protein = protein;
         Fat = fat;
+    }
+
+    //for updating food grams inside database
+    public Food(int oldgrams, int id, String name, int calories, int newgrams, double carbohydrates, double protein, double fat)
+    {
+        foodId = id;
+        Name = name;
+        Calories = (int)Math.round((double)calories * ((double) newgrams / (double) oldgrams));
+        Grams = newgrams;
+        Carbohydrates = carbohydrates * ((double) newgrams / (double) oldgrams);
+        Protein = protein * ((double) newgrams / (double) oldgrams);
+        Fat = fat * ((double) newgrams / (double) oldgrams);
     }
 
     public String toString()
