@@ -1,9 +1,9 @@
 #
-# generated on 2017/07/19 01:16:32
+# generated on 2017/07/30 11:30:00
 #
 # --table-start--
 dataClass=com.example.grantas.cassio.Food
-tableName=food
+tableName=logitem
 # --table-fields-start--
 # --field-start--
 fieldName=foodId
@@ -51,9 +51,6 @@ fieldName=Fooditem
 columnName=fooditem_id
 dataPersister=SERIALIZABLE
 foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
-foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=Grams

@@ -17,7 +17,7 @@ public class LogItem implements Serializable{
     @DatabaseField(generatedId = true, columnName = "log_id")
     public int logId;
 
-    @DatabaseField(dataType = DataType.SERIALIZABLE, foreign = true, foreignAutoCreate = true, foreignAutoRefresh=true, columnName = "fooditem_id")
+    @DatabaseField(dataType = DataType.SERIALIZABLE, foreign = true, foreignAutoCreate = false, foreignAutoRefresh=false, columnName = "fooditem_id")
     public Food Fooditem; //maistas
     @DatabaseField(columnName = "grams_id")
     public int Grams; //kiek valge
@@ -35,6 +35,7 @@ public class LogItem implements Serializable{
     }
 
     public int getCalories() {
+        if (Fooditem == null) return 0;
         return Math.round((Grams * Fooditem.Calories) / Fooditem.Grams);
     }
 

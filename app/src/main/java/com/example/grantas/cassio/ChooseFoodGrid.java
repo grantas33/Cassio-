@@ -73,7 +73,8 @@ public class ChooseFoodGrid extends android.support.v4.app.Fragment
 
     private void ClickAction(Food food, boolean male)
     {
-        Logic.AddLogItem(new LogItem(food, food.Grams, new Date()));
+        LogItem item = new LogItem(food, food.Grams, new Date());
+        Logic.AddLogItem(item);
         if (mToast != null) mToast.cancel();
         mToast = Toast.makeText(getContext(), male ? "Pridėtas " + food.Name : "Pridėta " + food.Name, Toast.LENGTH_SHORT);
         mToast.show();

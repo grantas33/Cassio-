@@ -55,7 +55,7 @@ public class MainScreenLogic {
     public double getTotalCarbohydrates() {
         double total = 0;
         try {
-            final Dao<LogItem, Integer> logDao = databaseHelper.getLogDao();
+            final Dao<LogItem, Integer> logDao = getHelper().getLogDao();
             List<LogItem> items = logDao.queryForAll();
             for (LogItem item: items
                     ) {
@@ -70,7 +70,7 @@ public class MainScreenLogic {
     public double getTotalProtein() {
         double total = 0;
         try {
-            final Dao<LogItem, Integer> logDao = databaseHelper.getLogDao();
+            final Dao<LogItem, Integer> logDao = getHelper().getLogDao();
             List<LogItem> items = logDao.queryForAll();
             for (LogItem item: items
                     ) {
@@ -85,7 +85,7 @@ public class MainScreenLogic {
     public double getTotalFat() {
         double total = 0;
         try {
-            final Dao<LogItem, Integer> logDao = databaseHelper.getLogDao();
+            final Dao<LogItem, Integer> logDao = getHelper().getLogDao();
             List<LogItem> items = logDao.queryForAll();
             for (LogItem item: items
                     ) {

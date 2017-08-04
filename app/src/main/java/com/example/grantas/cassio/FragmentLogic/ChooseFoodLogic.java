@@ -1,6 +1,7 @@
 package com.example.grantas.cassio.FragmentLogic;
 
 import android.content.Context;
+import android.os.Debug;
 import android.widget.Toast;
 
 import com.example.grantas.cassio.Food;
@@ -58,7 +59,6 @@ public class ChooseFoodLogic {
 
             //idedam i duombaze
             logDao.create(item);
-
 
         } catch (SQLException e) {
             e.printStackTrace();
