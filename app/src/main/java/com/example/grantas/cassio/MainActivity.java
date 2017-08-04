@@ -63,11 +63,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         ButterKnife.bind(this);
         Logic = new MainActivityLogic(this);
-//        if (savedInstanceState == null) {
-//            displayView(R.id.main_screen); //set main screen
-//        } else {
-//            displayView(savedInstanceState.getInt("viewId"));
-//        }
+
+        if (ChooseFoodList.foodNameExtra != null) {
+                displayView(R.id.create_food);
+        }
 
     }
 

@@ -36,4 +36,11 @@
     <string name="autosave_information_alert">Duomenys išsisaugoja automatiškai! Norėdami išsaugoti rankiniu būdu, eikite į nustatymus</string>
     <string name="cals">kal.</string>
     <string name="confirm_clear_all">Ar norite ištrinti visą istoriją?</string>
+    <string name="create_food">Sukurti maistą</string>
+    <string name="choose_amount">Pasirinkti kiekį:</string>
+    <string name="delete_my_food">Ištrinti produktą %s?</string>
+    <string name="input_grams">Įveskite gramus</string>
+    <string name="remember_as_default_size">Prisiminti kaip numatytąjį kiekį</string>
+    <string name="add">Pridėti</string>
+    <string name="cancel">Atšaukti</string>
 </resources>

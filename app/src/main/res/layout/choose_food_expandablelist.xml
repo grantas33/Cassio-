@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+    <FrameLayout android:name="initialFragment"
+        android:id="@+id/expandable_fragment_container"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dip" />
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,10 +31,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/expandableviewmyfoods" />
-    <TextView
-        android:id="@+id/emptymyfoodsview"
-        android:text="@string/products_not_found"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/emptymyfoodsview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center">
+                <TextView
+                    android:text="@string/products_not_found"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     />
+                <Button
+                    android:id="@+id/emptymyfoodsbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_food"/>
+                </LinearLayout>
 </LinearLayout>

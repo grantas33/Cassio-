@@ -73,10 +73,10 @@ public class LogItemListAdapter extends BaseAdapter {
             }
         });
 
-        ((TextView)view.findViewById(R.id.logiteminfoname)).setText(item.Fooditem.Name);
+        ((TextView)view.findViewById(R.id.logiteminfoname)).setText(item.FoodName);
         SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm", Locale.getDefault());
         ((TextView)view.findViewById(R.id.logiteminfodate)).setText(sdfDate.format(item.Time));
-        ((TextView)view.findViewById(R.id.logiteminfocalories)).setText(item.Fooditem.Calories + " kal.");
+        ((TextView)view.findViewById(R.id.logiteminfocalories)).setText(item.getCalories() + " kal.");
         ((TextView)view.findViewById(R.id.logiteminfograms)).setText(item.Grams + " g.");
 
         return view;

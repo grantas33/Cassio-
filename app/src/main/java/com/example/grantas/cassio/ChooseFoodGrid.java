@@ -45,22 +45,28 @@ public class ChooseFoodGrid extends android.support.v4.app.Fragment
                 switch(position)
                 {
                     case 0:
-                        ClickAction(new Food("Apelsinas", 87, 184, 21.6, 1.7, 0.2), true);
+                        ClickAction(Logic.orange, true);
                         break;
                     case 1:
-                        ClickAction(new Food("Arbūzo riekė (1/16 arbūzo)", 86, 286, 21.6, 1.7, 0.4), false);
+                        ClickAction(Logic.watermelon, false);
                         break;
                     case 2:
-                        ClickAction(new Food("Bananas", 105, 118, 27, 1.3, 0.4), true);
+                        ClickAction(Logic.banana, true);
                         break;
                     case 3:
-                        ClickAction(new Food("Kriaušė", 103, 178, 27.5, 0.7, 0.2), false);
+                        ClickAction(Logic.pear, false);
                         break;
                     case 4:
-                        ClickAction(new Food("Obuolys", 95, 182, 25.1, 0.5, 0.3), true);
+                        ClickAction(Logic.tangerine, true);
                         break;
                     case 5:
-                        ClickAction(new Food("Pomidoras", 22, 123, 4.8, 1.1, 0.2), true);
+                        ClickAction(Logic.apple, true);
+                        break;
+                    case 6:
+                        ClickAction(Logic.peach, true);
+                        break;
+                    case 7:
+                        ClickAction(Logic.tomato, true);
                         break;
                     default:
                         break;
