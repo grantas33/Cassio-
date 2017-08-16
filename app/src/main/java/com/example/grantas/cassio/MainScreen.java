@@ -3,10 +3,15 @@ package com.example.grantas.cassio;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.media.MediaMetadataCompat;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,8 +62,8 @@ import butterknife.ButterKnife;
  */
 public class MainScreen extends Fragment {
 
-    @BindView(R.id.calories_main)
-    TextView Calories;
+   // @BindView(R.id.calories_main)
+   // TextView Calories;
 
     @BindView(R.id.nutrition_chart)
     PieChart nutritionChart;
@@ -93,7 +98,7 @@ public class MainScreen extends Fragment {
 
     public void setNutritionChart() {
 //        //labels
-         nutritionChart.setDrawEntryLabels(true);
+         nutritionChart.setDrawEntryLabels(false);
 //        xAxis.setXOffset(0f);
 //        xAxis.setYOffset(0f);
 //        xAxis.setTextSize(16f);
@@ -139,16 +144,19 @@ public class MainScreen extends Fragment {
 //        nutritionChart.setData(data);
 //        nutritionChart.invalidate();
         nutritionChart.setUsePercentValues(true);
-        Description description = new Description();
-        description.setText("Maistingumas");
-        nutritionChart.setDescription(description);
+//        Description description = new Description();
+//        description.setText("Maistingumas");
+        nutritionChart.setDescription(null);
+        nutritionChart.setCenterText(generateCenterSpannableText());
+        nutritionChart.setHoleRadius(58f);
+        nutritionChart.setTransparentCircleRadius(61f);
+
 
         nutritionChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 if (e == null)
                     return;
-
 //                Toast.makeText(MainActivity.this,
 //                        xData[e.getXIndex()] + " = " + e.getVal() + "%", Toast.LENGTH_SHORT).show();
             }
@@ -161,57 +169,69 @@ public class MainScreen extends Fragment {
         setChartData();
     }
 
-    public ArrayList<String> getChartLabels() {
-        ArrayList<String> labels = new ArrayList<>();
-        labels.add(getString(R.string.carbohydrates));
-        labels.add(getString(R.string.protein));
-        labels.add(getString(R.string.fat));
-        return labels;
+    private SpannableString generateCenterSpannableText() {
+
+        SpannableString s = new SpannableString(String.valueOf(Logic.getTotalCalories()) + "\nkal.");
+        s.setSpan(new RelativeSizeSpan(5.0f), 0, s.length()-5, 0);
+        s.setSpan(new StyleSpan(Typeface.NORMAL), 0, s.length()-5, 0);
+        s.setSpan(new ForegroundColorSpan(Color.DKGRAY), 0, s.length()-5, 0);
+        return s;
     }
+
+//    public ArrayList<String> getChartLabels() {
+//        ArrayList<String> labels = new ArrayList<>();
+//        labels.add(getString(R.string.carbohydrates));
+//        labels.add(getString(R.string.protein));
+//        labels.add(getString(R.string.fat));
+//        return labels;
+//    }
+
 
     public void setChartData() {
         ArrayList<PieEntry> nutrition = new ArrayList<>();
         float carbohydrates = (float) Logic.getTotalCarbohydrates();
         float protein = (float) Logic.getTotalProtein();
         float fat = (float) Logic.getTotalFat();
-        nutrition.add(new PieEntry(carbohydrates, 0));
-        nutrition.add(new PieEntry(protein, 1));
-        nutrition.add(new PieEntry(fat, 2));
+        nutrition.add(new PieEntry(carbohydrates, "Angliavandeniai"));
+        nutrition.add(new PieEntry(protein, "Baltymai"));
+        nutrition.add(new PieEntry(fat, "Riebalai"));
 
-        PieDataSet dataSet = new PieDataSet(nutrition, "Dabartinis maistingumas");
-        dataSet.setDrawIcons(false);
-        dataSet.setSliceSpace(3f);
-
-        dataSet.setIconsOffset(new MPPointF(0, 40));
+        PieDataSet dataSet = new PieDataSet(nutrition, null);
+        //dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        //dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        dataSet.setSliceSpace(2f);
+        dataSet.setFormSize(15.0f);
+      //  dataSet.setIconsOffset(new MPPointF(0, 40));
         dataSet.setSelectionShift(5f);
 
         // add a lot of colors
 
-        ArrayList<Integer> colors = new ArrayList<Integer>();
+//        ArrayList<Integer> colors = new ArrayList<Integer>();
+//
+//        for (int c : ColorTemplate.VORDIPLOM_COLORS)
+//            colors.add(c);
+//
+//        for (int c : ColorTemplate.JOYFUL_COLORS)
+//            colors.add(c);
+//
+//        for (int c : ColorTemplate.COLORFUL_COLORS)
+//            colors.add(c);
+//
+//        for (int c : ColorTemplate.LIBERTY_COLORS)
+//            colors.add(c);
+//
+//        for (int c : ColorTemplate.PASTEL_COLORS)
+//            colors.add(c);
+//
+//        colors.add(ColorTemplate.getHoloBlue());
 
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.COLORFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
-
-        colors.add(ColorTemplate.getHoloBlue());
-
-        dataSet.setColors(colors);
+        //dataSet.setColors(colors);
+        dataSet.setColors(Color.rgb(139, 204, 40), Color.rgb(40, 139, 204), Color.rgb(204, 40, 139));
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(11f);
-        data.setValueTextColor(Color.WHITE);
-//        data.setValueTypeface();
+        data.setValueTextSize(14f);;
+        data.setValueTextColor(Color.rgb(250, 250, 250));
+       // data.setValueTypeface();
         nutritionChart.setData(data);
 
         // undo all highlights
@@ -220,16 +240,16 @@ public class MainScreen extends Fragment {
         nutritionChart.invalidate();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        int calories = Logic.getTotalCalories();
-        try {
-            Calories.setText(Integer.toString(calories));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        int calories = Logic.getTotalCalories();
+//        try {
+//            Calories.setText(Integer.toString(calories));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {
