@@ -1,6 +1,8 @@
 package com.example.grantas.cassio.Tools;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -12,6 +14,15 @@ import android.widget.Toast;
 
 import com.example.grantas.cassio.FragmentLogic.DayAdapterLogic;
 import com.example.grantas.cassio.R;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +38,7 @@ public class DayExpandableListAdapter extends BaseExpandableListAdapter {
     Toast toast;
     private HashMap< String, List<DayItem>> expandableListDetail;
     private List<String> expandableMonthTitle;
+    private HorizontalBarChart stackedChart;
 
     public DayExpandableListAdapter(Activity context, List<String> expandableMonthTitle,
                                     HashMap<String, List<DayItem>> expandableListDetail) {
@@ -97,9 +109,8 @@ public class DayExpandableListAdapter extends BaseExpandableListAdapter {
 //                else ((ExpandableListView) parent).expandGroup(groupPosition, true);
 //            }
 //        });
-
         ((TextView) convertView.findViewById(R.id.date_info)).setText(monthTitle);
-        String  calories = getGroupCalories(groupPosition) + context.getString(R.string.cals);
+        String  calories = context.getString(R.string.average) + " " + getGroupCalories(groupPosition) + " " + context.getString(R.string.cals);
         ((TextView) convertView.findViewById(R.id.calories_info)).setText(calories);
 
         return convertView;
@@ -119,13 +130,64 @@ public class DayExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView caloriesInfo = (TextView) convertView.findViewById(R.id.calories_child_info);
         caloriesInfo.setText(day.getCalories() + context.getString(R.string.cals));
+        stackedChart = (HorizontalBarChart) convertView.findViewById(R.id.stackedchart);
+        setupChart(day);
 
         return convertView;
     }
 
+
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
+    }
+
+    public void setupChart(DayItem day)
+    {
+        stackedChart.getDescription().setEnabled(false);
+
+        stackedChart.setClickable(false);
+        stackedChart.setPinchZoom(false);
+        stackedChart.getAxisLeft().setDrawLabels(false);
+        stackedChart.getAxisRight().setDrawLabels(false);
+        stackedChart.getXAxis().setDrawLabels(false);
+        stackedChart.getLegend().setEnabled(false);
+        stackedChart.getAxisLeft().setDrawGridLines(false);
+        stackedChart.getXAxis().setEnabled(false);
+        stackedChart.getAxisLeft().setDrawAxisLine(false);
+        stackedChart.getXAxis().setDrawAxisLine(false);
+        stackedChart.getAxisLeft().setEnabled(false);
+        stackedChart.getAxisRight().setEnabled(false);
+        stackedChart.setTouchEnabled(false);
+        stackedChart.setDrawValueAboveBar(false);
+
+
+
+
+
+        BarEntry entry = new BarEntry(1000f, new float[]{(float)day.getCarbohydratePercent(), (float)day.getProteinPercent(), (float)day.getFatPercent()});
+        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
+        entries.add(entry);
+        BarDataSet set1 = new BarDataSet(entries, null);
+        set1.setDrawIcons(false);
+        set1.setColors(Color.rgb(139, 204, 40), Color.rgb(40, 139, 204), Color.rgb(204, 40, 139));
+        set1.setValueTextColor(Color.rgb(250, 250, 250));
+
+        ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+        dataSets.add(set1);
+
+        BarData data = new BarData(dataSets);
+        data.setValueFormatter(new CustomValueFormatter());
+        data.setValueTextSize(5f);
+
+        stackedChart.setData(data);
+       // stackedChart.setViewPortOffsets(0f, 0f, 0f, 0f);
+        stackedChart.invalidate();
+
+
+
+
+
     }
 
     private String getGroupCalories(int groupPosition) {
@@ -139,8 +201,9 @@ public class DayExpandableListAdapter extends BaseExpandableListAdapter {
              days) {
             calories += day.Calories;
         }
-        return String.valueOf(calories);
+        return String.valueOf(calories/getChildrenCount(groupPosition));
     }
+
 
 //    private List<DayItem> filterDays(int groupPosition) {
 //        String date = groups.get(groupPosition);

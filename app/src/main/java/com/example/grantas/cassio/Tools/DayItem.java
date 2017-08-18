@@ -31,6 +31,7 @@ public class DayItem implements Serializable {
     @DatabaseField(columnName = "fat_id")
     double Fat;
 
+
     public DayItem() {
 
     }
@@ -65,7 +66,7 @@ public class DayItem implements Serializable {
         Calendar cal = Calendar.getInstance();
         cal.setTime(Date); // don't forget this if date is arbitrary e.g. 01-01-2014
 
-        return cal.get(Calendar.MONTH) + 1;
+        return cal.get(Calendar.MONTH);
     }
 
     public String getYearMonth() {
@@ -75,4 +76,8 @@ public class DayItem implements Serializable {
     public String getCalories() {
         return String.valueOf(Calories);
     }
+
+    public double getCarbohydratePercent() { return Carbohydrates/(Carbohydrates + Protein + Fat) * 100; }
+    public double getProteinPercent() { return Protein/(Carbohydrates + Protein + Fat) * 100; }
+    public double getFatPercent() { return Fat/(Carbohydrates + Protein + Fat) * 100; }
 }

@@ -9,8 +9,11 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.xml.datatype.Duration;
 
 /**
  * Created by Grantas on 2017-07-27.
@@ -37,13 +40,21 @@ public class SaveAndClearLogic {
         getHelper().clearLogTable();
     }
 
-    public void saveLogs() {
+    public void saveLogs(boolean isYesterday) {
         List<LogItem> logs;
         int calories = 0;
         double carbohydrates = 0;
         double protein = 0;
         double fat = 0;
-        Date date = new Date();
+        Date date;
+        if(isYesterday)
+        {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DATE, -1);
+            date = cal.getTime();
+        }
+        else {date = new Date();}
+
         try {
             logs = getHelper().getLogDao().queryForAll();
             for (LogItem log:

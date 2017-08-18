@@ -49,7 +49,7 @@ public class SaveAndClearDialog {
                     context.getString(R.string.yes),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            Logic.saveLogs();
+                            Logic.saveLogs(false);
                             Logic.clearLogs();
                             dialog.cancel();
                             context.displayView(context.currentViewId);

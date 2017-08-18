@@ -23,7 +23,7 @@ public class AlarmReceiver extends BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
         Log.i("ALARM", "received");
         SaveAndClearLogic Logic = new SaveAndClearLogic(context);
-        Logic.saveLogs();
+        Logic.saveLogs(true);
         Logic.clearLogs();
     }
 }

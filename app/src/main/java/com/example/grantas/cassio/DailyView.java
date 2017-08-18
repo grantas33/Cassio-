@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,13 +95,13 @@ public class DailyView extends Fragment {
         groupDetail = DayItemsDataPump.getDataFromList(days);
         groups = new ArrayList<>(groupDetail.keySet());
 
-        DayExpandableListAdapter adapter = new DayExpandableListAdapter(getActivity(), groups, groupDetail);
+        final DayExpandableListAdapter adapter = new DayExpandableListAdapter(getActivity(), groups, groupDetail);
         listView.setAdapter(adapter);
         listView.setGroupIndicator(null);
         TextView empty = (TextView) rootView.findViewById(R.id.empty_day_view);
         listView.setEmptyView(empty);
 
-        listView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+                listView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
                 ImageView expandMonth = (ImageView) view.findViewById(R.id.expand_month);
