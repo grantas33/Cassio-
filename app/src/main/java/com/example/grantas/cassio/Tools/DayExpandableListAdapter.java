@@ -2,30 +2,20 @@ package com.example.grantas.cassio.Tools;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.EditText;
-import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.grantas.cassio.FragmentLogic.DayAdapterLogic;
 import com.example.grantas.cassio.R;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.DefaultValueFormatter;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -177,16 +167,12 @@ public class DayExpandableListAdapter extends BaseExpandableListAdapter {
         dataSets.add(set1);
 
         BarData data = new BarData(dataSets);
-        data.setValueFormatter(new CustomValueFormatter());
+        data.setValueFormatter(new DayItemValueFormatter());
         data.setValueTextSize(5f);
 
         stackedChart.setData(data);
        // stackedChart.setViewPortOffsets(0f, 0f, 0f, 0f);
         stackedChart.invalidate();
-
-
-
-
 
     }
 

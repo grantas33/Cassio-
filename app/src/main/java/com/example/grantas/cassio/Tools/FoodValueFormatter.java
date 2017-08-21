@@ -1,5 +1,6 @@
 package com.example.grantas.cassio.Tools;
 
+import com.example.grantas.cassio.Food;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
@@ -7,24 +8,26 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import java.text.DecimalFormat;
 
 /**
- * Created by Grantas on 2017-08-18.
+ * Created by Grantas on 2017-08-20.
  */
 
-public class CustomValueFormatter implements IValueFormatter {
-
+public class FoodValueFormatter implements IValueFormatter {
     private DecimalFormat mFormat;
+    public Food item;
 
-    public CustomValueFormatter() {
-        mFormat = new DecimalFormat("###,###,##0.0"); // use one decimal
+
+    public FoodValueFormatter(Food item) {
+        this.item = item;
+        mFormat = new DecimalFormat("########0.0"); // use one decimal
     }
 
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
         // write your logic here
-        if(value<10.0f) {
-            return "";
-        }
-        else{ return mFormat.format(value) + "%"; }
+        //return mFormat.format(value*((float)item.Grams)/(float)100) + "g";
+        if(value == 0) return "";
+        else return mFormat.format(value) + "g";
+
 
     }
 }

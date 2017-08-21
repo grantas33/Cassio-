@@ -72,6 +72,10 @@ public class Food implements Serializable, Comparable<Food>{
         Fat = fat * ((double) newgrams / (double) oldgrams);
     }
 
+    public double getCarbohydratesFor100g() {return Carbohydrates * 100 / (double)Grams ;}
+    public double getProteinFor100g() {return Protein * 100 / (double)Grams ;}
+    public double getFatFor100g() {return Fat * 100 / (double)Grams ;}
+
     public String toString()
     {
         return this.Name + ", " + this.Calories + " cal., " + this.Grams + "g.";
