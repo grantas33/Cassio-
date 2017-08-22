@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/list_days" />
+        android:id="@+id/list_days"
+        android:paddingBottom="42dp"
+        android:clipToPadding="false"/>
     <TextView
         android:id="@+id/empty_day_view"
         android:text="@string/no_saved_info"

@@ -6,7 +6,9 @@
     <ListView
         android:id="@+id/foodloglistview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:paddingBottom="86dp"
+        android:clipToPadding="false"/>
     <TextView
         android:id="@+id/emptyfoodlogview"
         android:text="@string/empty"
