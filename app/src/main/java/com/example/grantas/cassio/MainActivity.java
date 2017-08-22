@@ -129,9 +129,25 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    private void hideFab() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.hide();
+    }
+
+    private void showFab() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.show();
+    }
+
     public void displayView(int viewId) {
         if (viewId != R.id.save_and_clear){
             currentViewId = viewId;
+        }
+
+        if (viewId == R.id.create_food) {
+            hideFab();
+        } else {
+            showFab();
         }
 
         Fragment fragment = null;

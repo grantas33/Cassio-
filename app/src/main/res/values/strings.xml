@@ -44,4 +44,7 @@
     <string name="add">Pridėti</string>
     <string name="cancel">Atšaukti</string>
     <string name="average">Vidurkis: </string>
+    <string name="name">Pavadinimas</string>
+    <string name="calories">Kalorijos</string>
+    <string name="grams">Gramai</string>
 </resources>
