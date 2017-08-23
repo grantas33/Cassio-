@@ -19,9 +19,9 @@ public class ImageAdapter extends BaseAdapter {
     Context context;
 
     int[] thumbIds = {
-            R.drawable.orange, R.drawable.slicewatermelon,
-            R.drawable.banana, R.drawable.pear, R.drawable.tangerine,
-            R.drawable.apple, R.drawable.peach, R.drawable.tomato
+            R.drawable.cucumber, R.drawable.pineapple, R.drawable.orange, R.drawable.slicewatermelon,
+            R.drawable.banana, R.drawable.kiwi, R.drawable.pear, R.drawable.tangerine, R.drawable.mango,
+            R.drawable.melon, R.drawable.apple, R.drawable.peach, R.drawable.tomato
 
     };
 

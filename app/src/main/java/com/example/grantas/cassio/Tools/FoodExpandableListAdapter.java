@@ -129,8 +129,8 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
             }
         });
 
-        ImageView listHeaderArrow = (ImageView)view.findViewById(R.id.greenarrow);
-        int imageResourceId = isExpanded ? R.drawable.green_arrow_up : R.drawable.green_arrow_down;
+        ImageView listHeaderArrow = (ImageView)view.findViewById(R.id.arrow);
+        int imageResourceId = isExpanded ? R.drawable.ic_expand_less_black_48dp : R.drawable.ic_expand_more_black_48dp;
         listHeaderArrow.setImageResource(imageResourceId);
 
         listHeaderArrow.setOnClickListener(new View.OnClickListener() {

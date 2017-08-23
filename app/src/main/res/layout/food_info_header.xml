@@ -56,9 +56,9 @@
         android:id="@+id/greenplus"
         android:layout_gravity="right" />
     <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
+        android:src="@drawable/ic_expand_more_black_48dp"
         android:layout_width="45dp"
         android:layout_height="match_parent"
-        android:id="@+id/greenarrow"
+        android:id="@+id/arrow"
         android:layout_gravity="end" />
 </LinearLayout>
