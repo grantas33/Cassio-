@@ -27,14 +27,20 @@ public class ChooseFoodLogic {
     DatabaseHelper databaseHelper = null;
     Context context;
 
+    public Food cucumber = new Food("Trumpavaisis agurkas", 19, 158, 3.4, 0.9, 0.3);
+    public Food pineapple = new Food("Ananaso riekė (1/10 ananaso)", 42, 84, 11, 0.5, 0.1);
     public Food orange = new Food("Apelsinas", 87, 184, 21.6, 1.7, 0.2);
     public Food watermelon = new Food("Arbūzo riekė (1/16 arbūzo)", 86, 286, 21.6, 1.7, 0.4);
     public Food banana = new Food("Bananas", 105, 118, 27, 1.3, 0.4);
+    public Food kiwi = new Food("Kivis", 46, 76, 11.1, 0.9, 0.4);
     public Food pear = new Food("Kriaušė", 103, 178, 27.5, 0.7, 0.2);
     public Food tangerine = new Food("Mandarinas", 47, 88, 11.7, 0.7, 0.3);
+    public Food mango = new Food("Mangas", 135, 207, 35.2, 1.1, 0.6);
+    public Food melon = new Food("Meliono riekė (1/8 meliono)", 58, 160, 14.5, 0.9, 0.2);
     public Food apple = new Food("Obuolys", 95, 182, 25.1, 0.5, 0.3);
     public Food peach = new Food("Persikas", 59, 150, 14.8, 1.4, 0.4);
     public Food tomato = new Food("Pomidoras", 22, 123, 4.8, 1.1, 0.2);
+    public Food plum = new Food("Slyva", 30, 66, 7.5, 0.5, 0.2);
 
 
     public  ChooseFoodLogic(Context context) {
