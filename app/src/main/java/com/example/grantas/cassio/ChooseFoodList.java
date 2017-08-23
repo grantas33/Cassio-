@@ -73,7 +73,9 @@ public class ChooseFoodList extends Fragment{
         mExpanded = (ExpandableListView) view.findViewById(R.id.expandableviewmyfoods);
         mSearchView = (SearchView) view.findViewById(R.id.searchviewmyfoods);
         mSearchView.setIconified(false);
+        mSearchView.onActionViewExpanded();
         mSearchView.setQueryHint("Ieškoti produkto");
+        //mSearchView.clearFocus();
        // mSearchView.onActionViewExpanded();
         LinearLayout mEmptyView = (LinearLayout) view.findViewById(R.id.emptymyfoodsview);
         Button mEmptyButton = (Button) view.findViewById(R.id.emptymyfoodsbutton);

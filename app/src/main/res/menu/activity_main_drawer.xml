@@ -4,42 +4,41 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/main_screen"
-            android:icon="@drawable/done"
-            android:title="Home" />
+            android:icon="@drawable/nav_bar_home"
+            android:title="@string/home_screen" />
         <item
             android:id="@+id/choose_food"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Choose food" />
+            android:icon="@drawable/nav_bar_choose_food"
+            android:title="@string/choose_food" />
         <item
             android:id="@+id/create_food"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Create food" />
+            android:icon="@drawable/nav_bar_create_food"
+            android:title="@string/create_food" />
         <item
             android:id="@+id/food_log"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Food log" />
+            android:icon="@drawable/nav_bar_food_log"
+            android:title="@string/food_log" />
         <item
             android:id="@+id/daily_view"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Daily view" />
+            android:icon="@drawable/nav_bar_daily_view"
+            android:title="@string/daily_view" />
         <item
             android:id="@+id/save_and_clear"
-            android:icon="@android:drawable/ic_menu_save"
-            android:checkable="false"
-            android:title="Save and clear"/>
+            android:icon="@drawable/nav_bar_save_and_clear"
+            android:title="@string/save_and_clear"/>
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>
