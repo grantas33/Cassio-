@@ -254,6 +254,7 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
         return false;
     }
 
+
     public void UpdateAdapter(List<Food> list)
     {
         this.FoodList = list;

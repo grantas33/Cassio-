@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="4dp">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -21,7 +22,7 @@
                 android:id="@+id/logiteminfoname"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"/>
             <TextView
                 android:text="DATE"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -30,7 +31,8 @@
                 android:id="@+id/logiteminfodate"
                 android:layout_gravity="right"
                 android:layout_weight="0"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="14sp"/>
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -43,20 +45,23 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:id="@+id/logiteminfocalories" />
+                android:id="@+id/logiteminfocalories"
+                android:textSize="14sp"/>
             <TextView
                 android:text="FOODGRAMS"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:id="@+id/logiteminfograms" />
+                android:id="@+id/logiteminfograms"
+                android:textSize="14sp"/>
         </LinearLayout>
     </LinearLayout>
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="100px"
+        android:layout_width="50dp"
         android:layout_height="match_parent"
         android:id="@+id/redtrashcan"
-        android:layout_gravity="right" />
+        android:layout_gravity="right"
+        android:padding="4dp"/>
 </LinearLayout>

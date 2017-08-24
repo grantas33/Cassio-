@@ -111,7 +111,11 @@ public class ChooseFoodList extends Fragment{
                       temp.add(food);
                   }
                 }
+
                 adapter.UpdateAdapter(temp);
+                int count =  adapter.getGroupCount();         //collapse all groups
+                for (int i = 0; i <count ; i++)
+                    mExpanded.collapseGroup(i);
 
                 return true;
             }

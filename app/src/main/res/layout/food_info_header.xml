@@ -36,14 +36,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="2"
-                android:id="@+id/foodinfocalories" />
+                android:id="@+id/foodinfocalories"
+                android:textSize="14sp"/>
             <TextView
                 android:text="FOODGRAMS"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:id="@+id/foodinfograms" />
+                android:id="@+id/foodinfograms"
+                android:textSize="14sp"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -51,7 +53,7 @@
         android:src="@android:drawable/ic_menu_gallery"
         android:clickable="false"
         android:focusable="false"
-        android:layout_width="100px"
+        android:layout_width="30dp"
         android:layout_height="match_parent"
         android:id="@+id/greenplus"
         android:layout_gravity="right" />
