@@ -52,7 +52,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
     public void CheckAlarm(SharedPreferences sharedPref, Context context)
     {
-        boolean autoSavePref = sharedPref.getBoolean(SettingsActivity.KEY_PREF_AUTOSAVE, false);
+        boolean autoSavePref = sharedPref.getBoolean(SettingsActivity.KEY_PREF_AUTOSAVE, true);
         if(autoSavePref)
         {
             alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
