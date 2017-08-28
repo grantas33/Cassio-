@@ -1,6 +1,7 @@
 package com.example.grantas.cassio.Tools;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -52,7 +53,10 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null)
         {  // if it's not recycled, initialize some attributes
             imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
+            final float scale = context.getResources().getDisplayMetrics().density;
+            int dpWidthInPx  = (int) (80 * scale + 0.5f);
+            int dpHeightInPx = (int) (80 * scale + 0.5f);
+            imageView.setLayoutParams(new GridView.LayoutParams(dpWidthInPx, dpHeightInPx));
             //imageView.SetScaleType(ImageView.ScaleType.CenterCrop);
             //imageView.SetPadding(50, 50, 50, 50);
         }

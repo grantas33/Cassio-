@@ -36,7 +36,7 @@ public class SaveAndClearDialog {
 
     public void createAlertDialog() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-        boolean autoSavePref = sharedPref.getBoolean(SettingsActivity.KEY_PREF_AUTOSAVE, false);
+        boolean autoSavePref = sharedPref.getBoolean(SettingsActivity.KEY_PREF_AUTOSAVE, true);
         if(autoSavePref)
         {
             Toast.makeText(context.getApplicationContext(), R.string.autosave_information_alert, Toast.LENGTH_LONG).show();
