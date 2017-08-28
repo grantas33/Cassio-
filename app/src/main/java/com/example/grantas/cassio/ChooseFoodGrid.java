@@ -57,34 +57,46 @@ public class ChooseFoodGrid extends android.support.v4.app.Fragment
                         ClickAction(Logic.watermelon, false);
                         break;
                     case 4:
-                        ClickAction(Logic.banana, true);
+                        ClickAction(Logic.avocado, true);
                         break;
                     case 5:
-                        ClickAction(Logic.kiwi, true);
+                        ClickAction(Logic.banana, true);
                         break;
                     case 6:
-                        ClickAction(Logic.pear, false);
+                        ClickAction(Logic.strawberries, false);
                         break;
                     case 7:
-                        ClickAction(Logic.tangerine, true);
+                        ClickAction(Logic.kiwi, true);
                         break;
                     case 8:
-                        ClickAction(Logic.mango, true);
+                        ClickAction(Logic.pear, false);
                         break;
                     case 9:
-                        ClickAction(Logic.melon, false);
+                        ClickAction(Logic.tangerine, true);
                         break;
                     case 10:
-                        ClickAction(Logic.apple, true);
+                        ClickAction(Logic.mango, true);
                         break;
                     case 11:
-                        ClickAction(Logic.peach, true);
+                        ClickAction(Logic.melon, false);
                         break;
                     case 12:
-                        ClickAction(Logic.tomato, true);
+                        ClickAction(Logic.carrot, false);
                         break;
                     case 13:
+                        ClickAction(Logic.apple, true);
+                        break;
+                    case 14:
+                        ClickAction(Logic.peach, true);
+                        break;
+                    case 15:
+                        ClickAction(Logic.tomato, true);
+                        break;
+                    case 16:
                         ClickAction(Logic.plum, false);
+                        break;
+                    case 17:
+                        ClickAction(Logic.grapes, false);
                         break;
                     default:
                         break;
