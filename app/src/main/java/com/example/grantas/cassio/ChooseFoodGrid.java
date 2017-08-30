@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import com.example.grantas.cassio.FragmentLogic.ChooseFoodLogic;
 import com.example.grantas.cassio.Tools.ImageAdapter;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.github.johnpersano.supertoasts.library.SuperToast;
 
 import java.util.Date;
 
@@ -21,6 +24,7 @@ public class ChooseFoodGrid extends android.support.v4.app.Fragment
 {
     private Toast mToast = null;
     private String toastMsg = "";
+
     ChooseFoodLogic Logic;
 
     public ChooseFoodGrid()
@@ -111,9 +115,10 @@ public class ChooseFoodGrid extends android.support.v4.app.Fragment
     {
         LogItem item = new LogItem(food, food.Grams, new Date());
         Logic.AddLogItem(item);
-        if (mToast != null) mToast.cancel();
-        mToast = Toast.makeText(getContext(), male ? "Pridėtas " + food.Name : "Pridėta " + food.Name, Toast.LENGTH_SHORT);
-        mToast.show();
+        ((ChooseFoodTabs)getActivity()).GenerateToast(male, food.Name);
     }
+
+
+
 
 }

@@ -23,6 +23,9 @@ import android.widget.ToggleButton;
 import com.example.grantas.cassio.FragmentLogic.ChooseFoodLogic;
 import com.example.grantas.cassio.FragmentLogic.CreateFoodLogic;
 import com.example.grantas.cassio.Tools.InvalidValueException;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -127,11 +130,11 @@ public class CreateFood extends Fragment {
 
         try {
             Logic.Add(name, calories, grams, carbohydrates, protein, fat);
-            Toast.makeText(getContext(), "Produktas " + name + " sukurtas!", Toast.LENGTH_LONG).show();
+            Logic.GenerateToast("Produktas " + name + " sukurtas!");
         } catch (InvalidValueException e) {
-            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            Logic.GenerateToast(e.getMessage());
         } catch (Exception e) {
-            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 

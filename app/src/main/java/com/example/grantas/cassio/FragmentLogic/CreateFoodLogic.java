@@ -17,6 +17,9 @@ import com.example.grantas.cassio.Food;
 import com.example.grantas.cassio.R;
 import com.example.grantas.cassio.Tools.DatabaseHelper;
 import com.example.grantas.cassio.Tools.InvalidValueException;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -36,6 +39,7 @@ public class CreateFoodLogic {
 
     private DatabaseHelper databaseHelper = null;
     private Context context;
+    private SuperActivityToast CreateFoodToast = null;
 
     public CreateFoodLogic(Context context){
         this.context = context;
@@ -58,14 +62,14 @@ public class CreateFoodLogic {
         double Fat = 0;
         //validating values. Should be a smarter way to do it
         if (!isValidInt(calories) || calories.isEmpty()) {
-            throw new InvalidValueException("Netesingos kalorijos!");
+            throw new InvalidValueException("Neteisingos kalorijos!");
         } else {
             Calories = Integer.parseInt(calories);
         }
         if (!isValidInt(grams) && !grams.isEmpty()) {
             throw new InvalidValueException("Neteisingi gramai!");
         } else {
-            if (grams == "0" || grams.isEmpty())
+            if (grams.equals("0") || grams.isEmpty())
             {
                 Grams = 100;
             } else Grams = Integer.parseInt(grams);
@@ -181,5 +185,16 @@ public class CreateFoodLogic {
         }
         // else continue with any other code you need in the method
 
+    }
+
+    public void GenerateToast(String text)
+    {
+        if(CreateFoodToast != null) CreateFoodToast.dismiss();
+         CreateFoodToast = (SuperActivityToast) SuperActivityToast.create(context, new Style(), Style.TYPE_STANDARD)
+                .setFrame(Style.FRAME_STANDARD)
+                .setText(text)
+                .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED))
+                .setAnimations(Style.ANIMATIONS_FADE);
+        CreateFoodToast.show();
     }
 }

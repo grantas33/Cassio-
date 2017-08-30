@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.grantas.cassio.ChooseFoodTabs;
 import com.example.grantas.cassio.Food;
 import com.example.grantas.cassio.FragmentLogic.ChooseFoodLogic;
 import com.example.grantas.cassio.FragmentLogic.CreateFoodLogic;
@@ -123,9 +124,10 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
             @Override
             public void onClick(View v) {
                 Logic.AddLogItem(new LogItem(item, item.Grams, new Date()));
-                if(mToast != null) mToast.cancel();
-                mToast = Toast.makeText(Context, "Pridėta " + item.Grams + "g " + item.Name, Toast.LENGTH_SHORT);
-                mToast.show();
+                ((ChooseFoodTabs)Context).GenerateToast(false, item.Name);
+//                if(mToast != null) mToast.cancel();
+//                mToast = Toast.makeText(Context, "Pridėta " + item.Grams + "g " + item.Name, Toast.LENGTH_SHORT);
+//                mToast.show();
             }
         });
 
@@ -222,16 +224,16 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
         BarEntry fatentry = new BarEntry(20f, (float)item.Fat);//(float)item.getFatFor100g());
 
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-        entries.add(new BarEntry(0f, 0));
+        entries.add(new BarEntry(0f, 0.00001f));
         entries.add(carbentry);
         entries.add(proteinentry);
         entries.add(fatentry);
-        entries.add(new BarEntry(80f, 0));
+        entries.add(new BarEntry(80f, 0.00001f));
 
         BarDataSet set1 = new BarDataSet(entries, "");
 
         set1.setDrawIcons(false);
-        set1.setColors(Color.BLACK, Color.rgb(139, 204, 40), Color.rgb(40, 139, 204), Color.rgb(204, 40, 139), Color.BLACK);
+        set1.setColors(Color.TRANSPARENT, Color.rgb(139, 204, 40), Color.rgb(40, 139, 204), Color.rgb(204, 40, 139), Color.TRANSPARENT);
         set1.setValueTextColor(Color.GRAY);
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
@@ -339,9 +341,10 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Logic.AddLogItem(new LogItem(item, Integer.parseInt(grams.getText().toString()), new Date()));
-                        if(mToast != null) mToast.cancel();
-                        mToast = Toast.makeText(Context, "Pridėta " + grams.getText() + "g " + item.Name, Toast.LENGTH_SHORT);
-                        mToast.show();
+                        ((ChooseFoodTabs)Context).GenerateToast(false, item.Name);
+//                        if(mToast != null) mToast.cancel();
+//                        mToast = Toast.makeText(Context, "Pridėta " + grams.getText() + "g " + item.Name, Toast.LENGTH_SHORT);
+//                        mToast.show();
                         if(remember.isChecked())
                         {
                             Logic.UpdateGramsFoodItem(Integer.parseInt(grams.getText().toString()), item);

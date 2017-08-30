@@ -25,7 +25,7 @@ public class FoodValueFormatter implements IValueFormatter {
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
         // write your logic here
         //return mFormat.format(value*((float)item.Grams)/(float)100) + "g";
-        if(value == 0) return "";
+        if(value == 0.00001f) return "";
         else return mFormat.format(value) + "g";
 
 

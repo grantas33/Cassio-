@@ -48,6 +48,7 @@ public class ChooseFoodList extends Fragment{
     public FoodExpandableListAdapter adapter;
     public static String foodNameExtra = null;
 
+
     public ChooseFoodList() {
     }
 

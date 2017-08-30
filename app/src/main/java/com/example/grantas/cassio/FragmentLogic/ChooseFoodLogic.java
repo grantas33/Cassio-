@@ -1,14 +1,19 @@
 package com.example.grantas.cassio.FragmentLogic;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.widget.Toast;
 
+import com.example.grantas.cassio.ChooseFoodTabs;
 import com.example.grantas.cassio.Food;
 import com.example.grantas.cassio.LogItem;
 import com.example.grantas.cassio.R;
 import com.example.grantas.cassio.Tools.DatabaseHelper;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
@@ -26,6 +31,7 @@ import java.util.List;
 public class ChooseFoodLogic {
     DatabaseHelper databaseHelper = null;
     Context context;
+    public SuperActivityToast mSuper = null;
 
     public Food cucumber = new Food("Trumpavaisis agurkas", 19, 158, 3.4, 0.9, 0.3);
     public Food pineapple = new Food("Ananaso riekė (1/10 ananaso)", 42, 84, 11, 0.5, 0.1);
@@ -129,6 +135,22 @@ public class ChooseFoodLogic {
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void DismissToast()
+    {
+        if(mSuper != null) mSuper.dismiss();
+    }
+
+    public void GenerateToast(Activity activity, boolean male, String name)
+    {
+        if(mSuper != null) mSuper.dismiss();
+        mSuper = (SuperActivityToast) SuperActivityToast.create(activity, new Style(), Style.TYPE_STANDARD)
+                .setFrame(Style.FRAME_KITKAT)
+                .setText(male ? "Pridėtas " + name : "Pridėta " + name)
+                .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_DEEP_ORANGE))
+                .setAnimations(Style.ANIMATIONS_POP);
+        mSuper.show();
     }
 
 

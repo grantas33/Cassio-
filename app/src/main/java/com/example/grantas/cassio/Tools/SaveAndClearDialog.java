@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
@@ -12,6 +13,9 @@ import com.example.grantas.cassio.LogItem;
 import com.example.grantas.cassio.MainActivity;
 import com.example.grantas.cassio.R;
 import com.example.grantas.cassio.SettingsActivity;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
@@ -39,7 +43,11 @@ public class SaveAndClearDialog {
         boolean autoSavePref = sharedPref.getBoolean(SettingsActivity.KEY_PREF_AUTOSAVE, true);
         if(autoSavePref)
         {
-            Toast.makeText(context.getApplicationContext(), R.string.autosave_information_alert, Toast.LENGTH_LONG).show();
+            SuperActivityToast.create(context, new Style(), Style.TYPE_STANDARD)
+                    .setFrame(Style.FRAME_STANDARD)
+                    .setDuration(Style.DURATION_LONG)
+                    .setText(context.getString(R.string.autosave_information_alert))
+                    .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).show();
         }
         else {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);

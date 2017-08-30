@@ -12,12 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.grantas.cassio.Tools.FragmentAdapter;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 
 public class ChooseFoodTabs extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager mPager;
+    public SuperActivityToast mSuper = null;
 
     @Override
     protected void onCreate(Bundle bundle)
@@ -51,8 +55,26 @@ public class ChooseFoodTabs extends AppCompatActivity {
         }
     }
 
+    public void GenerateToast(boolean male, String name)
+    {
+        if(mSuper!=null) mSuper.dismiss();
+        mSuper = (SuperActivityToast) SuperActivityToast.create(this, new Style(), Style.TYPE_STANDARD)
+                .setFrame(Style.FRAME_KITKAT)
+                .setText(male ? "Pridėtas " + name : "Pridėta " + name)
+                .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED))
+                .setAnimations(Style.ANIMATIONS_POP);
+        mSuper.show();
+    }
+
     @Override
     public void onBackPressed() {
         NavUtils.navigateUpFromSameTask(this);
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        if(mSuper!=null) mSuper.dismiss();
     }
 }
