@@ -74,7 +74,7 @@ public class AdvancedUserfoodAddDialog {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Logic.AddLogItem(new LogItem(item, Integer.parseInt(grams.getText().toString()), new Date()));
-                        ((ChooseFoodTabs)Context).GenerateToast(item.Name);
+                        ((ChooseFoodTabs)Context).GenerateToast(grams.getText() +"g. " + item.Name);
 //                        if(mToast != null) mToast.cancel();
 //                        mToast = Toast.makeText(Context, "Pridėta " + grams.getText() + "g " + item.Name, Toast.LENGTH_SHORT);
 //                        mToast.show();
