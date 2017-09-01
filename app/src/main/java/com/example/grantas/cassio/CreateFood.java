@@ -131,6 +131,7 @@ public class CreateFood extends Fragment {
         try {
             Logic.Add(name, calories, grams, carbohydrates, protein, fat);
             Logic.GenerateToast("Produktas " + name + " sukurtas!");
+            resetForm();
         } catch (InvalidValueException e) {
             Logic.GenerateToast(e.getMessage());
         } catch (Exception e) {
@@ -138,6 +139,21 @@ public class CreateFood extends Fragment {
             e.printStackTrace();
         }
 
+    }
+
+    private void resetForm() {
+        Name.setText("");
+        Name.setEnabled(true);
+        Grams.setText("");
+        Grams.setEnabled(true);
+        Carbohydrates.setText("");
+        Carbohydrates.setEnabled(true);
+        Protein.setText("");
+        Protein.setEnabled(true);
+        Fat.setText("");
+        Fat.setEnabled(true);
+        Calories.setText("");
+        Calories.setEnabled(true);
     }
 
     @Override

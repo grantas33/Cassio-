@@ -21,16 +21,16 @@ import java.sql.SQLException;
     public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         private static final String DATABASE_NAME = "fooddir.db";
-        private static final int DATABASE_VERSION = 1;
+        private static final int DATABASE_VERSION = 7;
 
         private Dao<Food, Integer> foodDao;
         private Dao<LogItem, Integer> logDao;
         private Dao<DayItem, Integer> dayDao;
 
 
-    public DatabaseHelper(Context context) {
-            super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
-    }
+        public DatabaseHelper(Context context) {
+                super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
+        }
 
         @Override
         public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {

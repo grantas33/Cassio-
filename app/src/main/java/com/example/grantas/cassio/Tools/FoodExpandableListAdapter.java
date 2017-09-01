@@ -124,7 +124,7 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
             @Override
             public void onClick(View v) {
                 Logic.AddLogItem(new LogItem(item, item.Grams, new Date()));
-                ((ChooseFoodTabs)Context).GenerateToast(false, item.Name);
+                ((ChooseFoodTabs)Context).GenerateToast(item.Name);
 //                if(mToast != null) mToast.cancel();
 //                mToast = Toast.makeText(Context, "Pridėta " + item.Grams + "g " + item.Name, Toast.LENGTH_SHORT);
 //                mToast.show();
@@ -341,7 +341,7 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Logic.AddLogItem(new LogItem(item, Integer.parseInt(grams.getText().toString()), new Date()));
-                        ((ChooseFoodTabs)Context).GenerateToast(false, item.Name);
+                        ((ChooseFoodTabs)Context).GenerateToast(item.Name);
 //                        if(mToast != null) mToast.cancel();
 //                        mToast = Toast.makeText(Context, "Pridėta " + grams.getText() + "g " + item.Name, Toast.LENGTH_SHORT);
 //                        mToast.show();

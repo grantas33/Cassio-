@@ -55,12 +55,12 @@ public class ChooseFoodTabs extends AppCompatActivity {
         }
     }
 
-    public void GenerateToast(boolean male, String name)
+    public void GenerateToast(String name)
     {
         if(mSuper!=null) mSuper.dismiss();
         mSuper = (SuperActivityToast) SuperActivityToast.create(this, new Style(), Style.TYPE_STANDARD)
                 .setFrame(Style.FRAME_KITKAT)
-                .setText(male ? "Pridėtas " + name : "Pridėta " + name)
+                .setText("Pridėta: " + name)
                 .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED))
                 .setAnimations(Style.ANIMATIONS_POP);
         mSuper.show();
