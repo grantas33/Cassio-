@@ -1,4 +1,4 @@
-package com.example.grantas.cassio.Tools;
+package com.example.grantas.cassio.Tools.Dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;

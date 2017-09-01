@@ -1,18 +1,12 @@
 package com.example.grantas.cassio;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,22 +16,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ExpandableListAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grantas.cassio.FragmentLogic.MainActivityLogic;
-import com.example.grantas.cassio.Tools.SaveAndClearDialog;
+import com.example.grantas.cassio.Tools.Dialogs.SaveAndClearDialog;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.io.IOException;
-
-import com.example.grantas.cassio.Tools.FoodExpandableListAdapter;
-
 import butterknife.OnClick;
 import butterknife.ButterKnife;
-import butterknife.BindView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
