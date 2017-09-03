@@ -36,12 +36,14 @@ public class AdvancedFoodAddDialog {
         builder.setView(dialogLayout);
         builder.setCancelable(true);
 
+        final TextView foodname = (TextView) dialogLayout.findViewById(R.id.default_name);
         final TextView carbohydrates = (TextView) dialogLayout.findViewById(R.id.default_carbohydrates);
         final TextView protein = (TextView) dialogLayout.findViewById(R.id.default_protein);
         final TextView fat = (TextView) dialogLayout.findViewById(R.id.default_fat);
         final TextView calories = (TextView) dialogLayout.findViewById(R.id.default_calories);
         final EditText gramInput = (EditText) dialogLayout.findViewById(R.id.customGrams);
 
+        foodname.setText(food.Name);
         carbohydrates.setText(String.valueOf(food.Carbohydrates));
         calories.setText(String.valueOf(food.Calories));
         protein.setText(String.valueOf(food.Protein));

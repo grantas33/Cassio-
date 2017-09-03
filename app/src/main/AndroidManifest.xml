@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <!--<activity android:name=".ChooseFoodTabs"></activity>-->
-        <activity android:name="com.example.grantas.cassio.ChooseFoodTabs" >
+        <activity android:name="com.example.grantas.cassio.ChooseFoodTabs">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.grantas.cassio.MainActivity" />

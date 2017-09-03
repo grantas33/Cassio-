@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -75,6 +76,8 @@ public class ChooseFoodList extends Fragment{
         mSearchView = (SearchView) view.findViewById(R.id.searchviewmyfoods);
         mSearchView.setIconified(false);
         mSearchView.onActionViewExpanded();
+        mSearchView.clearFocus();
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         mSearchView.setQueryHint("Ieškoti produkto");
         //mSearchView.clearFocus();
        // mSearchView.onActionViewExpanded();

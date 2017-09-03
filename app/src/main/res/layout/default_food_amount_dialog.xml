@@ -5,6 +5,14 @@
     android:orientation="vertical"
     android:padding="6dp">
 
+    <TextView
+        android:id="@+id/default_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FOODNAME"
+        android:textSize="18sp"
+        android:paddingLeft="6dp"/>
+
     <!-- nutrition info -->
     <LinearLayout
         android:layout_width="match_parent"

@@ -27,6 +27,7 @@ public class ChooseFoodGrid extends android.support.v4.app.Fragment
 {
     private Toast mToast = null;
     ChooseFoodLogic Logic;
+    int index;
 
     public ChooseFoodGrid()
     {
@@ -36,18 +37,20 @@ public class ChooseFoodGrid extends android.support.v4.app.Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        index = getArguments().getInt("index", 0);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.choose_food_grid, container, false);
         Logic = new ChooseFoodLogic(getContext());
         GridView gridview = (GridView)view.findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(view.getContext()));
+        gridview.setAdapter(new ImageAdapter(view.getContext(), DefaultFood.LogoArrays[index]));
 
 
         gridview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
-                AdvancedFoodAddDialog.getDialog(getActivity(), DefaultFood.getDefaultArray()[position]).show();
+                AdvancedFoodAddDialog.getDialog(getActivity(), DefaultFood.DataArrays[index][position]).show();
                 return true;
             }
         });
@@ -55,7 +58,7 @@ public class ChooseFoodGrid extends android.support.v4.app.Fragment
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ClickAction(DefaultFood.getDefaultArray()[position]);
+                ClickAction(DefaultFood.DataArrays[index][position]);
             }
         });
 

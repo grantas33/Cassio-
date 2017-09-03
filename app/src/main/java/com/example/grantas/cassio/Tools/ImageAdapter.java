@@ -19,15 +19,11 @@ public class ImageAdapter extends BaseAdapter {
 
     Context context;
 
-    int[] thumbIds = {
-            R.drawable.cucumber, R.drawable.pineapple, R.drawable.orange, R.drawable.slicewatermelon,
-            R.drawable.avocado, R.drawable.banana, R.drawable.stawberries, R.drawable.kiwi, R.drawable.pear, R.drawable.tangerine, R.drawable.mango,
-            R.drawable.melon, R.drawable.carrot, R.drawable.apple, R.drawable.peach, R.drawable.tomato, R.drawable.plum, R.drawable.grapes
+    int[] thumbIds;
 
-    };
-
-    public ImageAdapter(Context c)
+    public ImageAdapter(Context c, int[] thumbIds)
     {
+        this.thumbIds = thumbIds;
         context = c;
     }
 
