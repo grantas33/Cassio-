@@ -1,5 +1,7 @@
 package com.Cassio.app.cassio.Tools;
 
+import com.example.grantas.cassio.Models.DayItem;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

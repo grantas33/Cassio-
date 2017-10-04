@@ -155,6 +155,11 @@ public class MainActivity extends AppCompatActivity
                 title = getString(R.string.new_food);
                 viewIsAtHome = false;
                 break;
+            case R.id.create_recipe:
+                fragment = new CreateRecipe();
+                title = getString(R.string.create_recipe);
+                viewIsAtHome = false;
+                break;
             case  R.id.main_screen:
                 fragment = new MainScreen();
                 title = getString(R.string.home_screen);
