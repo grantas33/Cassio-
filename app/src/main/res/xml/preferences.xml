@@ -5,4 +5,10 @@
         android:title="@string/pref_autosave"
         android:summary="@string/pref_autosave_summ"
         android:defaultValue="true" />
+    <PreferenceScreen android:title="Privatumo politika">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://sites.google.com/site/cassioprivacypolicy/"
+            />
+    </PreferenceScreen>
 </PreferenceScreen>

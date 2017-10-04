@@ -4,7 +4,7 @@
     android:id="@+id/layout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.grantas.cassio.CreateFood">
+    tools:context="com.Cassio.app.cassio.CreateFood">
 
     <LinearLayout
         android:id="@+id/layout2"
@@ -114,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"
-                android:text="Skanuoti barkodą" />
+                android:text="@string/scan_barcode" />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"

@@ -2,7 +2,7 @@
 # generated on 2017/07/31 12:10:05
 #
 # --table-start--
-dataClass=com.example.grantas.cassio.Food
+dataClass=com.Cassio.app.cassio.Food
 tableName=food
 # --table-fields-start--
 # --field-start--
@@ -38,7 +38,7 @@ columnName=fat_id
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.example.grantas.cassio.LogItem
+dataClass=com.Cassio.app.cassio.LogItem
 tableName=logitem
 # --table-fields-start--
 # --field-start--
@@ -82,7 +82,7 @@ columnName=logtime_id
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.example.grantas.cassio.Tools.DayItem
+dataClass=com.Cassio.app.cassio.Tools.DayItem
 tableName=dayitem
 # --table-fields-start--
 # --field-start--

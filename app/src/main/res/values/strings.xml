@@ -49,4 +49,6 @@
     <string name="grams">Gramai</string>
     <string name="save_and_clear">Išsaugoti maisto žurnalą</string>
     <string name="edit">Keisti</string>
+    <string name="privacy_policy">Privatumo politika</string>
+    <string name="scan_barcode">Nuskaityti brūkšninį kodą</string>
 </resources>

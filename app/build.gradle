@@ -22,7 +22,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '26.0.0'
     defaultConfig {
-        applicationId "com.example.grantas.cassio"
+        applicationId "com.Cassio.app.cassio"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
