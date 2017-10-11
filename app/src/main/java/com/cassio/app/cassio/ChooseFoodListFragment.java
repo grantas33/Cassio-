@@ -11,34 +11,34 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.cassio.app.cassio.fragmentLogic.ChooseFoodLogic;
-import com.cassio.app.cassio.tools.FoodExpandableListAdapter;
+import com.cassio.app.cassio.models.Food;
+import com.cassio.app.cassio.adapters.FoodExpandableListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Grantas on 2017-07-09.
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class ChooseFoodList extends Fragment{
-    private Toast mToast = null;
-    private String toastMsg = "";
-    private int counter = 1;
+public class ChooseFoodListFragment extends Fragment {
+    @BindView(R.id.expandableviewmyfoods)
     ExpandableListView mExpanded;
+    @BindView(R.id.searchviewmyfoods)
     SearchView mSearchView;
+    @BindView(R.id.emptymyfoodsbutton)
+    Button mEmptyButton;
     public FoodExpandableListAdapter adapter;
     public static String foodNameExtra = null;
 
 
-    public ChooseFoodList() {
+    public ChooseFoodListFragment() {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
@@ -46,7 +46,6 @@ public class ChooseFoodList extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        // What i have added is this
         setHasOptionsMenu(true);
     }
 
@@ -54,18 +53,13 @@ public class ChooseFoodList extends Fragment{
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.choose_food_expandablelist, container, false);
-
-        mExpanded = (ExpandableListView) view.findViewById(R.id.expandableviewmyfoods);
-        mSearchView = (SearchView) view.findViewById(R.id.searchviewmyfoods);
+        ButterKnife.bind(this, view);
         mSearchView.setIconified(false);
         mSearchView.onActionViewExpanded();
         mSearchView.clearFocus();
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         mSearchView.setQueryHint("Ieškoti produkto");
-        //mSearchView.clearFocus();
-       // mSearchView.onActionViewExpanded();
         LinearLayout mEmptyView = (LinearLayout) view.findViewById(R.id.emptymyfoodsview);
-        Button mEmptyButton = (Button) view.findViewById(R.id.emptymyfoodsbutton);
         ChooseFoodLogic Logic = new ChooseFoodLogic(getContext());
         final List<Food> datalist = Logic.getSortedFoods();
         adapter = new FoodExpandableListAdapter(getActivity(), datalist);
@@ -73,11 +67,10 @@ public class ChooseFoodList extends Fragment{
         mExpanded.setEmptyView(mEmptyView);
         mExpanded.setGroupIndicator(null);
 
-        //Kad neexpandintusi paspaudus betkur
+//        Kad neexpandintusi paspaudus betkur
         mExpanded.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition,
                                         long id) {
-
                 return true;
             }
         });
@@ -90,36 +83,30 @@ public class ChooseFoodList extends Fragment{
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                List<Food> temp = new ArrayList<Food>();
-                for(Food food : datalist)
-                {
-                  if(food.Name.toLowerCase().contains(newText.toLowerCase()))
-                  {
-                      temp.add(food);
-                  }
+                List<Food> temp = new ArrayList<>();
+                for (Food food : datalist) {
+                    if (food.Name.toLowerCase().contains(newText.toLowerCase())) {
+                        temp.add(food);
+                    }
                 }
 
                 adapter.UpdateAdapter(temp);
-                int count =  adapter.getGroupCount();         //collapse all groups
-                for (int i = 0; i <count ; i++)
+                int count = adapter.getGroupCount();         //collapse all groups
+                for (int i = 0; i < count; i++)
                     mExpanded.collapseGroup(i);
 
                 return true;
             }
         });
 
-        mEmptyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                foodNameExtra = mSearchView.getQuery().toString();
-                getActivity().onBackPressed();
-            }
-        });
-
-
         return view;
     }
 
+    @OnClick(R.id.emptymyfoodsbutton)
+    public void onClick(View v) {
+        foodNameExtra = mSearchView.getQuery().toString();
+        getActivity().onBackPressed();
+    }
 }
 
 

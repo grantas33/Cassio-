@@ -3,29 +3,24 @@ package com.cassio.app.cassio.fragmentLogic;
 import android.content.Context;
 
 import com.cassio.app.cassio.tools.DatabaseHelper;
-import com.cassio.app.cassio.tools.DayItem;
+import com.cassio.app.cassio.models.DayItem;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Lukas on 7/7/2017.
- */
-
 public class DailyViewLogic {
 
     DatabaseHelper databaseHelper = null;
     Context context;
 
-    public  DailyViewLogic(Context context) {
+    public DailyViewLogic(Context context) {
         this.context = context;
     }
 
     private DatabaseHelper getHelper() {
-        if(databaseHelper == null)
-        {
+        if (databaseHelper == null) {
             databaseHelper = OpenHelperManager.getHelper(context, DatabaseHelper.class);
         }
         return databaseHelper;
@@ -46,7 +41,7 @@ public class DailyViewLogic {
     }
 
     public void onDestroy() {
-		/*
+        /*
 		 * You'll need this in your class to release the helper when done.
 		 */
         if (databaseHelper != null) {

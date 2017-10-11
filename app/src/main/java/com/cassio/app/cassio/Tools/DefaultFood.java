@@ -1,11 +1,7 @@
 package com.cassio.app.cassio.tools;
 
-import com.cassio.app.cassio.Food;
+import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.R;
-
-/**
- * Created by Lukas on 8/29/2017.
- */
 
 public class DefaultFood {
 
@@ -60,21 +56,21 @@ public class DefaultFood {
 
     };
 
-    private static int[] FruitsAndVegetablesLogos = new int[] {
+    private static int[] FruitsAndVegetablesLogos = new int[]{
             R.drawable.cucumber, R.drawable.pineapple, R.drawable.orange, R.drawable.slicewatermelon,
             R.drawable.avocado, R.drawable.banana, R.drawable.stawberries, R.drawable.kiwi, R.drawable.pear, R.drawable.tangerine, R.drawable.mango,
             R.drawable.melon, R.drawable.carrot, R.drawable.apple, R.drawable.peach, R.drawable.tomato, R.drawable.plum, R.drawable.grapes
 
     };
 
-    private static int[] MilkProductsLogos = new int[] {
+    private static int[] MilkProductsLogos = new int[]{
             R.drawable.sweetcream, R.drawable.sour_cream, R.drawable.yogurt, R.drawable.egg, R.drawable.milk, R.drawable.cheesecurdsnack,
             R.drawable.cheese, R.drawable.curdcheese, R.drawable.butter, R.drawable.curd
     };
 
-    private static int[] BakedProductsLogos = new int[] {
+    private static int[] BakedProductsLogos = new int[]{
 
-           R.drawable.chickpea, R.drawable.oatmeal, R.drawable.loafofbread, R.drawable.quinoa, R.drawable.darkbread,
+            R.drawable.chickpea, R.drawable.oatmeal, R.drawable.loafofbread, R.drawable.quinoa, R.drawable.darkbread,
             R.drawable.buckwheat, R.drawable.corn_grain, R.drawable.pastapng, R.drawable.gingerbread, R.drawable.wheat_flour,
             R.drawable.rye_flour, R.drawable.pearl_barley, R.drawable.rice
     };
@@ -90,9 +86,6 @@ public class DefaultFood {
             MilkProductsLogos,
             BakedProductsLogos
     };
-
-
-
 
 
 }

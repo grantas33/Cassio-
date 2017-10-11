@@ -1,4 +1,4 @@
-package com.cassio.app.cassio.tools;
+package com.cassio.app.cassio.adapters;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,11 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cassio.app.cassio.ChooseFoodTabs;
-import com.cassio.app.cassio.Food;
+import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.fragmentLogic.ChooseFoodLogic;
-import com.cassio.app.cassio.LogItem;
+import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.R;
-import com.cassio.app.cassio.tools.Dialogs.AdvancedUserfoodAddDialog;
+import com.cassio.app.cassio.dialogs.AdvancedUserfoodAddDialog;
+import com.cassio.app.cassio.tools.FoodValueFormatter;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -30,31 +31,28 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Grantas on 2017-07-08.
  * Klase, isdestanti maistus lentele "Mano produktai"
  */
 
-public class FoodExpandableListAdapter extends BaseExpandableListAdapter
-{
+public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
 
     Activity Context;
     Toast mToast;
     ChooseFoodLogic Logic;
-    protected List<Food> FoodList ;
+    private List<Food> FoodList;
     private HorizontalBarChart horizontalChart;
 
 
-    public FoodExpandableListAdapter(Activity context, List<Food> newList)
-    {
+    public FoodExpandableListAdapter(Activity context, List<Food> newList) {
         Context = context;
 
         Logic = new ChooseFoodLogic(context);
         FoodList = newList;
-
     }
+
     @Override
     public int getGroupCount() {
-        if(FoodList != null) return FoodList.size();
+        if (FoodList != null) return FoodList.size();
         else return 0;
     }
 
@@ -93,29 +91,23 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
 
         final Food item = FoodList.get(groupPosition);
         View view = convertView;
-        if (view == null)
-        {
+        if (view == null) {
             view = Context.getLayoutInflater().inflate(R.layout.food_info_header, null);
         }
 
 
-
-        ImageView listHeaderPlusSign = (ImageView)view.findViewById(R.id.greenplus);
+        ImageView listHeaderPlusSign = (ImageView) view.findViewById(R.id.greenplus);
         listHeaderPlusSign.setImageResource(R.drawable.green_plus);
 
-        listHeaderPlusSign.setOnClickListener(new View.OnClickListener()
-        {
+        listHeaderPlusSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Logic.AddLogItem(new LogItem(item, item.Grams, new Date()));
-                ((ChooseFoodTabs)Context).GenerateToast(item.Name);
-//                if(mToast != null) mToast.cancel();
-//                mToast = Toast.makeText(Context, "Pridėta " + item.Grams + "g " + item.Name, Toast.LENGTH_SHORT);
-//                mToast.show();
+                ((ChooseFoodTabs) Context).generateToast(item.Name);
             }
         });
 
-        ImageView listHeaderArrow = (ImageView)view.findViewById(R.id.arrow);
+        ImageView listHeaderArrow = (ImageView) view.findViewById(R.id.arrow);
         int imageResourceId = isExpanded ? R.drawable.ic_expand_less_black_48dp : R.drawable.ic_expand_more_black_48dp;
         listHeaderArrow.setImageResource(imageResourceId);
 
@@ -124,22 +116,21 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
             @Override
             public void onClick(View v) {
 
-                if(isExpanded) ((ExpandableListView) parent).collapseGroup(groupPosition);
+                if (isExpanded) ((ExpandableListView) parent).collapseGroup(groupPosition);
                 else ((ExpandableListView) parent).expandGroup(groupPosition, true);
 
             }
         });
 
-        LinearLayout listHeaderLayout = (LinearLayout)view.findViewById(R.id.foodheaderlayout);
+        LinearLayout listHeaderLayout = (LinearLayout) view.findViewById(R.id.foodheaderlayout);
         int backgroundResourceId = isExpanded ? R.drawable.food_header_border : R.drawable.food_header_border_empty;
         listHeaderLayout.setBackgroundResource(backgroundResourceId);
         listHeaderLayout.setPadding(10, 10, 10, 10);
 
 
-        ((TextView)view.findViewById(R.id.foodinfoname)).setText(item.Name);
-        ((TextView)view.findViewById(R.id.foodinfocalories)).setText(item.Calories + " kal.");
-        ((TextView)view.findViewById(R.id.foodinfograms)).setText(item.Grams + " g.");
-
+        ((TextView) view.findViewById(R.id.foodinfoname)).setText(item.Name);
+        ((TextView) view.findViewById(R.id.foodinfocalories)).setText(item.Calories + " kal.");
+        ((TextView) view.findViewById(R.id.foodinfograms)).setText(item.Grams + " g.");
 
 
         return view;
@@ -150,19 +141,14 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
     public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, final ViewGroup parent) {
         final Food item = FoodList.get(groupPosition);
         View row = convertView;
-        if (row == null)
-        {
+        if (row == null) {
             row = Context.getLayoutInflater().inflate(R.layout.food_info_child, null);
         }
 
-        ImageView listChildAmount = (ImageView)row.findViewById(R.id.choose_amount_icon);
+        ImageView listChildAmount = (ImageView) row.findViewById(R.id.choose_amount_icon);
         listChildAmount.setImageResource(R.drawable.choose_amount_icon);
-        ImageView listChildTrashcan = (ImageView)row.findViewById(R.id.redtrashcan);
+        ImageView listChildTrashcan = (ImageView) row.findViewById(R.id.redtrashcan);
         listChildTrashcan.setImageResource(R.drawable.red_trash_can);
-
-//        ((TextView)row.findViewById(R.id.foodinfocarbs)).setText(String.format(Locale.getDefault(), "%s: %.2f g.", Context.getString(R.string.carbohydrates), item.Carbohydrates));
-//        ((TextView)row.findViewById(R.id.foodinfoprotein)).setText(String.format(Locale.getDefault(), "%s: %.2f g", Context.getString(R.string.protein), item.Protein));
-//        ((TextView)row.findViewById(R.id.foodinfofat)).setText(String.format(Locale.getDefault(), "%s: %.2f g", Context.getString(R.string.fat), item.Fat));
 
         horizontalChart = (HorizontalBarChart) row.findViewById(R.id.horizontalchart);
         setupChart(item);
@@ -184,8 +170,7 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
         return row;
     }
 
-    public void setupChart(Food item)
-    {
+    public void setupChart(Food item) {
         horizontalChart.getDescription().setEnabled(false);
 
         horizontalChart.setClickable(false);
@@ -201,11 +186,11 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
         horizontalChart.getAxisLeft().setEnabled(false);
         horizontalChart.getAxisRight().setEnabled(false);
         horizontalChart.setTouchEnabled(false);
-       // horizontalChart.setDrawValueAboveBar(false);
+        // horizontalChart.setDrawValueAboveBar(false);
 
-        BarEntry carbentry = new BarEntry(60f, (float)item.Carbohydrates);//(float)item.getCarbohydratesFor100g());
-        BarEntry proteinentry = new BarEntry(40f, (float)item.Protein);//(float)item.getProteinFor100g());
-        BarEntry fatentry = new BarEntry(20f, (float)item.Fat);//(float)item.getFatFor100g());
+        BarEntry carbentry = new BarEntry(60f, (float) item.Carbohydrates);//(float)item.getCarbohydratesFor100g());
+        BarEntry proteinentry = new BarEntry(40f, (float) item.Protein);//(float)item.getProteinFor100g());
+        BarEntry fatentry = new BarEntry(20f, (float) item.Fat);//(float)item.getFatFor100g());
 
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
         entries.add(new BarEntry(0f, 0.00001f));
@@ -233,16 +218,12 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
 
     }
 
-
-
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
 
-
-    public void UpdateAdapter(List<Food> list)
-    {
+    public void UpdateAdapter(List<Food> list) {
         this.FoodList = list;
         notifyDataSetChanged();
     }
@@ -276,8 +257,6 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter
         alertDialog.show();
 
     }
-
-
 }
 
 

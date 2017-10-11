@@ -1,4 +1,4 @@
-package com.cassio.app.cassio.tools.Dialogs;
+package com.cassio.app.cassio.dialogs;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,10 +13,6 @@ import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 
-/**
- * Created by Lukas on 7/19/2017.
- */
-
 public class SaveAndClearDialog {
     MainActivity context;
     SaveAndClearLogic Logic;
@@ -30,15 +26,13 @@ public class SaveAndClearDialog {
     public void createAlertDialog() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         boolean autoSavePref = sharedPref.getBoolean(SettingsActivity.KEY_PREF_AUTOSAVE, true);
-        if(autoSavePref)
-        {
+        if (autoSavePref) {
             SuperActivityToast.create(context, new Style(), Style.TYPE_STANDARD)
                     .setFrame(Style.FRAME_STANDARD)
                     .setDuration(Style.DURATION_LONG)
                     .setText(context.getString(R.string.autosave_information_alert))
                     .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).show();
-        }
-        else {
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage(R.string.confirm_save_and_clear);
 

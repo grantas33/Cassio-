@@ -19,7 +19,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.cassio.app.cassio.fragmentLogic.MainActivityLogic;
-import com.cassio.app.cassio.tools.Dialogs.SaveAndClearDialog;
+import com.cassio.app.cassio.dialogs.SaveAndClearDialog;
+import com.cassio.app.cassio.models.Food;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -29,6 +30,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public Fragment fragment = null;
     private boolean viewIsAtHome;
     MainActivityLogic Logic;
     public int currentViewId;
@@ -38,8 +40,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        OnInstall();                             //jei pirma kart runnina po installo, uzdeda aliarma istrint food logui
-
+        onInstall();                             //jei pirma kart runnina po installo, uzdeda aliarma istrint food logui
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
         Logic = new MainActivityLogic(this);
 
-        if (ChooseFoodList.foodNameExtra != null) {
-                displayView(R.id.create_food);
+        if (ChooseFoodListFragment.foodNameExtra != null) {
+            displayView(R.id.create_food);
         }
 
     }
@@ -69,8 +70,6 @@ public class MainActivity extends AppCompatActivity
     @OnClick(R.id.fab)
     public void submit(View view) {
         displayView(R.id.choose_food);
-//        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show();
     }
 
     @Override
@@ -131,7 +130,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void displayView(int viewId) {
-        if (viewId != R.id.save_and_clear){
+        if (viewId != R.id.save_and_clear) {
             currentViewId = viewId;
         }
 
@@ -141,7 +140,6 @@ public class MainActivity extends AppCompatActivity
             showFab();
         }
 
-        Fragment fragment = null;
         String title = getString(R.string.app_name);
 
         switch (viewId) {
@@ -151,27 +149,27 @@ public class MainActivity extends AppCompatActivity
                 viewIsAtHome = false;
                 break;
             case R.id.create_food:
-                fragment = new CreateFood();
+                fragment = new CreateFoodFragment();
                 title = getString(R.string.new_food);
                 viewIsAtHome = false;
                 break;
-            case R.id.create_recipe:
-                fragment = new CreateRecipe();
-                title = getString(R.string.create_recipe);
-                viewIsAtHome = false;
-                break;
-            case  R.id.main_screen:
-                fragment = new MainScreen();
+//            case R.id.create_recipe:
+//                fragment = new CreateRecipeFragment();
+//                title = getString(R.string.create_recipe);
+//                viewIsAtHome = false;
+//                break;
+            case R.id.main_screen:
+                fragment = new MainScreenFragment();
                 title = getString(R.string.home_screen);
                 viewIsAtHome = true;
                 break;
             case R.id.daily_view:
-                fragment = new DailyView();
+                fragment = new DailyViewFragment();
                 title = getString(R.string.daily_view);
                 viewIsAtHome = false;
                 break;
             case R.id.food_log:
-                fragment = new FoodLog();
+                fragment = new FoodLogFragment();
                 title = getString(R.string.food_log);
                 viewIsAtHome = false;
                 break;
@@ -205,8 +203,8 @@ public class MainActivity extends AppCompatActivity
     //called when barcode is found
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null) {
-            if(result.getContents() == null) {
+        if (result != null) {
+            if (result.getContents() == null) {
                 Toast.makeText(this, "Atšaukta", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
@@ -218,13 +216,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void OnInstall(){
+    public void onInstall() {
         SharedPreferences wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isFirstRun = wmbPreference.getBoolean("FIRSTRUN", true);
-        if (isFirstRun)
-        {
+        if (isFirstRun) {
             SettingsActivity instance = new SettingsActivity();
-            instance.CheckAlarm(wmbPreference, getApplicationContext());
+            instance.checkAlarm(wmbPreference, getApplicationContext());
             SharedPreferences.Editor editor = wmbPreference.edit();
             editor.putBoolean("FIRSTRUN", false);
             editor.apply();

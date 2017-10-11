@@ -1,9 +1,0 @@
-package com.cassio.app.cassio.fragmentLogic;
-
-/**
- * Created by Lukas on 7/13/2017.
- */
-
-interface AsyncTaskCompleteListener<T> {
-    public void onTaskComplete(T result);
-}

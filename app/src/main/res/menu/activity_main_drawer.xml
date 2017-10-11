@@ -14,10 +14,10 @@
             android:id="@+id/create_food"
             android:icon="@drawable/nav_bar_create_food"
             android:title="@string/create_food" />
-        <item
-            android:id="@+id/create_recipe"
-            android:icon="@drawable/nav_bar_create_food"
-            android:title="@string/create_recipe" />
+        <!--<item-->
+            <!--android:id="@+id/create_recipe"-->
+            <!--android:icon="@drawable/nav_bar_create_food"-->
+            <!--android:title="@string/create_recipe" />-->
         <item
             android:id="@+id/food_log"
             android:icon="@drawable/nav_bar_food_log"

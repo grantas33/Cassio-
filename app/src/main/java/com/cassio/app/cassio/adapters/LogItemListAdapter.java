@@ -1,4 +1,4 @@
-package com.cassio.app.cassio.tools;
+package com.cassio.app.cassio.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,16 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cassio.app.cassio.fragmentLogic.FoodLogLogic;
-import com.cassio.app.cassio.LogItem;
+import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.R;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
-
-/**
- * Created by Grantas on 2017-07-16.
- */
 
 public class LogItemListAdapter extends BaseAdapter {
 
@@ -27,8 +23,7 @@ public class LogItemListAdapter extends BaseAdapter {
     FoodLogLogic Logic;
 
 
-    public LogItemListAdapter(Context context, List<LogItem> items)
-    {
+    public LogItemListAdapter(Context context, List<LogItem> items) {
         this.context = context;
         Logic = new FoodLogLogic(context);
         this.items = items;
@@ -37,7 +32,7 @@ public class LogItemListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
 
-     if(items!= null)   return items.size();
+        if (items != null) return items.size();
         else return 0;
     }
 
@@ -55,12 +50,11 @@ public class LogItemListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final LogItem item = items.get(position);
         View view = convertView;
-        if (view == null)
-        {
+        if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.log_item_info, parent, false);
         }
 
-        ImageView trashcan = (ImageView)view.findViewById(R.id.redtrashcan);
+        ImageView trashcan = (ImageView) view.findViewById(R.id.redtrashcan);
         trashcan.setImageResource(R.drawable.red_trash_can);
 
         trashcan.setOnClickListener(new View.OnClickListener() {
@@ -71,18 +65,17 @@ public class LogItemListAdapter extends BaseAdapter {
             }
         });
 
-        ((TextView)view.findViewById(R.id.logiteminfoname)).setText(item.FoodName);
+        ((TextView) view.findViewById(R.id.logiteminfoname)).setText(item.FoodName);
         SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm", Locale.getDefault());
-        ((TextView)view.findViewById(R.id.logiteminfodate)).setText(sdfDate.format(item.Time));
-        ((TextView)view.findViewById(R.id.logiteminfocalories)).setText(item.getCalories() + " kal.");
-        ((TextView)view.findViewById(R.id.logiteminfograms)).setText(item.Grams + " g.");
+        ((TextView) view.findViewById(R.id.logiteminfodate)).setText(sdfDate.format(item.Time));
+        ((TextView) view.findViewById(R.id.logiteminfocalories)).setText(item.getCalories() + " kal.");
+        ((TextView) view.findViewById(R.id.logiteminfograms)).setText(item.Grams + " g.");
 
         return view;
 
     }
 
-    public void UpdateAdapter(List<LogItem> list)
-    {
+    public void UpdateAdapter(List<LogItem> list) {
         this.items = list;
         notifyDataSetChanged();
     }

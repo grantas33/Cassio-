@@ -1,4 +1,4 @@
-package com.cassio.app.cassio;
+package com.cassio.app.cassio.models;
 
 import android.support.annotation.NonNull;
 
@@ -7,11 +7,8 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 
-/**
- * Created by Grantas on 2017-07-06.
- */
 @DatabaseTable(tableName = "logitem")
-public class Food implements Serializable, Comparable<Food>{
+public class Food implements Serializable, Comparable<Food> {
 
     private static final long serialVersionUID = -222864131214757024L;
 
@@ -32,8 +29,7 @@ public class Food implements Serializable, Comparable<Food>{
     @DatabaseField(columnName = "fat_id")
     public double Fat;
 
-    public Food(String name, int calories, int grams)
-    {
+    public Food(String name, int calories, int grams) {
         Name = name;
         Calories = calories;
         Grams = grams;
@@ -49,8 +45,7 @@ public class Food implements Serializable, Comparable<Food>{
         Grams = grams;
     }
 
-    public Food(String name, int calories, int grams, double carbohydrates, double protein, double fat)
-    {
+    public Food(String name, int calories, int grams, double carbohydrates, double protein, double fat) {
         Name = name;
         Calories = calories;
         Grams = grams;
@@ -60,23 +55,29 @@ public class Food implements Serializable, Comparable<Food>{
     }
 
     //for updating food grams inside database
-    public Food(int oldgrams, int id, String name, int calories, int newgrams, double carbohydrates, double protein, double fat)
-    {
+    public Food(int oldgrams, int id, String name, int calories, int newgrams, double carbohydrates, double protein, double fat) {
         foodId = id;
         Name = name;
-        Calories = (int)Math.round((double)calories * ((double) newgrams / (double) oldgrams));
+        Calories = (int) Math.round((double) calories * ((double) newgrams / (double) oldgrams));
         Grams = newgrams;
         Carbohydrates = carbohydrates * ((double) newgrams / (double) oldgrams);
         Protein = protein * ((double) newgrams / (double) oldgrams);
         Fat = fat * ((double) newgrams / (double) oldgrams);
     }
 
-    public double getCarbohydratesFor100g() {return Carbohydrates * 100 / (double)Grams ;}
-    public double getProteinFor100g() {return Protein * 100 / (double)Grams ;}
-    public double getFatFor100g() {return Fat * 100 / (double)Grams ;}
+    public double getCarbohydratesFor100g() {
+        return Carbohydrates * 100 / (double) Grams;
+    }
 
-    public String toString()
-    {
+    public double getProteinFor100g() {
+        return Protein * 100 / (double) Grams;
+    }
+
+    public double getFatFor100g() {
+        return Fat * 100 / (double) Grams;
+    }
+
+    public String toString() {
         return this.Name + ", " + this.Calories + " cal., " + this.Grams + "g.";
     }
 

@@ -15,51 +15,45 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cassio.app.cassio.fragmentLogic.DailyViewLogic;
-import com.cassio.app.cassio.tools.DayExpandableListAdapter;
-import com.cassio.app.cassio.tools.DayItem;
+import com.cassio.app.cassio.adapters.DayExpandableListAdapter;
+import com.cassio.app.cassio.models.DayItem;
 import com.cassio.app.cassio.tools.DayItemsDataPump;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DailyView.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DailyView#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class DailyView extends Fragment {
+public class DailyViewFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private DailyViewLogic Logic;
     private View rootView;
 
+    @BindView(R.id.list_days)
     ExpandableListView listView;
+    @BindView(R.id.empty_day_view)
+    TextView empty;
+
     ExpandableListAdapter adapter;
     List<String> groups;
     HashMap<String, List<DayItem>> groupDetail;
 
-    public DailyView() {
+    public DailyViewFragment() {
         // Required empty public constructor
     }
 
-    public static DailyView newInstance() {
-        DailyView fragment = new DailyView();
+    public static DailyViewFragment newInstance() {
+        DailyViewFragment fragment = new DailyViewFragment();
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
     }
 
@@ -70,15 +64,13 @@ public class DailyView extends Fragment {
         Logic = new DailyViewLogic(getContext());
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_daily_view, container, false);
-
-
+        ButterKnife.bind(this, rootView);
         setListView(rootView);
 
         return rootView;
     }
 
     public void setListView(final View view) {
-        listView = (ExpandableListView) view.findViewById(R.id.list_days);
         List<DayItem> days = Logic.getDays();
         groupDetail = DayItemsDataPump.getDataFromList(days);
         groups = new ArrayList<>(groupDetail.keySet());
@@ -86,22 +78,24 @@ public class DailyView extends Fragment {
         final DayExpandableListAdapter adapter = new DayExpandableListAdapter(getActivity(), groups, groupDetail);
         listView.setAdapter(adapter);
         listView.setGroupIndicator(null);
-        TextView empty = (TextView) rootView.findViewById(R.id.empty_day_view);
         listView.setEmptyView(empty);
 
-                listView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+        listView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @BindView(R.id.expand_month)
+            ImageView expandMonth;
+
             @Override
             public void onGroupExpand(int groupPosition) {
-                ImageView expandMonth = (ImageView) view.findViewById(R.id.expand_month);
                 expandMonth.setImageResource(R.drawable.ic_expand_less_black_48dp);
             }
         });
 
         listView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+            @BindView(R.id.expand_month)
+            ImageView expandMonth;
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                ImageView expandMonth = (ImageView) view.findViewById(R.id.expand_month);
                 expandMonth.setImageResource(R.drawable.ic_expand_more_black_48dp);
             }
         });
@@ -140,22 +134,9 @@ public class DailyView extends Fragment {
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
     }
 
     @Override
@@ -164,18 +145,7 @@ public class DailyView extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 

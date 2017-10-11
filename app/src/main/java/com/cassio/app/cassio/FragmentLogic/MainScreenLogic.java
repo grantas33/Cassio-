@@ -4,16 +4,12 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.cassio.app.cassio.tools.DatabaseHelper;
-import com.cassio.app.cassio.LogItem;
+import com.cassio.app.cassio.models.LogItem;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.List;
-
-/**
- * Created by Lukas on 7/9/2017.
- */
 
 public class MainScreenLogic {
 
@@ -36,10 +32,6 @@ public class MainScreenLogic {
         int total = 0;
         try {
             final Dao<LogItem, Integer> logDao = getHelper().getLogDao();
-//            Food food = new Food("test", 100, 50, 50, 50, 50);
-//            LogItem log = new LogItem(food, 50, new Date());
-//            databaseHelper.ClearLogTable();
-//            logDao.create(log);
             List<LogItem> items = logDao.queryForAll();
             for (LogItem item: items
                  ) {
@@ -47,7 +39,7 @@ public class MainScreenLogic {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return total;
     }
@@ -62,7 +54,7 @@ public class MainScreenLogic {
                 total += item.getCarbohydrates();
             }
         } catch (SQLException e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return total;
     }
@@ -77,7 +69,7 @@ public class MainScreenLogic {
                 total += item.getProtein();
             }
         } catch (SQLException e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return total;
     }
@@ -92,7 +84,7 @@ public class MainScreenLogic {
                 total += item.getFat();
             }
         } catch (SQLException e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return total;
     }

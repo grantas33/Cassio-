@@ -1,4 +1,4 @@
-package com.cassio.app.cassio.tools.Dialogs;
+package com.cassio.app.cassio.dialogs;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,17 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.cassio.app.cassio.ChooseFoodTabs;
-import com.cassio.app.cassio.Food;
+import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.fragmentLogic.ChooseFoodLogic;
-import com.cassio.app.cassio.LogItem;
+import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.R;
-import com.cassio.app.cassio.tools.FoodExpandableListAdapter;
+import com.cassio.app.cassio.adapters.FoodExpandableListAdapter;
 
 import java.util.Date;
-
-/**
- * Created by Grantas on 2017-09-01.
- */
 
 public class AdvancedUserfoodAddDialog {
     public static void createSelectAmountAlertDialog(final Activity Context, final Food item, final ChooseFoodLogic Logic, final FoodExpandableListAdapter adapter) {
@@ -34,10 +30,10 @@ public class AdvancedUserfoodAddDialog {
         View dialogView = inflater.inflate(R.layout.select_amount_dialog, null);
         builder.setView(dialogView);
 
-        EditText graminput = (EditText)dialogView.findViewById(R.id.select_dialog_graminput);
-        final CheckBox remember = (CheckBox)dialogView.findViewById(R.id.select_dialog_remember);
+        EditText graminput = (EditText) dialogView.findViewById(R.id.select_dialog_graminput);
+        final CheckBox remember = (CheckBox) dialogView.findViewById(R.id.select_dialog_remember);
         final TextView grams = (TextView) dialogView.findViewById(R.id.select_dialog_grams);
-        final TextView calories = (TextView)dialogView.findViewById(R.id.select_dialog_calories);
+        final TextView calories = (TextView) dialogView.findViewById(R.id.select_dialog_calories);
 
         grams.setText(String.valueOf(item.Grams));
         calories.setText(String.valueOf(item.Calories));
@@ -51,15 +47,12 @@ public class AdvancedUserfoodAddDialog {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().isEmpty())
-                {
+                if (s.toString().isEmpty()) {
                     grams.setText(String.valueOf(item.Grams));
                     calories.setText(String.valueOf(item.Calories));
-                }
-                else
-                {
+                } else {
                     grams.setText(s);
-                    calories.setText(String.valueOf(Math.round(((double)Integer.parseInt(s.toString()) / (double)item.Grams) * (double)item.Calories)));
+                    calories.setText(String.valueOf(Math.round(((double) Integer.parseInt(s.toString()) / (double) item.Grams) * (double) item.Calories)));
                 }
             }
 
@@ -74,12 +67,11 @@ public class AdvancedUserfoodAddDialog {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Logic.AddLogItem(new LogItem(item, Integer.parseInt(grams.getText().toString()), new Date()));
-                        ((ChooseFoodTabs)Context).GenerateToast(grams.getText() +"g. " + item.Name);
+                        ((ChooseFoodTabs) Context).generateToast(grams.getText() + "g. " + item.Name);
 //                        if(mToast != null) mToast.cancel();
 //                        mToast = Toast.makeText(Context, "Pridėta " + grams.getText() + "g " + item.Name, Toast.LENGTH_SHORT);
 //                        mToast.show();
-                        if(remember.isChecked())
-                        {
+                        if (remember.isChecked()) {
                             Logic.UpdateGramsFoodItem(Integer.parseInt(grams.getText().toString()), item);
                             adapter.UpdateAdapter(Logic.getSortedFoods());
                         }

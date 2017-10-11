@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.cassio.app.cassio.Food;
+import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.tools.DatabaseHelper;
 import com.cassio.app.cassio.tools.InvalidValueException;
 import com.github.johnpersano.supertoasts.library.Style;
@@ -19,23 +19,18 @@ import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 
-/**
- * Created by Lukas on 7/7/2017.
- */
-
 public class CreateFoodLogic {
 
     private DatabaseHelper databaseHelper = null;
     private Context context;
     private SuperActivityToast CreateFoodToast = null;
 
-    public CreateFoodLogic(Context context){
+    public CreateFoodLogic(Context context) {
         this.context = context;
     }
 
     private DatabaseHelper getHelper() {
-        if(databaseHelper == null)
-        {
+        if (databaseHelper == null) {
             databaseHelper = OpenHelperManager.getHelper(context, DatabaseHelper.class);
         }
         return databaseHelper;
@@ -57,8 +52,7 @@ public class CreateFoodLogic {
         if (!isValidInt(grams) && !grams.isEmpty()) {
             throw new InvalidValueException("Neteisingi gramai!");
         } else {
-            if (grams.equals("0") || grams.isEmpty())
-            {
+            if (grams.equals("0") || grams.isEmpty()) {
                 Grams = 100;
             } else Grams = Integer.parseInt(grams);
         }
@@ -66,29 +60,29 @@ public class CreateFoodLogic {
             throw new InvalidValueException("Neteisingi angliavandeniai!");
         } else {
             if (!carbohydrates.isEmpty())
-            Carbohydrates = Double.parseDouble(carbohydrates);
+                Carbohydrates = Double.parseDouble(carbohydrates);
         }
         if (!isValidDouble(protein)) {
             throw new InvalidValueException("Neteisingi baltymai!");
         } else {
             if (!protein.isEmpty())
-            Protein = Double.parseDouble(protein);
+                Protein = Double.parseDouble(protein);
         }
 
         if (!isValidDouble(fat)) {
             throw new InvalidValueException("Neteisingi riebalai!");
         } else {
             if (!fat.isEmpty())
-            Fat = Double.parseDouble(fat);
+                Fat = Double.parseDouble(fat);
         }
 
         Food food = new Food(Name, Calories, Grams, Carbohydrates, Protein, Fat);
         AddFood(food);
     }
 
-    public void AddFood(Food food){
+    public void AddFood(Food food) {
         try {
-           //paimam objekta duombazes operacijom
+            //paimam objekta duombazes operacijom
             DatabaseHelper helper = getHelper();
             final Dao<Food, Integer> foodDao = helper.getFoodDao();
 
@@ -107,19 +101,18 @@ public class CreateFoodLogic {
         String regex = "^[a-zA-Z]+$";
 
 
-        if(input.matches(regex)){
+        if (input.matches(regex)) {
             return false;
         }
 
-        for (int i = 0; i < input.length(); i++){
+        for (int i = 0; i < input.length(); i++) {
             char ch = input.charAt(i);
             if (ch == '.') {
-                if (!hasPoint){
+                if (!hasPoint) {
                     hasPoint = true;
-                }
-                else return false;
+                } else return false;
             }
-            if(!Character.isDigit(ch) && ch != '.'){
+            if (!Character.isDigit(ch) && ch != '.') {
                 return false;
             }
         }
@@ -128,8 +121,8 @@ public class CreateFoodLogic {
     }
 
     public void onDestroy() {
-		/*
-		 * You'll need this in your class to release the helper when done.
+        /*
+         * You'll need this in your class to release the helper when done.
 		 */
         if (databaseHelper != null) {
             OpenHelperManager.releaseHelper();
@@ -137,48 +130,26 @@ public class CreateFoodLogic {
         }
     }
 
-    private boolean isValidInt(String input){
+    private boolean isValidInt(String input) {
         input = input.trim();
         String regex = "^[a-zA-Z]+$";
 
-        if(input.matches(regex) || input.isEmpty()){
+        if (input.matches(regex) || input.isEmpty()) {
             return false;
         }
 
-        for (int i = 0; i < input.length(); i++){
+        for (int i = 0; i < input.length(); i++) {
             char ch = input.charAt(i);
-            if(!Character.isDigit(ch)){
+            if (!Character.isDigit(ch)) {
                 return false;
             }
         }
         return true;
     }
 
-    public void scan(FragmentActivity activity, Fragment fragment) {
-
-        IntentIntegrator integrator = new IntentIntegrator(activity);
-        try {
-//            integrator.forFragment(fragment).initiateScan();
-            IntentIntegrator.forSupportFragment(fragment).initiateScan();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (scanResult != null) {
-            String re = scanResult.getContents();
-            Log.d("code: ", re);
-        }
-        // else continue with any other code you need in the method
-
-    }
-
-    public void GenerateToast(String text)
-    {
-        if(CreateFoodToast != null) CreateFoodToast.dismiss();
-         CreateFoodToast = (SuperActivityToast) SuperActivityToast.create(context, new Style(), Style.TYPE_STANDARD)
+    public void GenerateToast(String text) {
+        if (CreateFoodToast != null) CreateFoodToast.dismiss();
+        CreateFoodToast = (SuperActivityToast) SuperActivityToast.create(context, new Style(), Style.TYPE_STANDARD)
                 .setFrame(Style.FRAME_STANDARD)
                 .setText(text)
                 .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED))

@@ -1,8 +1,4 @@
-package com.cassio.app.cassio.tools;
-
-/**
- * Created by Lukas on 7/21/2017.
- */
+package com.cassio.app.cassio.models;
 
 public class MonthItem {
     public String Year;

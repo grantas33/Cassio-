@@ -1,14 +1,7 @@
 package com.cassio.app.cassio.tools;
 
-import com.cassio.app.cassio.Food;
+import com.cassio.app.cassio.models.Food;
 import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
-
-
-/**
- * Created by Lukas on 7/9/2017.
- */
-
-
 
 public class DatabaseConfigUtil extends OrmLiteConfigUtil {
     private static final Class<?>[] classes = new Class[]{

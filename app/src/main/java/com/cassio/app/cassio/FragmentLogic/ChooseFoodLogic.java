@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.cassio.app.cassio.Food;
-import com.cassio.app.cassio.LogItem;
+import com.cassio.app.cassio.models.Food;
+import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.tools.DatabaseHelper;
 import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.github.johnpersano.supertoasts.library.Style;
@@ -18,22 +18,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Grantas on 2017-07-10.
- */
-
 public class ChooseFoodLogic {
     DatabaseHelper databaseHelper = null;
     Context context;
     public SuperActivityToast mSuper = null;
 
-    public  ChooseFoodLogic(Context context) {
+    public ChooseFoodLogic(Context context) {
         this.context = context;
     }
 
     private DatabaseHelper getHelper() {
-        if(databaseHelper == null)
-        {
+        if (databaseHelper == null) {
             databaseHelper = OpenHelperManager.getHelper(context, DatabaseHelper.class);
         }
         return databaseHelper;
@@ -41,13 +36,11 @@ public class ChooseFoodLogic {
 
     public List<Food> getSortedFoods() {
         List<Food> foods = new ArrayList<Food>();
-        try
-        {
+        try {
             DatabaseHelper helper = getHelper();
             final Dao<Food, Integer> foodDao = helper.getFoodDao();
-                    foods = new ArrayList<>(foodDao.queryForAll());
-        }
-        catch (SQLException e) {
+            foods = new ArrayList<>(foodDao.queryForAll());
+        } catch (SQLException e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
         }
 
@@ -55,7 +48,7 @@ public class ChooseFoodLogic {
         return foods;
     }
 
-    public void AddLogItem(LogItem item){
+    public void AddLogItem(LogItem item) {
         try {
 
             DatabaseHelper helper = getHelper();
@@ -70,39 +63,31 @@ public class ChooseFoodLogic {
         }
     }
 
-    public void DeleteFoodItem(int id)
-    {
-        try
-        {
+    public void DeleteFoodItem(int id) {
+        try {
             final Dao<Food, Integer> FoodDao = getHelper().getFoodDao();
             FoodDao.deleteById(id);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void UpdateGramsFoodItem(int grams, Food food)
-    {
-        try
-        {
+    public void UpdateGramsFoodItem(int grams, Food food) {
+        try {
             final Dao<Food, Integer> FoodDao = getHelper().getFoodDao();
             Food newFood = new Food(food.Grams, food.foodId, food.Name, food.Calories, grams, food.Carbohydrates, food.Protein, food.Fat);
             FoodDao.update(newFood);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void DismissToast()
-    {
-        if(mSuper != null) mSuper.dismiss();
+    public void DismissToast() {
+        if (mSuper != null) mSuper.dismiss();
     }
 
-    public void GenerateToast(Activity activity, boolean male, String name)
-    {
-        if(mSuper != null) mSuper.dismiss();
+    public void GenerateToast(Activity activity, boolean male, String name) {
+        if (mSuper != null) mSuper.dismiss();
         mSuper = (SuperActivityToast) SuperActivityToast.create(activity, new Style(), Style.TYPE_STANDARD)
                 .setFrame(Style.FRAME_KITKAT)
                 .setText(male ? "Pridėtas " + name : "Pridėta " + name)

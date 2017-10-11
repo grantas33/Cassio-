@@ -1,4 +1,4 @@
-package com.cassio.app.cassio;
+package com.cassio.app.cassio.models;
 
 import com.j256.ormlite.field.DatabaseField;
 
@@ -18,7 +18,8 @@ public class Recipe extends ArrayList<Food> implements Serializable { //vis tiek
     @DatabaseField(columnName = "recipeName")
     public String RecipeName;
 
-    public Recipe () {};
+    public Recipe() {
+    }
 
     public Recipe(String name, List<Food> foods) {
         RecipeName = name;

@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cassio.app.cassio.fragmentLogic.CreateFoodLogic;
+import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.tools.InvalidValueException;
 import com.google.zxing.integration.android.IntentIntegrator;
 
@@ -22,15 +25,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CreateFood.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the link CreateFoodnewInstance} factory method to
- * create an instance of this fragment.
- */
-public class CreateFood extends Fragment {
+import static java.lang.Integer.parseInt;
+
+public class CreateFoodFragment extends Fragment {
 
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;       // kameros prieigai
 
@@ -56,10 +53,9 @@ public class CreateFood extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public CreateFood() {
+    public CreateFoodFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,30 +66,25 @@ public class CreateFood extends Fragment {
     public void scan(View view) {
 
 
-        String[] permissions = new String[] {Manifest.permission.CAMERA};
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-        {
+        String[] permissions = new String[]{Manifest.permission.CAMERA};
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             this.requestPermissions(permissions, MY_PERMISSIONS_REQUEST_CAMERA);
-        }
-        else
-        {
+        } else {
             MainActivity activity = (MainActivity) getActivity();
             activity.scanBarcode(view);
         }
 
     }
 
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {                      //jei pasirenkam "ALLOW"
-                        scan(this.getView());
-                    } else {                                                                        //jei pasirenkam "DENY"
-                        Toast.makeText(this.getContext(), R.string.camera_permission_denied, Toast.LENGTH_LONG).show();
-                    }
-                }
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {                      //jei pasirenkam "ALLOW"
+            scan(this.getView());
+        } else {                                                                        //jei pasirenkam "DENY"
+            Toast.makeText(this.getContext(), R.string.camera_permission_denied, Toast.LENGTH_LONG).show();
+        }
+    }
 
     public void myClickHandler(View target) {
         // Do stuff
@@ -101,8 +92,7 @@ public class CreateFood extends Fragment {
     }
 
     @OnClick(R.id.submit)
-    public void Submit()
-    {
+    public void submit() {
         String calories;
         String grams;
         String carbohydrates;
@@ -122,7 +112,6 @@ public class CreateFood extends Fragment {
         } catch (InvalidValueException e) {
             Logic.GenerateToast(e.getMessage());
         } catch (Exception e) {
-            //Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 
@@ -149,10 +138,9 @@ public class CreateFood extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_food, container, false);
         ButterKnife.bind(this, view);
-        if(ChooseFoodList.foodNameExtra != null)
-        {
-            Name.setText(ChooseFoodList.foodNameExtra);
-            ChooseFoodList.foodNameExtra = null;
+        if (ChooseFoodListFragment.foodNameExtra != null) {
+            Name.setText(ChooseFoodListFragment.foodNameExtra);
+            ChooseFoodListFragment.foodNameExtra = null;
         }
         Logic = new CreateFoodLogic(getContext());
         return view;
@@ -161,12 +149,6 @@ public class CreateFood extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
     }
 
     @Override
@@ -181,18 +163,53 @@ public class CreateFood extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+    public void processScan(Food result) {
+        if (result.Name != "notset") {
+
+            Name.setText(result.Name);
+            Name.setEnabled(false);
+            Calories.setText(String.valueOf(result.Calories));
+            Calories.setEnabled(false);
+            Grams.setText(String.valueOf(result.Grams));
+            Carbohydrates.setText(String.valueOf(result.Carbohydrates));
+            Carbohydrates.setEnabled(false);
+            Protein.setText(String.valueOf(result.Protein));
+            Protein.setEnabled(false);
+            Fat.setText(String.valueOf(result.Fat));
+            Fat.setEnabled(false);
+
+            Grams.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    int multiplier;
+                    if (!Grams.getText().toString().equals("")) {
+                        multiplier = parseInt(Grams.getText().toString());
+                    } else {
+                        multiplier = 100;
+                    }
+
+                    Calories.setText(String.valueOf(result.Calories * multiplier / 100));
+                    Carbohydrates.setText(String.valueOf(result.Carbohydrates * multiplier / 100));
+                    Protein.setText(String.valueOf(result.Protein * multiplier / 100));
+                    Fat.setText(String.valueOf(result.Fat * multiplier / 100));
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), "Nerasta!", Toast.LENGTH_LONG).show();
+        }
+    }
+
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

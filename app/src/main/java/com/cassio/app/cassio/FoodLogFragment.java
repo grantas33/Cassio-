@@ -9,36 +9,34 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.cassio.app.cassio.fragmentLogic.FoodLogLogic;
-import com.cassio.app.cassio.tools.LogItemListAdapter;
+import com.cassio.app.cassio.adapters.LogItemListAdapter;
 
-/**
- * Created by Grantas on 2017-07-16.
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class FoodLog extends Fragment {
+public class FoodLogFragment extends Fragment {
 
+    @BindView(R.id.foodloglistview)
     ListView mListView;
+    @BindView(R.id.emptyfoodlogview)
+    View emptyText;
+
     LogItemListAdapter adapter;
     FoodLogLogic Logic = new FoodLogLogic(getContext());
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_food_log, container, false);
-        mListView = (ListView) view.findViewById(R.id.foodloglistview);
-        View emptytext = view.findViewById(R.id.emptyfoodlogview);
-        mListView.setEmptyView(emptytext);
+        ButterKnife.bind(this, view);
+        mListView.setEmptyView(emptyText);
         adapter = new LogItemListAdapter(getContext(), Logic.getLogItems());
         mListView.setAdapter(adapter);
-
 
         return view;
     }

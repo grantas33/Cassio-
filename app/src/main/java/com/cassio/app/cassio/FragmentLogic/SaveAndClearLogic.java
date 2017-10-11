@@ -2,9 +2,9 @@ package com.cassio.app.cassio.fragmentLogic;
 
 import android.content.Context;
 
-import com.cassio.app.cassio.LogItem;
+import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.tools.DatabaseHelper;
-import com.cassio.app.cassio.tools.DayItem;
+import com.cassio.app.cassio.models.DayItem;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Grantas on 2017-07-27.
  * Atskira logikos klase naudojama SaveAndClearDialog ir AlarmReceiver
  */
 

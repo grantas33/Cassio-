@@ -10,16 +10,14 @@ import com.cassio.app.cassio.SettingsActivity;
 
 
 /**
- * Created by Grantas on 2017-07-20.
  * Klase is naujo uzdedanti aliarmus kai telefonas persikrauna
  */
 
-public class AlarmSetter extends BroadcastReceiver{
+public class AlarmSetter extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         SettingsActivity instance = new SettingsActivity();
-        instance.CheckAlarm(pref, context);
-     //   Log.i("ALARMSETTER", "VEIKIA!");
+        instance.checkAlarm(pref, context);
     }
 }

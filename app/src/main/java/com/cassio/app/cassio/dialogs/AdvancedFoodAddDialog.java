@@ -1,4 +1,4 @@
-package com.cassio.app.cassio.tools.Dialogs;
+package com.cassio.app.cassio.dialogs;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cassio.app.cassio.ChooseFoodTabs;
-import com.cassio.app.cassio.Food;
-import com.cassio.app.cassio.LogItem;
+import com.cassio.app.cassio.models.Food;
+import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.R;
 import com.cassio.app.cassio.tools.DatabaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -23,13 +23,9 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.Date;
 
-/**
- * Created by Lukas on 9/1/2017.
- */
-
 public class AdvancedFoodAddDialog {
 
-    public static AlertDialog getDialog (final Activity context, final Food food) {
+    public static AlertDialog getDialog(final Activity context, final Food food) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = context.getLayoutInflater();
         View dialogLayout = inflater.inflate(R.layout.default_food_amount_dialog, null);
@@ -58,23 +54,20 @@ public class AdvancedFoodAddDialog {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.toString().isEmpty())
-                {
+                if (charSequence.toString().isEmpty()) {
                     carbohydrates.setText(String.valueOf(food.Carbohydrates));
                     calories.setText(String.valueOf(food.Calories));
                     protein.setText(String.valueOf(food.Protein));
                     fat.setText(String.valueOf(food.Fat));
-                }
-                else
-                {
-                    carbohydrates.setText(String.valueOf((double)Math.round(((double)Integer.parseInt(charSequence.toString()) / (double)food.Grams)
-                            * food.Carbohydrates*10)/10));
-                    protein.setText(String.valueOf((double)Math.round(((double)Integer.parseInt(charSequence.toString()) / (double)food.Grams)
-                            * food.Protein*10)/10));
-                    fat.setText(String.valueOf((double)Math.round(((double)Integer.parseInt(charSequence.toString()) / (double)food.Grams)
-                            * food.Fat*10)/10));
-                    calories.setText(String.valueOf(Math.round(((double)Integer.parseInt(charSequence.toString()) / (double)food.Grams)
-                            * (double)food.Calories)));
+                } else {
+                    carbohydrates.setText(String.valueOf((double) Math.round(((double) Integer.parseInt(charSequence.toString()) / (double) food.Grams)
+                            * food.Carbohydrates * 10) / 10));
+                    protein.setText(String.valueOf((double) Math.round(((double) Integer.parseInt(charSequence.toString()) / (double) food.Grams)
+                            * food.Protein * 10) / 10));
+                    fat.setText(String.valueOf((double) Math.round(((double) Integer.parseInt(charSequence.toString()) / (double) food.Grams)
+                            * food.Fat * 10) / 10));
+                    calories.setText(String.valueOf(Math.round(((double) Integer.parseInt(charSequence.toString()) / (double) food.Grams)
+                            * (double) food.Calories)));
                 }
             }
 
@@ -89,10 +82,9 @@ public class AdvancedFoodAddDialog {
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (gramInput.getText().toString().isEmpty()) {
                     Toast.makeText(context, "Įveskite gramus!", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     addLogItem(new LogItem(food, Integer.parseInt(gramInput.getText().toString()), new Date()), context);
-                    ((ChooseFoodTabs)context).GenerateToast(gramInput.getText().toString() + "g. " + food.Name );
+                    ((ChooseFoodTabs) context).generateToast(gramInput.getText().toString() + "g. " + food.Name);
                 }
             }
         });
@@ -106,7 +98,7 @@ public class AdvancedFoodAddDialog {
         return builder.create();
     }
 
-    private static void addLogItem(LogItem item, Context context){
+    private static void addLogItem(LogItem item, Context context) {
         try {
 
             DatabaseHelper helper = getHelper(context);
