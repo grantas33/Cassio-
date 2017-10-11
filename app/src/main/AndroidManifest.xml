@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.Cassio.app.cassio">
+    package="com.cassio.app.cassio">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.Cassio.app.cassio.MainActivity"
+            android:name="com.cassio.app.cassio.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -26,19 +26,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".ChooseFoodTabs"></activity>-->
-        <activity android:name="com.Cassio.app.cassio.ChooseFoodTabs">
+        <activity android:name="com.cassio.app.cassio.ChooseFoodTabs">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.Cassio.app.cassio.MainActivity" />
+                android:value="com.cassio.app.cassio.MainActivity" />
         </activity>
-        <activity android:name="com.Cassio.app.cassio.SettingsActivity" >
+        <activity android:name="com.cassio.app.cassio.SettingsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.Cassio.app.cassio.MainActivity" />
+                android:value="com.cassio.app.cassio.MainActivity" />
         </activity>
-        <receiver android:name="com.Cassio.app.cassio.Tools.AlarmReceiver" />
-        <receiver android:name="com.Cassio.app.cassio.Tools.AlarmSetter">
+        <receiver android:name="com.cassio.app.cassio.tools.AlarmReceiver" />
+        <receiver android:name="com.cassio.app.cassio.tools.AlarmSetter">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

@@ -6,7 +6,6 @@ buildscript {
     }
 
     dependencies {
-//        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
     }
 }
 
@@ -16,7 +15,6 @@ repositories {
 }
 
 apply plugin: 'com.android.application' //or apply plugin: 'java'
-//apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
@@ -48,6 +46,12 @@ repositories {
 }
 
 dependencies {
+
+    // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-core
+    compile group: 'com.j256.ormlite', name: 'ormlite-core', version: '5.0'
+    compile group: 'com.j256.ormlite', name: 'ormlite-android', version: '5.0'
+
+
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

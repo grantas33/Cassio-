@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout9"
-    tools:context="com.Cassio.app.cassio.MainScreen">
+    tools:context="com.cassio.app.cassio.MainScreen">
 
     <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/layout10"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.Cassio.lukas.cassio.MainActivity"
+        tools:context="com.cassio.lukas.cassio.MainActivity"
         tools:showIn="@layout/app_bar_main">
 
         <!--<TextView-->
