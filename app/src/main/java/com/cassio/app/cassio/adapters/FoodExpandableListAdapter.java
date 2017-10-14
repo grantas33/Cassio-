@@ -18,7 +18,7 @@ import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.fragmentLogic.ChooseFoodLogic;
 import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.R;
-import com.cassio.app.cassio.dialogs.AdvancedUserfoodAddDialog;
+import com.cassio.app.cassio.dialogs.AdvancedUserFoodAddDialog;
 import com.cassio.app.cassio.tools.FoodValueFormatter;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -102,7 +102,7 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
         listHeaderPlusSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Logic.AddLogItem(new LogItem(item, item.Grams, new Date()));
+                Logic.addLogItem(new LogItem(item, item.Grams, new Date()));
                 ((ChooseFoodTabs) Context).generateToast(item.Name);
             }
         });
@@ -129,7 +129,7 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
 
 
         ((TextView) view.findViewById(R.id.foodinfoname)).setText(item.Name);
-        ((TextView) view.findViewById(R.id.foodinfocalories)).setText(item.Calories + " kal.");
+        ((TextView) view.findViewById(R.id.foodinfocalories)).setText(item.getCalories() + " kal.");
         ((TextView) view.findViewById(R.id.foodinfograms)).setText(item.Grams + " g.");
 
 
@@ -156,7 +156,7 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
         listChildAmount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvancedUserfoodAddDialog.createSelectAmountAlertDialog(Context, item, Logic, FoodExpandableListAdapter.this);
+                AdvancedUserFoodAddDialog.createSelectAmountAlertDialog(Context, item, Logic, FoodExpandableListAdapter.this);
             }
         });
 
@@ -188,15 +188,15 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
         horizontalChart.setTouchEnabled(false);
         // horizontalChart.setDrawValueAboveBar(false);
 
-        BarEntry carbentry = new BarEntry(60f, (float) item.Carbohydrates);//(float)item.getCarbohydratesFor100g());
-        BarEntry proteinentry = new BarEntry(40f, (float) item.Protein);//(float)item.getProteinFor100g());
-        BarEntry fatentry = new BarEntry(20f, (float) item.Fat);//(float)item.getFatFor100g());
+        BarEntry carbEntry = new BarEntry(60f, (float) item.getCarbohydrates());//(float)item.getCarbohydratesFor100g());
+        BarEntry proteinEntry = new BarEntry(40f, (float) item.getProtein());//(float)item.getProteinFor100g());
+        BarEntry fatEntry = new BarEntry(20f, (float) item.getFat());//(float)item.getFatFor100g());
 
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
         entries.add(new BarEntry(0f, 0.00001f));
-        entries.add(carbentry);
-        entries.add(proteinentry);
-        entries.add(fatentry);
+        entries.add(carbEntry);
+        entries.add(proteinEntry);
+        entries.add(fatEntry);
         entries.add(new BarEntry(80f, 0.00001f));
 
         BarDataSet set1 = new BarDataSet(entries, "");
@@ -238,7 +238,7 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         ((ExpandableListView) parent).collapseGroup(groupPosition);
-                        Logic.DeleteFoodItem(item.foodId);
+                        Logic.deleteFoodItem(item.foodId);
                         UpdateAdapter(Logic.getSortedFoods());
                     }
                 }

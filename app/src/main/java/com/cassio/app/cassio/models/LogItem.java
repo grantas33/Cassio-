@@ -14,6 +14,8 @@ public class LogItem implements Serializable {
 
     @DatabaseField(columnName = "logname_id")
     public String FoodName;
+
+    //nutrition is specified per Grams field
     @DatabaseField(columnName = "logcalories_id")
     public int Calories;
     @DatabaseField(columnName = "logdefaultgrams_id")
@@ -24,6 +26,7 @@ public class LogItem implements Serializable {
     public double Protein;
     @DatabaseField(columnName = "logfat_id")
     public double Fat;
+
     @DatabaseField(columnName = "loggrams_id")
     public int Grams; //kiek valge
     @DatabaseField(columnName = "logtime_id")
@@ -33,13 +36,13 @@ public class LogItem implements Serializable {
 
     }
 
-    public LogItem(Food fooditem, int grams, Date time) {
-        FoodName = fooditem.Name;
-        Calories = fooditem.Calories;
-        DefaultGrams = fooditem.Grams;
-        Carbohydrates = fooditem.Carbohydrates;
-        Protein = fooditem.Protein;
-        Fat = fooditem.Fat;
+    public LogItem(Food foodItem, int grams, Date time) {
+        FoodName = foodItem.Name;
+        Calories = foodItem.getCalories();
+        DefaultGrams = foodItem.Grams;
+        Carbohydrates = foodItem.getCarbohydrates();
+        Protein = foodItem.getProtein();
+        Fat = foodItem.getFat();
         Grams = grams;
         Time = time;
     }

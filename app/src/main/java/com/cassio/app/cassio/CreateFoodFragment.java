@@ -168,14 +168,14 @@ public class CreateFoodFragment extends Fragment {
 
             Name.setText(result.Name);
             Name.setEnabled(false);
-            Calories.setText(String.valueOf(result.Calories));
+            Calories.setText(String.valueOf(result.getCalories()));
             Calories.setEnabled(false);
             Grams.setText(String.valueOf(result.Grams));
-            Carbohydrates.setText(String.valueOf(result.Carbohydrates));
+            Carbohydrates.setText(String.valueOf(result.getCarbohydrates()));
             Carbohydrates.setEnabled(false);
-            Protein.setText(String.valueOf(result.Protein));
+            Protein.setText(String.valueOf(result.getProtein()));
             Protein.setEnabled(false);
-            Fat.setText(String.valueOf(result.Fat));
+            Fat.setText(String.valueOf(result.getFat()));
             Fat.setEnabled(false);
 
             Grams.addTextChangedListener(new TextWatcher() {
@@ -186,17 +186,17 @@ public class CreateFoodFragment extends Fragment {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    int multiplier;
+                    int grams;
                     if (!Grams.getText().toString().equals("")) {
-                        multiplier = parseInt(Grams.getText().toString());
+                        grams = parseInt(Grams.getText().toString());
                     } else {
-                        multiplier = 100;
+                        grams = 100;
                     }
 
-                    Calories.setText(String.valueOf(result.Calories * multiplier / 100));
-                    Carbohydrates.setText(String.valueOf(result.Carbohydrates * multiplier / 100));
-                    Protein.setText(String.valueOf(result.Protein * multiplier / 100));
-                    Fat.setText(String.valueOf(result.Fat * multiplier / 100));
+                    Calories.setText(String.valueOf(result.getCaloriesPerGrams(grams)));
+                    Carbohydrates.setText(String.valueOf(result.getCarbohydratesPerGrams(grams)));
+                    Protein.setText(String.valueOf(result.getProteinPerGrams(grams)));
+                    Fat.setText(String.valueOf(result.getFatPerGrams(grams)));
                 }
 
                 @Override

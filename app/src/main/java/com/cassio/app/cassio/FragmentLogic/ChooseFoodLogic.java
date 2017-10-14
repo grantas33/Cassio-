@@ -48,7 +48,7 @@ public class ChooseFoodLogic {
         return foods;
     }
 
-    public void AddLogItem(LogItem item) {
+    public void addLogItem(LogItem item) {
         try {
 
             DatabaseHelper helper = getHelper();
@@ -63,7 +63,7 @@ public class ChooseFoodLogic {
         }
     }
 
-    public void DeleteFoodItem(int id) {
+    public void deleteFoodItem(int id) {
         try {
             final Dao<Food, Integer> FoodDao = getHelper().getFoodDao();
             FoodDao.deleteById(id);
@@ -72,21 +72,22 @@ public class ChooseFoodLogic {
         }
     }
 
-    public void UpdateGramsFoodItem(int grams, Food food) {
+    public void updateGramsFoodItem(int grams, Food food) {
         try {
             final Dao<Food, Integer> FoodDao = getHelper().getFoodDao();
-            Food newFood = new Food(food.Grams, food.foodId, food.Name, food.Calories, grams, food.Carbohydrates, food.Protein, food.Fat);
-            FoodDao.update(newFood);
+            food.setGrams(grams);
+//            Food newFood = new Food(food.Grams, food.foodId, food.Name, food.Calories, grams, food.Carbohydrates, food.Protein, food.Fat);
+            FoodDao.update(food);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void DismissToast() {
+    public void dismissToast() {
         if (mSuper != null) mSuper.dismiss();
     }
 
-    public void GenerateToast(Activity activity, boolean male, String name) {
+    public void generateToast(Activity activity, boolean male, String name) {
         if (mSuper != null) mSuper.dismiss();
         mSuper = (SuperActivityToast) SuperActivityToast.create(activity, new Style(), Style.TYPE_STANDARD)
                 .setFrame(Style.FRAME_KITKAT)
