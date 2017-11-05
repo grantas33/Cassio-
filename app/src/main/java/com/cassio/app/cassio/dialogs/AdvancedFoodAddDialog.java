@@ -40,11 +40,13 @@ public class AdvancedFoodAddDialog {
         final EditText gramInput = (EditText) dialogLayout.findViewById(R.id.customGrams);
 
         foodname.setText(food.Name);
-        carbohydrates.setText(String.valueOf(food.Carbohydrates));
-        calories.setText(String.valueOf(food.Calories));
-        protein.setText(String.valueOf(food.Protein));
-        fat.setText(String.valueOf(food.Fat));
         gramInput.append(String.valueOf(food.Grams));
+        int grams = Integer.parseInt(gramInput.getText().toString());
+
+        carbohydrates.setText(String.valueOf(food.getCarbohydratesPerGrams(grams)));
+        calories.setText(String.valueOf(food.getCaloriesPerGrams(grams)));
+        protein.setText(String.valueOf(food.getProteinPerGrams(grams)));
+        fat.setText(String.valueOf(food.getFatPerGrams(grams)));
 
         gramInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -55,19 +57,16 @@ public class AdvancedFoodAddDialog {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.toString().isEmpty()) {
-                    carbohydrates.setText(String.valueOf(food.Carbohydrates));
-                    calories.setText(String.valueOf(food.Calories));
-                    protein.setText(String.valueOf(food.Protein));
-                    fat.setText(String.valueOf(food.Fat));
+                    carbohydrates.setText(String.valueOf(food.getDefaultCarbohydrates()));
+                    calories.setText(String.valueOf(food.getDefaultCalories()));
+                    protein.setText(String.valueOf(food.getDefaultProtein()));
+                    fat.setText(String.valueOf(food.getDefaultFat()));
                 } else {
-                    carbohydrates.setText(String.valueOf((double) Math.round(((double) Integer.parseInt(charSequence.toString()) / (double) food.Grams)
-                            * food.Carbohydrates * 10) / 10));
-                    protein.setText(String.valueOf((double) Math.round(((double) Integer.parseInt(charSequence.toString()) / (double) food.Grams)
-                            * food.Protein * 10) / 10));
-                    fat.setText(String.valueOf((double) Math.round(((double) Integer.parseInt(charSequence.toString()) / (double) food.Grams)
-                            * food.Fat * 10) / 10));
-                    calories.setText(String.valueOf(Math.round(((double) Integer.parseInt(charSequence.toString()) / (double) food.Grams)
-                            * (double) food.Calories)));
+                    int grams = (int) Math.round(((double) Integer.parseInt(charSequence.toString())));
+                    carbohydrates.setText(String.valueOf(food.getCarbohydratesPerGrams(grams)));
+                    protein.setText(String.valueOf(food.getProteinPerGrams(grams)));
+                    fat.setText(String.valueOf(food.getFatPerGrams(grams)));
+                    calories.setText(String.valueOf(food.getCarbohydratesPerGrams(grams)));
                 }
             }
 

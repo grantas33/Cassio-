@@ -1,6 +1,38 @@
 #
-# generated on 2017/07/31 12:10:05
+# generated on 2017/10/14 10:23:15
 #
+# --table-start--
+dataClass=com.cassio.app.cassio.models.DayItem
+tableName=dayitem
+# --table-fields-start--
+# --field-start--
+fieldName=dayId
+columnName=day_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=Date
+columnName=date_id
+# --field-end--
+# --field-start--
+fieldName=Calories
+columnName=calories_id
+# --field-end--
+# --field-start--
+fieldName=Carbohydrates
+columnName=carbohydrates_id
+# --field-end--
+# --field-start--
+fieldName=Protein
+columnName=protein_id
+# --field-end--
+# --field-start--
+fieldName=Fat
+columnName=fat_id
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
 # --table-start--
 dataClass=com.cassio.app.cassio.models.Food
 tableName=food
@@ -15,12 +47,12 @@ fieldName=Name
 columnName=name_id
 # --field-end--
 # --field-start--
-fieldName=Calories
-columnName=calories_id
-# --field-end--
-# --field-start--
 fieldName=Grams
 columnName=grams_id
+# --field-end--
+# --field-start--
+fieldName=Calories
+columnName=calories_id
 # --field-end--
 # --field-start--
 fieldName=Carbohydrates
@@ -82,33 +114,53 @@ columnName=logtime_id
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.cassio.app.cassio.models.DayItem
-tableName=dayitem
+dataClass=com.cassio.app.cassio.models.Recipe
+tableName=recipe
 # --table-fields-start--
 # --field-start--
-fieldName=dayId
-columnName=day_id
-generatedId=true
+fieldName=id
+id=true
 # --field-end--
 # --field-start--
-fieldName=Date
-columnName=date_id
+fieldName=Foods
+foreignCollection=true
+foreignCollectionEager=true
+# --field-end--
+# --field-start--
+fieldName=RecipeName
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.cassio.app.cassio.models.RecipeFood
+tableName=recipefood
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=recipe_id
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=Name
+# --field-end--
+# --field-start--
+fieldName=Grams
 # --field-end--
 # --field-start--
 fieldName=Calories
-columnName=calories_id
 # --field-end--
 # --field-start--
 fieldName=Carbohydrates
-columnName=carbohydrates_id
 # --field-end--
 # --field-start--
 fieldName=Protein
-columnName=protein_id
 # --field-end--
 # --field-start--
 fieldName=Fat
-columnName=fat_id
 # --field-end--
 # --table-fields-end--
 # --table-end--

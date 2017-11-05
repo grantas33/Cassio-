@@ -1,69 +1,44 @@
 package com.cassio.app.cassio.models;
 
-import android.support.annotation.NonNull;
-
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 
-public class Food implements Serializable, Comparable<Food> {
-
+public class RecipeFood implements Serializable {
     private static final long serialVersionUID = -222864131214757024L;
 
-    @DatabaseField(generatedId = true, columnName = "food_id")
-    public int foodId;
+    @DatabaseField(id = true)
+    public Long id;
 
-    @DatabaseField(columnName = "name_id")
+    @DatabaseField(foreign = true)
+    private Recipe recipe_id;
+
+    @DatabaseField
     public String Name;
-    @DatabaseField(columnName = "grams_id")
+    @DatabaseField
     public int Grams;  // Default grams
 
     //nutrinion is specified per 100g
-    @DatabaseField(columnName = "calories_id")
+    @DatabaseField
     private int Calories;
-    @DatabaseField(columnName = "carbohydrates_id")
+    @DatabaseField
     private double Carbohydrates;
-    @DatabaseField(columnName = "protein_id")
+    @DatabaseField
     private double Protein;
-    @DatabaseField(columnName = "fat_id")
+    @DatabaseField
     private double Fat;
 
-    public Food(String name, int calories, int grams) {
-        Name = name;
-        Calories = calories;
-        Grams = grams;
+    public RecipeFood() {
     }
 
-    //need this for SQLite
-    public Food() {
-
+    public RecipeFood(Food food, int gramsNeeded) {
+        Name = food.Name;
+        Grams = gramsNeeded;
+        Calories = food.getDefaultCalories();
+        Carbohydrates = food.getDefaultCarbohydrates();
+        Protein = food.getDefaultProtein();
+        Fat = food.getDefaultFat();
     }
-
-    public Food(String name, int grams) {
-        Name = name;
-        Grams = grams;
-    }
-
-    public Food(String name, int calories, int grams, double carbohydrates, double protein, double fat) {
-        Name = name;
-        Calories = calories;
-        Grams = grams;
-        Carbohydrates = carbohydrates;
-        Protein = protein;
-        Fat = fat;
-    }
-
-    //for updating food grams inside database
-//    public Food(int oldgrams, int id, String name, int calories, int newgrams, double carbohydrates, double protein, double fat) {
-//        foodId = id;
-//        Name = name;
-//        Calories = (int) Math.round((double) calories * ((double) newgrams / (double) oldgrams));
-//        Grams = newgrams;
-//        Carbohydrates = carbohydrates * ((double) newgrams / (double) oldgrams);
-//        Protein = protein * ((double) newgrams / (double) oldgrams);
-//        Fat = fat * ((double) newgrams / (double) oldgrams);
-//    }
 
     public void setGrams(int grams) {
         Grams = grams;
@@ -124,10 +99,5 @@ public class Food implements Serializable, Comparable<Food> {
 
     public String toString() {
         return this.Name + ", " + this.Calories + " cal., " + this.Grams + "g.";
-    }
-
-    @Override
-    public int compareTo(@NonNull Food o) {
-        return this.Name.compareTo(o.Name);
     }
 }

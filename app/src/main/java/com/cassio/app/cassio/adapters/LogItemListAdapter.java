@@ -79,6 +79,4 @@ public class LogItemListAdapter extends BaseAdapter {
         this.items = list;
         notifyDataSetChanged();
     }
-
-
 }

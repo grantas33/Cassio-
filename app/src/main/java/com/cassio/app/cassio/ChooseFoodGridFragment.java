@@ -49,7 +49,7 @@ public class ChooseFoodGridFragment extends android.support.v4.app.Fragment {
 
     private void clickAction(Food food) {
         LogItem item = new LogItem(food, food.Grams, new Date());
-        Logic.AddLogItem(item);
+        Logic.addLogItem(item);
         if (mToast != null) mToast.cancel();
         ((ChooseFoodTabs) getContext()).generateToast(food.Name);
     }

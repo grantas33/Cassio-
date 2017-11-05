@@ -36,6 +36,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cassio.app.cassio.MainActivity" />
         </activity>
+        <activity android:name=".AddToRecipeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cassio.app.cassio.ChooseFoodTabs"/>
+        </activity>
         <receiver android:name="com.cassio.app.cassio.tools.AlarmReceiver" />
         <receiver android:name="com.cassio.app.cassio.tools.AlarmSetter">
             <intent-filter>

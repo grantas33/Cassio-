@@ -7,8 +7,30 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class CreateRecipeFragment extends Fragment {
+
+    @BindView(R.id.recipe_list)
+    ListView RecipeList;
+    @BindView(R.id.create_recipe_confirm)
+    Button ConfirmButton;
+    @BindView(R.id.total_carbohydrates)
+    TextView Carbohydrates;
+    @BindView(R.id.total_protein)
+    TextView Protein;
+    @BindView(R.id.total_fat)
+    TextView Fat;
+    @BindView(R.id.recipe_name)
+    EditText RecipeName;
 
     public CreateRecipeFragment() {
         // Required empty public constructor
@@ -23,8 +45,9 @@ public class CreateRecipeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_recipe, container, false);
+        View view = inflater.inflate(R.layout.fragment_create_recipe, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override

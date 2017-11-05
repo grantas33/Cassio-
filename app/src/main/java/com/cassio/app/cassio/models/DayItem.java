@@ -8,10 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by Lukas on 7/19/2017.
- */
-
 public class DayItem implements Serializable {
 
     private static final long serialVersionUID = -222864131214757024L;
