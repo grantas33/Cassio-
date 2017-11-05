@@ -22,7 +22,9 @@ import java.util.Date;
 
 public class AdvancedUserFoodAddDialog {
 
-    public static void createSelectAmountAlertDialog(final Activity Context, final Food item, final ChooseFoodLogic Logic, final FoodExpandableListAdapter adapter) {
+    public static void createSelectAmountAlertDialog(final Activity Context, final Food item,
+                                                     final ChooseFoodLogic Logic,
+                                                     final FoodExpandableListAdapter adapter) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Context);
         // builder.setView(R.layout.select_amount_dialog);
 
@@ -69,11 +71,9 @@ public class AdvancedUserFoodAddDialog {
                 Context.getString(R.string.add),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Logic.addLogItem(new LogItem(item, Integer.parseInt(grams.getText().toString()), new Date()));
+                        Logic.addLogItem(new LogItem(item, Integer.
+                                parseInt(grams.getText().toString()), new Date()));
                         ((ChooseFoodTabs) Context).generateToast(grams.getText() + "g. " + item.Name);
-//                        if(mToast != null) mToast.cancel();
-//                        mToast = Toast.makeText(Context, "Pridėta " + grams.getText() + "g " + item.Name, Toast.LENGTH_SHORT);
-//                        mToast.show();
                         if (remember.isChecked()) {
                             Logic.updateGramsFoodItem(Integer.parseInt(grams.getText().toString()), item);
                             adapter.UpdateAdapter(Logic.getSortedFoods());

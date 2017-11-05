@@ -53,4 +53,7 @@
     <string name="create_recipe">Sukurti receptą</string>
     <string name="privacy_policy">Privatumo politika</string>
     <string name="scan_barcode">Nuskaityti brūkšninį kodą</string>
+    <string name="createNewRecipe">Nėra esamų receptų. Ar norite sukurti naują?</string>
+    <string name="chooseRecipe">Pasirinkite į kurį receptą norite pridėti:</string>
+    <string name="recipe_name">Recepto pavadinimas</string>
 </resources>

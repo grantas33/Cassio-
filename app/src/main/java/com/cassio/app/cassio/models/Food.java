@@ -7,7 +7,6 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 
-@DatabaseTable(tableName = "logitem")
 public class Food implements Serializable, Comparable<Food> {
 
     private static final long serialVersionUID = -222864131214757024L;

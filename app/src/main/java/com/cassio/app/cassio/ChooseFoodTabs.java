@@ -41,7 +41,7 @@ public class ChooseFoodTabs extends AppCompatActivity {
         tabLayout.setupWithViewPager(mPager);
     }
 
-    //Kad veiktu mygtukas virsuj desinej "<-"
+    //Kad veiktu mygtukas virsuj kairej "<-"
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

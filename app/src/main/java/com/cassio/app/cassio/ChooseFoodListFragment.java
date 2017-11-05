@@ -1,5 +1,6 @@
 package com.cassio.app.cassio;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
@@ -75,6 +77,8 @@ public class ChooseFoodListFragment extends Fragment {
             }
         });
 
+        mExpanded.setOnItemLongClickListener(longClickListener);
+
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -101,6 +105,17 @@ public class ChooseFoodListFragment extends Fragment {
 
         return view;
     }
+
+    private AdapterView.OnItemLongClickListener longClickListener = new AdapterView.OnItemLongClickListener() {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
+            Intent intent = new Intent(getContext(), AddToRecipeActivity.class);
+            Food food = (Food) mExpanded.getItemAtPosition(pos);
+            intent.putExtra("EXTRA_FOOD", food);
+            startActivity(intent);
+            return true;
+        }
+    };
 
     @OnClick(R.id.emptymyfoodsbutton)
     public void onClick(View v) {
