@@ -63,7 +63,7 @@ public class ChooseFoodListFragment extends Fragment {
         mSearchView.setQueryHint("Ieškoti produkto");
         LinearLayout mEmptyView = (LinearLayout) view.findViewById(R.id.emptymyfoodsview);
         ChooseFoodLogic Logic = new ChooseFoodLogic(getContext());
-        final List<Food> datalist = Logic.getSortedFoods();
+        List<Food> datalist = Logic.getSortedFoods();
         adapter = new FoodExpandableListAdapter(getActivity(), datalist);
         mExpanded.setAdapter(adapter);
         mExpanded.setEmptyView(mEmptyView);
@@ -110,7 +110,7 @@ public class ChooseFoodListFragment extends Fragment {
         @Override
         public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
             Intent intent = new Intent(getContext(), AddToRecipeActivity.class);
-            Food food = (Food) mExpanded.getItemAtPosition(pos);
+            Food food = adapter.getGroup(pos);
             intent.putExtra("EXTRA_FOOD", food);
             startActivity(intent);
             return true;

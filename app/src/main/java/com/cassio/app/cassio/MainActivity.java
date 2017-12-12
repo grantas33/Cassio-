@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.create_recipe:
                 fragment = new CreateRecipeFragment();
-                title = getString(R.string.create_recipe);
+                title = getString(R.string.view_recipes);
                 viewIsAtHome = false;
                 break;
             case R.id.main_screen:

@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "fooddir.db";
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 17;
 
     private Dao<Food, Integer> foodDao;
     private Dao<LogItem, Integer> logDao;

@@ -32,7 +32,7 @@ public class RecipeFood implements Serializable {
     }
 
     public RecipeFood(Food food, int gramsNeeded) {
-        Name = food.Name;
+         Name = food.Name;
         Grams = gramsNeeded;
         Calories = food.getDefaultCalories();
         Carbohydrates = food.getDefaultCarbohydrates();

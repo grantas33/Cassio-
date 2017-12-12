@@ -33,7 +33,7 @@ public class AddToRecipeAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public Recipe getItem(int i) {
         return Recipes.get(i);
     }
 
@@ -54,7 +54,7 @@ public class AddToRecipeAdapter extends BaseAdapter {
         if (view == null) {
             view = LayoutInflater.from(Context).inflate(R.layout.recipe_info, viewGroup, false);
         }
-        ((TextView) view.findViewById(R.id.recipe_name)).setText(recipe.RecipeName);
+        ((TextView) view.findViewById(R.id.recipe_name)).setText(recipe.Name);
         return view;
     }
 }

@@ -1,5 +1,5 @@
 #
-# generated on 2017/10/14 10:23:15
+# generated on 2017/12/10 06:03:09
 #
 # --table-start--
 dataClass=com.cassio.app.cassio.models.DayItem
@@ -118,16 +118,41 @@ dataClass=com.cassio.app.cassio.models.Recipe
 tableName=recipe
 # --table-fields-start--
 # --field-start--
-fieldName=id
-id=true
-# --field-end--
-# --field-start--
 fieldName=Foods
 foreignCollection=true
 foreignCollectionEager=true
 # --field-end--
 # --field-start--
 fieldName=RecipeName
+# --field-end--
+# --field-start--
+fieldName=foodId
+columnName=food_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=Name
+columnName=name_id
+# --field-end--
+# --field-start--
+fieldName=Grams
+columnName=grams_id
+# --field-end--
+# --field-start--
+fieldName=Calories
+columnName=calories_id
+# --field-end--
+# --field-start--
+fieldName=Carbohydrates
+columnName=carbohydrates_id
+# --field-end--
+# --field-start--
+fieldName=Protein
+columnName=protein_id
+# --field-end--
+# --field-start--
+fieldName=Fat
+columnName=fat_id
 # --field-end--
 # --table-fields-end--
 # --table-end--

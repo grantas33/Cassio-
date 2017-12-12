@@ -3,6 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_recipe_ne"
+        android:text="@string/create_recipe"/>
+
     <TextView
         android:id="@+id/textView9"
         android:layout_width="match_parent"

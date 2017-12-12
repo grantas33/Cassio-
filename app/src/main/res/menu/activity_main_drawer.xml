@@ -15,9 +15,9 @@
             android:icon="@drawable/nav_bar_create_food"
             android:title="@string/create_food" />
         <item
-            android:id="@+id/create_recipe"
+            android:id="@+id/view_recipes"
             android:icon="@drawable/nav_bar_create_food"
-            android:title="@string/create_recipe" />
+            android:title="@string/view_recipes" />
         <item
             android:id="@+id/food_log"
             android:icon="@drawable/nav_bar_food_log"

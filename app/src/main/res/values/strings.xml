@@ -56,4 +56,5 @@
     <string name="createNewRecipe">Nėra esamų receptų. Ar norite sukurti naują?</string>
     <string name="chooseRecipe">Pasirinkite į kurį receptą norite pridėti:</string>
     <string name="recipe_name">Recepto pavadinimas</string>
+    <string name="view_recipes">Peržiūrėti receptus</string>
 </resources>
