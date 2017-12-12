@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.models.LogItem;
+import com.cassio.app.cassio.models.Recipe;
 import com.cassio.app.cassio.tools.DatabaseHelper;
 import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.github.johnpersano.supertoasts.library.Style;
@@ -36,10 +37,14 @@ public class ChooseFoodLogic {
 
     public List<Food> getSortedFoods() {
         List<Food> foods = new ArrayList<Food>();
+        List<Recipe> recipes;
         try {
             DatabaseHelper helper = getHelper();
             final Dao<Food, Integer> foodDao = helper.getFoodDao();
+            Dao<Recipe, Integer> reciperDao = helper.getRecipeDao();
+            recipes = reciperDao.queryForAll();
             foods = new ArrayList<>(foodDao.queryForAll());
+            foods.addAll(recipes);
         } catch (SQLException e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
         }
@@ -47,6 +52,7 @@ public class ChooseFoodLogic {
         Collections.sort(foods);
         return foods;
     }
+
 
     public void addLogItem(LogItem item) {
         try {

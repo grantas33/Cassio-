@@ -44,4 +44,12 @@ public class AddToRecipeLogic {
             e.printStackTrace();
         }
     }
+
+    public void updateRecipe(Recipe recipe) {
+        try {
+            getHelper().getRecipeDao().update(recipe);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

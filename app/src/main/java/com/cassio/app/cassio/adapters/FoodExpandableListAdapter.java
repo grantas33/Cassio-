@@ -62,8 +62,8 @@ public class FoodExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public Object getGroup(int groupPosition) {
-        return null;
+    public Food getGroup(int groupPosition) {
+        return FoodList.get(groupPosition);
     }
 
     @Override

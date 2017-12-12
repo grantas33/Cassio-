@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CreateRecipeFragment extends Fragment {
 
@@ -23,6 +24,8 @@ public class CreateRecipeFragment extends Fragment {
     ListView RecipeList;
     @BindView(R.id.create_recipe_confirm)
     Button ConfirmButton;
+    @BindView(R.id.choose_food_recipe)
+    Button AddFood;
     @BindView(R.id.total_carbohydrates)
     TextView Carbohydrates;
     @BindView(R.id.total_protein)
@@ -31,6 +34,11 @@ public class CreateRecipeFragment extends Fragment {
     TextView Fat;
     @BindView(R.id.recipe_name)
     EditText RecipeName;
+
+    @OnClick(R.id.choose_food_recipe)
+    public void addFoodToRecipe() {
+        
+    }
 
     public CreateRecipeFragment() {
         // Required empty public constructor
