@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cassio.app.cassio.fragmentLogic.FoodLogLogic;
+import com.cassio.app.cassio.FragmentLogic.FoodLogLogic;
 import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.R;
 

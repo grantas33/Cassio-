@@ -16,7 +16,7 @@ import com.cassio.app.cassio.ChooseFoodTabs;
 import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.R;
-import com.cassio.app.cassio.tools.DatabaseHelper;
+import com.cassio.app.cassio.Tools.DatabaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 

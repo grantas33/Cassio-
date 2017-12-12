@@ -1,5 +1,4 @@
-package com.cassio.app.cassio.fragmentLogic;
-
+package com.cassio.app.cassio.FragmentLogic;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;

@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.cassio.app.cassio.R;
-import com.cassio.app.cassio.fragmentLogic.AddToRecipeLogic;
+import com.cassio.app.cassio.FragmentLogic.AddToRecipeLogic;
 import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.models.Recipe;
 

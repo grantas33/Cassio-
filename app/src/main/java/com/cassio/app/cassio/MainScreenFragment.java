@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cassio.app.cassio.fragmentLogic.MainScreenLogic;
+import com.cassio.app.cassio.FragmentLogic.MainScreenLogic;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;

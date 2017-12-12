@@ -14,10 +14,10 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cassio.app.cassio.fragmentLogic.DailyViewLogic;
+import com.cassio.app.cassio.FragmentLogic.DailyViewLogic;
 import com.cassio.app.cassio.adapters.DayExpandableListAdapter;
 import com.cassio.app.cassio.models.DayItem;
-import com.cassio.app.cassio.tools.DayItemsDataPump;
+import com.cassio.app.cassio.Tools.DayItemsDataPump;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,8 +1,8 @@
-package com.cassio.app.cassio.fragmentLogic;
+package com.cassio.app.cassio.FragmentLogic;
 
 import android.content.Context;
 
-import com.cassio.app.cassio.tools.DatabaseHelper;
+import com.cassio.app.cassio.Tools.DatabaseHelper;
 import com.cassio.app.cassio.models.DayItem;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 

@@ -11,7 +11,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.cassio.app.cassio.tools.AlarmReceiver;
+import com.cassio.app.cassio.Tools.AlarmReceiver;
 
 import java.util.Calendar;
 

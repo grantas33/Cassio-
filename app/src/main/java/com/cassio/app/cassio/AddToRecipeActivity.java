@@ -15,7 +15,7 @@ import android.widget.ListView;
 import com.cassio.app.cassio.adapters.AddToRecipeAdapter;
 import com.cassio.app.cassio.dialogs.AddToRecipeAmountDialog;
 import com.cassio.app.cassio.dialogs.CreateRecipeDialog;
-import com.cassio.app.cassio.fragmentLogic.AddToRecipeLogic;
+import com.cassio.app.cassio.FragmentLogic.AddToRecipeLogic;
 import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.models.Recipe;
 

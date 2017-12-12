@@ -16,9 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.cassio.app.cassio.fragmentLogic.CreateFoodLogic;
+import com.cassio.app.cassio.FragmentLogic.CreateFoodLogic;
 import com.cassio.app.cassio.models.Food;
-import com.cassio.app.cassio.tools.InvalidValueException;
+import com.cassio.app.cassio.Tools.InvalidValueException;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 import butterknife.BindView;

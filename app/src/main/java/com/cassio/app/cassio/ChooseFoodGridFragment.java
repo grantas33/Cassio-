@@ -8,10 +8,10 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.cassio.app.cassio.fragmentLogic.ChooseFoodLogic;
+import com.cassio.app.cassio.FragmentLogic.ChooseFoodLogic;
 import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.models.LogItem;
-import com.cassio.app.cassio.tools.DefaultFood;
+import com.cassio.app.cassio.Tools.DefaultFood;
 import com.cassio.app.cassio.dialogs.AdvancedFoodAddDialog;
 import com.cassio.app.cassio.adapters.ImageAdapter;
 

@@ -15,11 +15,11 @@ import android.widget.Toast;
 
 import com.cassio.app.cassio.ChooseFoodTabs;
 import com.cassio.app.cassio.models.Food;
-import com.cassio.app.cassio.fragmentLogic.ChooseFoodLogic;
+import com.cassio.app.cassio.FragmentLogic.ChooseFoodLogic;
 import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.R;
 import com.cassio.app.cassio.dialogs.AdvancedUserFoodAddDialog;
-import com.cassio.app.cassio.tools.FoodValueFormatter;
+import com.cassio.app.cassio.Tools.FoodValueFormatter;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;

@@ -1,4 +1,4 @@
-package com.cassio.app.cassio.tools;
+package com.cassio.app.cassio.Tools;
 
 public class InvalidValueException extends Exception {
     public  InvalidValueException(String message) {

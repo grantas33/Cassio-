@@ -5,7 +5,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.cassio.app.cassio.fragmentLogic.SaveAndClearLogic;
+import com.cassio.app.cassio.FragmentLogic.SaveAndClearLogic;
 import com.cassio.app.cassio.MainActivity;
 import com.cassio.app.cassio.R;
 import com.cassio.app.cassio.SettingsActivity;

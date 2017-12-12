@@ -1,10 +1,10 @@
-package com.cassio.app.cassio.tools;
+package com.cassio.app.cassio.Tools;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.cassio.app.cassio.fragmentLogic.SaveAndClearLogic;
+import com.cassio.app.cassio.FragmentLogic.SaveAndClearLogic;
 
 
 /**

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.cassio.app.cassio.fragmentLogic.FoodLogLogic;
+import com.cassio.app.cassio.FragmentLogic.FoodLogLogic;
 import com.cassio.app.cassio.adapters.LogItemListAdapter;
 
 import butterknife.BindView;

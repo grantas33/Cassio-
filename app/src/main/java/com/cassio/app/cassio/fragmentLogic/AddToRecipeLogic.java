@@ -1,10 +1,10 @@
-package com.cassio.app.cassio.fragmentLogic;
+package com.cassio.app.cassio.FragmentLogic;
 
 import android.content.Context;
 
 import com.cassio.app.cassio.adapters.AddToRecipeAdapter;
 import com.cassio.app.cassio.models.Recipe;
-import com.cassio.app.cassio.tools.DatabaseHelper;
+import com.cassio.app.cassio.Tools.DatabaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
