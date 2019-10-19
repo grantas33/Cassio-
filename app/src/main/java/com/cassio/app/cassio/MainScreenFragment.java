@@ -14,7 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cassio.app.cassio.fragmentLogic.MainScreenLogic;
+import com.cassio.app.cassio.FragmentLogic.MainScreenLogic;
+import com.cassio.app.cassio.Tools.LogProvider;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -56,7 +57,7 @@ public class MainScreenFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_screen, container, false);
 
-        Logic = new MainScreenLogic(getContext());
+        Logic = new MainScreenLogic(getContext(), new LogProvider(getContext()));
         ButterKnife.bind(this, view);
         setNutritionChart();
 

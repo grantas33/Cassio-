@@ -9,8 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cassio.app.cassio.R;
+import com.cassio.app.cassio.Tools.DayItemValueFormatter;
 import com.cassio.app.cassio.models.DayItem;
-import com.cassio.app.cassio.tools.DayItemValueFormatter;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;

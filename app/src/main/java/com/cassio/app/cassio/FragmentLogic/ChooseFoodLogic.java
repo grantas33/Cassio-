@@ -1,13 +1,13 @@
-package com.cassio.app.cassio.fragmentLogic;
+package com.cassio.app.cassio.FragmentLogic;
 
 import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.cassio.app.cassio.Tools.DatabaseHelper;
 import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.models.Recipe;
-import com.cassio.app.cassio.tools.DatabaseHelper;
 import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;

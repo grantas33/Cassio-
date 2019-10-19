@@ -18,7 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.cassio.app.cassio.fragmentLogic.MainActivityLogic;
+import com.cassio.app.cassio.FragmentLogic.MainActivityLogic;
 import com.cassio.app.cassio.dialogs.SaveAndClearDialog;
 import com.cassio.app.cassio.models.Food;
 import com.google.zxing.integration.android.IntentIntegrator;

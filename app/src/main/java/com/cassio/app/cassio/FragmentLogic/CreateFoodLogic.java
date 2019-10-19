@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.cassio.app.cassio.Tools.DatabaseHelper;
 import com.cassio.app.cassio.models.Food;
-import com.cassio.app.cassio.tools.DatabaseHelper;
 import com.cassio.app.cassio.tools.InvalidValueException;
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;

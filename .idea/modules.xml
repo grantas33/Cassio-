@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Cassio-Java-FINAL.iml" filepath="$PROJECT_DIR$/Cassio-Java-FINAL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Cassio-.iml" filepath="$PROJECT_DIR$/.idea/Cassio-.iml" />
+      <module fileurl="file://C:\Users\Lukas\StudioProjects\Cassio-\Cassio-Java-FINAL.iml" filepath="C:\Users\Lukas\StudioProjects\Cassio-\Cassio-Java-FINAL.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Lukas\StudioProjects\Cassio-\app\app.iml" filepath="C:\Users\Lukas\StudioProjects\Cassio-\app\app.iml" />
     </modules>
   </component>
 </project>

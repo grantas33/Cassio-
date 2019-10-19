@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 
-import com.cassio.app.cassio.fragmentLogic.ChooseFoodLogic;
+import com.cassio.app.cassio.FragmentLogic.ChooseFoodLogic;
 import com.cassio.app.cassio.models.Food;
 import com.cassio.app.cassio.adapters.FoodExpandableListAdapter;
 

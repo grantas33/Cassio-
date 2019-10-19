@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.cassio.app.cassio.ChooseFoodTabs;
+import com.cassio.app.cassio.FragmentLogic.ChooseFoodLogic;
 import com.cassio.app.cassio.models.Food;
-import com.cassio.app.cassio.fragmentLogic.ChooseFoodLogic;
 import com.cassio.app.cassio.models.LogItem;
 import com.cassio.app.cassio.R;
 import com.cassio.app.cassio.adapters.FoodExpandableListAdapter;

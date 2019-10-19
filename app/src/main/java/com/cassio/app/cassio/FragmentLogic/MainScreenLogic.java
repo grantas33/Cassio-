@@ -1,90 +1,56 @@
-package com.cassio.app.cassio.fragmentLogic;
+package com.cassio.app.cassio.FragmentLogic;
 
 import android.content.Context;
-import android.widget.Toast;
 
-import com.cassio.app.cassio.tools.DatabaseHelper;
+import com.cassio.app.cassio.Tools.LogProvider;
+import com.cassio.app.cassio.Tools.StubLogProvider;
+import com.cassio.app.cassio.interfaces.ILogProvider;
 import com.cassio.app.cassio.models.LogItem;
-import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.Dao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class MainScreenLogic {
 
-    Context context;
-    DatabaseHelper databaseHelper = null;
+    private Context context;
+    private ILogProvider logProvider;
 
-    public MainScreenLogic(Context context) {
+    public MainScreenLogic(Context context, ILogProvider logProvider) {
         this.context = context;
-    }
-
-    private DatabaseHelper getHelper() {
-        if(databaseHelper == null)
-        {
-            databaseHelper = OpenHelperManager.getHelper(context, DatabaseHelper.class);
-        }
-        return databaseHelper;
+        this.logProvider = logProvider;
     }
 
     public int getTotalCalories() {
         int total = 0;
-        try {
-            final Dao<LogItem, Integer> logDao = getHelper().getLogDao();
-            List<LogItem> items = logDao.queryForAll();
-            for (LogItem item: items
-                 ) {
-                total += item.getCalories();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        List<LogItem> items = logProvider.getAllLogs();
+        for (LogItem item : items) {
+            total += item.getCalories();
         }
         return total;
     }
 
     public double getTotalCarbohydrates() {
         double total = 0;
-        try {
-            final Dao<LogItem, Integer> logDao = getHelper().getLogDao();
-            List<LogItem> items = logDao.queryForAll();
-            for (LogItem item: items
-                    ) {
-                total += item.getCarbohydrates();
-            }
-        } catch (SQLException e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        List<LogItem> items = logProvider.getAllLogs();
+        for (LogItem item : items) {
+            total += item.getCarbohydrates();
         }
         return total;
     }
 
     public double getTotalProtein() {
         double total = 0;
-        try {
-            final Dao<LogItem, Integer> logDao = getHelper().getLogDao();
-            List<LogItem> items = logDao.queryForAll();
-            for (LogItem item: items
-                    ) {
-                total += item.getProtein();
-            }
-        } catch (SQLException e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        List<LogItem> items = logProvider.getAllLogs();
+        for (LogItem item : items) {
+            total += item.getProtein();
         }
         return total;
     }
 
     public double getTotalFat() {
         double total = 0;
-        try {
-            final Dao<LogItem, Integer> logDao = getHelper().getLogDao();
-            List<LogItem> items = logDao.queryForAll();
-            for (LogItem item: items
-                    ) {
-                total += item.getFat();
-            }
-        } catch (SQLException e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        List<LogItem> items = logProvider.getAllLogs();
+        for (LogItem item : items) {
+            total += item.getFat();
         }
         return total;
     }

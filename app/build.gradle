@@ -52,6 +52,7 @@ repositories {
 
 
 dependencies {
+    testCompile 'org.mockito:mockito-core:1.10.19'
 
     // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-core
     compile group: 'com.j256.ormlite', name: 'ormlite-core', version: '5.0'
